@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,11 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->na
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/web-profile', [WebProfileController::class, 'index'])->name('admin.web_profile.index');
+    Route::post('/web-profile', [WebProfileController::class, 'store'])->name('admin.web_profile.store');
 });
 
 Route::get('/', function () {
