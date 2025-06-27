@@ -28,9 +28,18 @@
             </a>
         </li>
 
-        <li class="{{ request()->routeIs('admin.sport.*') ? 'active' : '' }}">
-            <a href="{{ route('admin.sport.index') }}">
+        {{-- === SPORTS MANAGEMENT === --}}
+        <li class="sidebar-section-title">Sports Management</li>
+
+        <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.sports.index') }}">
                 <i class="fas fa-football-ball"></i> Sports
+            </a>
+        </li>
+
+        <li class="{{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.galleries.index') }}">
+                <i class="fas fa-images"></i> Gallery
             </a>
         </li>
 

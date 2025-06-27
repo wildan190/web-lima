@@ -7,6 +7,8 @@ use App\Repositories\Interface\AuthRepositoryInterface;
 use App\Repositories\Interface\SportRepositoryInterface;
 use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
+use App\Repositories\Interface\GalleryRepositoryInterface;
+use App\Repositories\GalleryRepository;
 use App\Repositories\SportRepository;
 use App\Repositories\WebContactRepository;
 use App\Repositories\WebProfileRepository;
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(WebProfileRepositoryInterface::class, WebProfileRepository::class);
         $this->app->bind(WebContactRepositoryInterface::class, WebContactRepository::class);
         $this->app->bind(SportRepositoryInterface::class, SportRepository::class);
+        $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
     }
 
     /**

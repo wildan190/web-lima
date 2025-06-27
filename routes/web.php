@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
@@ -47,8 +48,25 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::resource('sports', SportController::class)->except(['show']);
+    // Galleries
+    Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
+    Route::get('galleries/create', [GalleryController::class, 'create'])->name('galleries.create');
+    Route::post('galleries', [GalleryController::class, 'store'])->name('galleries.store');
+    Route::get('galleries/{gallery}/edit', [GalleryController::class, 'edit'])->name('galleries.edit');
+    Route::put('galleries/{gallery}', [GalleryController::class, 'update'])->name('galleries.update');
+    Route::delete('galleries/{gallery}', [GalleryController::class, 'destroy'])->name('galleries.destroy');
 });
+
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+    // Sports
+    Route::get('sports', [SportController::class, 'index'])->name('sports.index');
+    Route::get('sports/create', [SportController::class, 'create'])->name('sports.create');
+    Route::post('sports', [SportController::class, 'store'])->name('sports.store');
+    Route::get('sports/{sport}/edit', [SportController::class, 'edit'])->name('sports.edit');
+    Route::put('sports/{sport}', [SportController::class, 'update'])->name('sports.update');
+    Route::delete('sports/{sport}', [SportController::class, 'destroy'])->name('sports.destroy');
+});
+
 
 Route::get('/', function () {
     return view('welcome');

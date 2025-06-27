@@ -9,8 +9,10 @@ class Sport extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'logo',
-    ];
+    protected $fillable = ['name', 'logo'];
+
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
 }
