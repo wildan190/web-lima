@@ -10,6 +10,11 @@
                 <i class="fas fa-cog"></i> Web Profile
             </a>
         </li>
+        <li class="{{ request()->routeIs('admin.web_contact.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.web_contact.index') }}">
+                <i class="fas fa-address-book me-2"></i> Web Contact
+            </a>
+        </li>
         <li>
             <form action="{{ route('logout') }}" method="POST" id="logout-form">
                 @csrf

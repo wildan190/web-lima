@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/web-profile', [WebProfileController::class, 'index'])->name('admin.web_profile.index');
     Route::post('/web-profile', [WebProfileController::class, 'store'])->name('admin.web_profile.store');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/web-contact', [WebContactController::class, 'index'])->name('admin.web_contact.index');
+    Route::post('/web-contact', [WebContactController::class, 'store'])->name('admin.web_contact.store');
 });
 
 Route::get('/', function () {
