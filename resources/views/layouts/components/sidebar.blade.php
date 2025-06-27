@@ -5,6 +5,11 @@
     </div>
     <ul class="sidebar-menu">
         <li><a href="{{ url('admin/dashboard') }}">Dashboard</a></li>
+        <li class="{{ request()->routeIs('admin.web_profile.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.web_profile.index') }}">
+                <i class="fas fa-cog"></i> Web Profile
+            </a>
+        </li>
         <li>
             <form action="{{ route('logout') }}" method="POST" id="logout-form">
                 @csrf
