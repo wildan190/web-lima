@@ -56,6 +56,15 @@
     background-color: #34495e;
 }
 
+.sidebar-section-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #bdc3c7;
+    margin: 20px 0 10px;
+    padding-left: 10px;
+}
+
+
 /* RESPONSIVE SIDEBAR */
 @media (max-width: 768px) {
     .sidebar {
