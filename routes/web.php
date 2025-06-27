@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
@@ -31,13 +32,22 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 });
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/web-profile', [WebProfileController::class, 'index'])->name('admin.web_profile.index');
-    Route::post('/web-profile', [WebProfileController::class, 'store'])->name('admin.web_profile.store');
-});
-
-Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/web-contact', [WebContactController::class, 'index'])->name('admin.web_contact.index');
     Route::post('/web-contact', [WebContactController::class, 'store'])->name('admin.web_contact.store');
+
+    Route::get('/web-profile', [WebProfileController::class, 'index'])->name('admin.web_profile.index');
+    Route::post('/web-profile', [WebProfileController::class, 'store'])->name('admin.web_profile.store');
+
+    Route::get('/sport', [SportController::class, 'index'])->name('admin.sport.index');
+    Route::get('/sport/create', [SportController::class, 'create'])->name('admin.sport.create');
+    Route::post('/sport', [SportController::class, 'store'])->name('admin.sport.store');
+    Route::get('/sport/{id}/edit', [SportController::class, 'edit'])->name('admin.sport.edit');
+    Route::put('/sport/{id}', [SportController::class, 'update'])->name('admin.sport.update');
+    Route::delete('/sport/{id}', [SportController::class, 'destroy'])->name('admin.sport.destroy');
+});
+
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+    Route::resource('sports', SportController::class)->except(['show']);
 });
 
 Route::get('/', function () {

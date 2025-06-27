@@ -28,6 +28,12 @@
             </a>
         </li>
 
+        <li class="{{ request()->routeIs('admin.sport.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.sport.index') }}">
+                <i class="fas fa-football-ball"></i> Sports
+            </a>
+        </li>
+
         {{-- === ACCOUNT === --}}
         <li class="sidebar-section-title">Account</li>
 
