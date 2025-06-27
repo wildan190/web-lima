@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/assets/font/Poppins-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.web-profile-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.web-profile-container h3 {
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-weight: 600;
+    text-align: center;
+}
+
+.web-profile-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #34495e;
+}
+
+.web-profile-container input[type="text"],
+.web-profile-container input[type="file"] {
+    width: 100%;
+    padding: 10px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.web-profile-container button,
+.web-profile-container .btn {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.web-profile-container button:hover,
+.web-profile-container .btn:hover {
+    background-color: #1f6391;
+}
+
+.web-profile-container img {
+    max-height: 80px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.table th {
+    background-color: #ecf0f1;
+    font-weight: 600;
+}
+
+.table img {
+    height: 50px;
+    object-fit: contain;
+}
+
+/* Buttons in Table */
+.table .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background-color: #27ae60;
+}
+
+.btn-delete {
+    background-color: #c0392b;
+}
+
+.btn-edit:hover {
+    background-color: #1e8449;
+}
+
+.btn-delete:hover {
+    background-color: #a93226;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .web-profile-container {
+        padding: 20px;
+    }
+
+    .web-profile-container h3 {
+        font-size: 20px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .table .btn {
+        margin-bottom: 5px;
+    }
+}

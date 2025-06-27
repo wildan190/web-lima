@@ -6,7 +6,7 @@ use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 
 class CreateUniversityCoverage
 {
-    protected UniversityCoverageRepositoryInterface $repository;
+    protected $repository;
 
     public function __construct(UniversityCoverageRepositoryInterface $repository)
     {
@@ -16,7 +16,6 @@ class CreateUniversityCoverage
     public function execute(array $data): void
     {
         if (isset($data['logo']) && $data['logo']->isValid()) {
-            // Simpan file ke storage/app/public/university_coverages
             $data['logo'] = $data['logo']->store('university_coverages', 'public');
         }
 

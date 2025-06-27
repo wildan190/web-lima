@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\SportController;
+use App\Http\Controllers\Admin\UniversityCoverageController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
@@ -65,6 +66,16 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('sports/{sport}/edit', [SportController::class, 'edit'])->name('sports.edit');
     Route::put('sports/{sport}', [SportController::class, 'update'])->name('sports.update');
     Route::delete('sports/{sport}', [SportController::class, 'destroy'])->name('sports.destroy');
+});
+
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+    // University Coverage
+    Route::get('university-coverages', [UniversityCoverageController::class, 'index'])->name('university-coverages.index');
+    Route::get('university-coverages/create', [UniversityCoverageController::class, 'create'])->name('university-coverages.create');
+    Route::post('university-coverages', [UniversityCoverageController::class, 'store'])->name('university-coverages.store');
+    Route::get('university-coverages/{id}/edit', [UniversityCoverageController::class, 'edit'])->name('university-coverages.edit');
+    Route::put('university-coverages/{id}', [UniversityCoverageController::class, 'update'])->name('university-coverages.update');
+    Route::delete('university-coverages/{id}', [UniversityCoverageController::class, 'destroy'])->name('university-coverages.destroy');
 });
 
 
