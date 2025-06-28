@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MilestoneController;
+use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\UniversityCoverageController;
 use App\Http\Controllers\Admin\WebContactController;
@@ -87,6 +88,11 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('milestones/{id}/edit', [MilestoneController::class, 'edit'])->name('milestones.edit');
     Route::put('milestones/{id}', [MilestoneController::class, 'update'])->name('milestones.update');
     Route::delete('milestones/{id}', [MilestoneController::class, 'destroy'])->name('milestones.destroy');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('privacy-policies', [PrivacyPolicyController::class, 'edit'])->name('privacy-policies.edit');
+    Route::put('privacy-policies', [PrivacyPolicyController::class, 'update'])->name('privacy-policies.update');
 });
 
 Route::get('/', function () {

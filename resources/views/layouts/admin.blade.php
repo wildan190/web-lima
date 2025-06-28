@@ -23,6 +23,7 @@
 
             <div class="admin-body">
                 @yield('content')
+                @stack('scripts')
             </div>
         </div>
     </div>

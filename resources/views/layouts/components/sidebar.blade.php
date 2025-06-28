@@ -28,6 +28,12 @@
             </a>
         </li>
 
+        <li class="{{ request()->routeIs('admin.privacy_policy.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.privacy-policies.edit') }}">
+                <i class="fas fa-shield-alt"></i> Privacy Policy
+            </a>
+        </li>
+
         {{-- === SPORTS MANAGEMENT === --}}
         <li class="sidebar-section-title">Sports Management</li>
 
