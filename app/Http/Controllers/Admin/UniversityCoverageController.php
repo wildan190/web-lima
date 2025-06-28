@@ -7,7 +7,6 @@ use App\Http\Requests\UniversityCoverageRequest;
 use App\Modules\Admin\UniversityCoverage\Action\CreateUniversityCoverage;
 use App\Modules\Admin\UniversityCoverage\Action\UpdateUniversityCoverage;
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
-use Illuminate\Http\Request;
 
 class UniversityCoverageController extends Controller
 {
@@ -21,6 +20,7 @@ class UniversityCoverageController extends Controller
     public function index()
     {
         $coverages = $this->repository->getAll();
+
         return view('admin.university_coverage.index', compact('coverages'));
     }
 
@@ -32,24 +32,28 @@ class UniversityCoverageController extends Controller
     public function store(UniversityCoverageRequest $request, CreateUniversityCoverage $action)
     {
         $action->execute($request->validated());
+
         return redirect()->route('admin.university-coverages.index')->with('success', 'University coverage created.');
     }
 
     public function edit($id)
     {
         $coverage = $this->repository->findById($id);
+
         return view('admin.university_coverage.edit', compact('coverage'));
     }
 
     public function update(UniversityCoverageRequest $request, $id, UpdateUniversityCoverage $action)
     {
         $action->execute($id, $request->validated());
+
         return redirect()->route('admin.university-coverages.index')->with('success', 'University coverage updated.');
     }
 
     public function destroy($id)
     {
         $this->repository->delete($id);
+
         return redirect()->route('admin.university-coverages.index')->with('success', 'University coverage deleted.');
     }
 }

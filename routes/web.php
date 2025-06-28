@@ -89,7 +89,6 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::delete('milestones/{id}', [MilestoneController::class, 'destroy'])->name('milestones.destroy');
 });
 
-
 Route::get('/', function () {
     return view('welcome');
 });

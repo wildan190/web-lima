@@ -27,6 +27,7 @@ class UniversityCoverageRepository implements UniversityCoverageRepositoryInterf
     {
         $coverage = $this->findById($id);
         $coverage->update($data);
+
         return $coverage;
     }
 

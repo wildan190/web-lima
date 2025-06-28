@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 use App\Repositories\AuthRepository;
+use App\Repositories\GalleryRepository;
 use App\Repositories\Interface\AuthRepositoryInterface;
+use App\Repositories\Interface\GalleryRepositoryInterface;
+use App\Repositories\Interface\MilestoneRepositoryInterface;
 use App\Repositories\Interface\SportRepositoryInterface;
+use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
-use App\Repositories\Interface\GalleryRepositoryInterface;
-use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
-use App\Repositories\Interface\MilestoneRepositoryInterface;
 use App\Repositories\MilestoneRepository;
-use App\Repositories\UniversityCoverageRepository;
-use App\Repositories\GalleryRepository;
 use App\Repositories\SportRepository;
+use App\Repositories\UniversityCoverageRepository;
 use App\Repositories\WebContactRepository;
 use App\Repositories\WebProfileRepository;
 use Illuminate\Support\ServiceProvider;

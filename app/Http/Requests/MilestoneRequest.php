@@ -14,7 +14,7 @@ class MilestoneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'year' => 'required|integer|min:1900|max:' . date('Y'),
+            'year' => 'required|integer|min:1900|max:'.date('Y'),
             'sport_id' => 'required|exists:sports,id',
             'location' => 'required|string|max:255',
             'description' => 'nullable|string',

@@ -25,12 +25,14 @@ class GalleryRepository implements GalleryRepositoryInterface
     public function update($id, array $data)
     {
         $gallery = $this->find($id);
+
         return $gallery->update($data);
     }
 
     public function delete($id)
     {
         $gallery = $this->find($id);
+
         return $gallery->delete();
     }
 }

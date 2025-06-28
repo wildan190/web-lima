@@ -26,6 +26,7 @@ class MilestoneRepository implements MilestoneRepositoryInterface
     {
         $item = $this->findById($id);
         $item->update($data);
+
         return $item;
     }
 
