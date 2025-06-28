@@ -19,6 +19,7 @@ class PrivacyPolicyController extends Controller
     public function edit()
     {
         $privacyPolicy = $this->privacyPolicyRepo->getLatest();
+
         return view('admin.privacy_policies.update', compact('privacyPolicy'));
     }
 

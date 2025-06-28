@@ -2,7 +2,6 @@
 
 namespace App\Modules\Admin\PrivacyPolicy\Action;
 
-use App\Models\PrivacyPolicy;
 use App\Repositories\Interface\PrivacyPolicyInterface;
 
 class CreateOrUpdatePrivacyPolicy
