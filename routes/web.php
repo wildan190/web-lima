@@ -51,7 +51,6 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    // Galleries
     Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
     Route::get('galleries/create', [GalleryController::class, 'create'])->name('galleries.create');
     Route::post('galleries', [GalleryController::class, 'store'])->name('galleries.store');
@@ -61,7 +60,6 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
 });
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    // Sports
     Route::get('sports', [SportController::class, 'index'])->name('sports.index');
     Route::get('sports/create', [SportController::class, 'create'])->name('sports.create');
     Route::post('sports', [SportController::class, 'store'])->name('sports.store');
@@ -71,7 +69,6 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
 });
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    // University Coverage
     Route::get('university-coverages', [UniversityCoverageController::class, 'index'])->name('university-coverages.index');
     Route::get('university-coverages/create', [UniversityCoverageController::class, 'create'])->name('university-coverages.create');
     Route::post('university-coverages', [UniversityCoverageController::class, 'store'])->name('university-coverages.store');
@@ -81,7 +78,6 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
 });
 
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    // Milestone
     Route::get('milestones', [MilestoneController::class, 'index'])->name('milestones.index');
     Route::get('milestones/create', [MilestoneController::class, 'create'])->name('milestones.create');
     Route::post('milestones', [MilestoneController::class, 'store'])->name('milestones.store');

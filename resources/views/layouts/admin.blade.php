@@ -37,7 +37,6 @@
             sidebar.classList.toggle('active');
         });
 
-        // Optional: close sidebar when clicking outside (mobile only)
         document.addEventListener('click', function(e) {
             if (!sidebar.contains(e.target) && !toggle.contains(e.target) && sidebar.classList.contains('active')) {
                 sidebar.classList.remove('active');

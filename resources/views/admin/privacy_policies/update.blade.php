@@ -15,10 +15,8 @@
         @csrf
         @method('PUT')
 
-        {{-- Hidden input untuk mengirim konten --}}
         <input type="hidden" name="content" id="content">
 
-        {{-- Quill Editor --}}
         <div id="editor-container" style="height: 300px;"></div>
 
         <button type="submit" class="btn btn-submit">Save</button>
@@ -37,11 +35,9 @@
                 placeholder: 'Write your privacy policy here...'
             });
 
-            // Masukkan konten awal
             const initialContent = `{!! addslashes(old('content', $privacyPolicy->content ?? '')) !!}`;
             quill.root.innerHTML = initialContent;
 
-            // Saat submit
             document.getElementById('privacy-policy-form').addEventListener('submit', function (e) {
                 const contentInput = document.getElementById('content');
                 contentInput.value = quill.root.innerHTML;

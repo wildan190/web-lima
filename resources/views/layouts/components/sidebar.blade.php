@@ -6,14 +6,12 @@
 
     <ul class="sidebar-menu">
 
-        {{-- === DASHBOARD === --}}
         <li class="{{ request()->is('admin/dashboard') ? 'active' : '' }}">
             <a href="{{ url('admin/dashboard') }}">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </a>
         </li>
 
-        {{-- === WEBSITE SETTINGS === --}}
         <li class="sidebar-section-title">Website Settings</li>
 
         <li class="{{ request()->routeIs('admin.web_profile.*') ? 'active' : '' }}">
@@ -34,7 +32,6 @@
             </a>
         </li>
 
-        {{-- === SPORTS MANAGEMENT === --}}
         <li class="sidebar-section-title">Sports Management</li>
 
         <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">
@@ -61,7 +58,6 @@
             </a>
         </li>
 
-        {{-- === ACCOUNT === --}}
         <li class="sidebar-section-title">Account</li>
 
         <li>

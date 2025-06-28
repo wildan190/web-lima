@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('privacy_policies', function (Blueprint $table) {
             $table->id();
-            $table->longText('content'); // Menyimpan konten HTML atau teks panjang
+            $table->longText('content');
             $table->timestamps();
         });
     }
