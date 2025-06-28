@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\UniversityCoverageController;
 use App\Http\Controllers\Admin\WebContactController;
@@ -76,6 +77,16 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('university-coverages/{id}/edit', [UniversityCoverageController::class, 'edit'])->name('university-coverages.edit');
     Route::put('university-coverages/{id}', [UniversityCoverageController::class, 'update'])->name('university-coverages.update');
     Route::delete('university-coverages/{id}', [UniversityCoverageController::class, 'destroy'])->name('university-coverages.destroy');
+});
+
+Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
+    // Milestone
+    Route::get('milestones', [MilestoneController::class, 'index'])->name('milestones.index');
+    Route::get('milestones/create', [MilestoneController::class, 'create'])->name('milestones.create');
+    Route::post('milestones', [MilestoneController::class, 'store'])->name('milestones.store');
+    Route::get('milestones/{id}/edit', [MilestoneController::class, 'edit'])->name('milestones.edit');
+    Route::put('milestones/{id}', [MilestoneController::class, 'update'])->name('milestones.update');
+    Route::delete('milestones/{id}', [MilestoneController::class, 'destroy'])->name('milestones.destroy');
 });
 
 

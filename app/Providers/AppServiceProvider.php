@@ -9,6 +9,8 @@ use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
 use App\Repositories\Interface\GalleryRepositoryInterface;
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
+use App\Repositories\Interface\MilestoneRepositoryInterface;
+use App\Repositories\MilestoneRepository;
 use App\Repositories\UniversityCoverageRepository;
 use App\Repositories\GalleryRepository;
 use App\Repositories\SportRepository;
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SportRepositoryInterface::class, SportRepository::class);
         $this->app->bind(GalleryRepositoryInterface::class, GalleryRepository::class);
         $this->app->bind(UniversityCoverageRepositoryInterface::class, UniversityCoverageRepository::class);
+        $this->app->bind(MilestoneRepositoryInterface::class, MilestoneRepository::class);
     }
 
     /**

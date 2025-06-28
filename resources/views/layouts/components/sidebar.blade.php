@@ -43,6 +43,18 @@
             </a>
         </li>
 
+        <li class="{{ request()->routeIs('admin.university-coverages.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.university-coverages.index') }}">
+                <i class="fas fa-university"></i> University Coverage
+            </a>
+        </li>
+
+        <li class="{{ request()->routeIs('admin.milestones.*') ? 'active' : '' }}">
+            <a href="{{ route('admin.milestones.index') }}">
+                <i class="fas fa-flag-checkered"></i> Milestone
+            </a>
+        </li>
+
         {{-- === ACCOUNT === --}}
         <li class="sidebar-section-title">Account</li>
 
