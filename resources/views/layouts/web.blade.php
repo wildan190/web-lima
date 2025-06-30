@@ -67,7 +67,7 @@
             <nav class="nav-links" id="navLinks">
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
                     <li><a href="#">Milestone</a></li>
                     <li><a href="#">Gallery</a></li>
                     <li><a href="#">Newsroom</a></li>
@@ -113,7 +113,7 @@
         <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
         <ul>
             <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="{{ route('about') }}">About Us</a></li>
             <li><a href="#">Milestone</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Newsroom</a></li>
@@ -141,7 +141,7 @@
             <div class="footer-nav">
                 <ul>
                     <li><strong>Who Are We</strong></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{ route('about') }}">About Us</a></li>
                     <li><a href="#">Vision and Mission</a></li>
                 </ul>
                 <ul>

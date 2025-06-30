@@ -33,8 +33,11 @@ class HomeController extends Controller
     {
         $webProfile = WebProfile::first(); // hanya ambil satu
         $WebContact = WebContact::first(); // hanya ambil satu kontak
+        
 
-        return view('web.about', compact('webProfile', 'WebContact'));
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.about', compact('webProfile', 'WebContact', 'newsLatest'));
     }
 
     public function contact(Request $request)
