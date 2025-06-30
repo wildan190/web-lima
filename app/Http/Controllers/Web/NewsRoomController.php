@@ -12,9 +12,9 @@ class NewsRoomController extends Controller
 {
     public function index(Request $request)
     {
-        $webProfile = WebProfile::first(); // hanya ambil satu
-        $sports = Sport::all(); // ambil semua sport dan logo
-        $WebContact = WebContact::first(); // hanya ambil satu kontak
+        $webProfile = WebProfile::first();
+        $sports = Sport::all();
+        $WebContact = WebContact::first();
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 

@@ -14,7 +14,7 @@ class WebProfileRequest extends FormRequest
             'about' => 'nullable|string',
             'vision' => 'nullable|string',
             'mission' => 'nullable|string',
-            'history' => 'nullable|string', // Added history field validation
+            'history' => 'nullable|string',
         ];
     }
 

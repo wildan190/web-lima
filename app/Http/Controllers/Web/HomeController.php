@@ -24,15 +24,15 @@ class HomeController extends Controller
 
     public function privacyPolicy(Request $request)
     {
-        $policy = PrivacyPolicy::first(); // ambil kebijakan privasi
+        $policy = PrivacyPolicy::first();
 
         return view('web.privacy-policy', compact('policy'));
     }
 
     public function about(Request $request)
     {
-        $webProfile = WebProfile::first(); // hanya ambil satu
-        $WebContact = WebContact::first(); // hanya ambil satu kontak
+        $webProfile = WebProfile::first();
+        $WebContact = WebContact::first();
         
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
@@ -42,8 +42,7 @@ class HomeController extends Controller
 
     public function contact(Request $request)
     {
-        $WebContact = WebContact::first(); // hanya ambil satu kontak
-
+        $WebContact = WebContact::first();
         return view('web.contact', compact('WebContact'));
     }
 }
