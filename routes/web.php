@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MilestoneController;
+use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\UniversityCoverageController;
@@ -86,6 +87,15 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     Route::get('milestones/{id}/edit', [MilestoneController::class, 'edit'])->name('milestones.edit');
     Route::put('milestones/{id}', [MilestoneController::class, 'update'])->name('milestones.update');
     Route::delete('milestones/{id}', [MilestoneController::class, 'destroy'])->name('milestones.destroy');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('news', [NewsController::class, 'index'])->name('news.index');
+    Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('news/store', [NewsController::class, 'store'])->name('news.store');
+    Route::get('news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('news/{id}/update', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('news/{id}/destroy', [NewsController::class, 'destroy'])->name('news.destroy');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {

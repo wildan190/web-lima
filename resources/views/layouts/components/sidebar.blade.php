@@ -59,6 +59,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.news.index') }}">
+                    <i class="fas fa-newspaper"></i> News
+                </a>
+            </li>
+
             <li class="sidebar-section-title">Account</li>
 
             <li>
