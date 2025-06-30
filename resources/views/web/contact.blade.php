@@ -2,10 +2,22 @@
 
 @section('content')
     <style>
+        @font-face {
+            font-family: 'Poppins';
+            src: url('{{ asset('assets/font/Poppins-Regular.ttf') }}') format("truetype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* BANNER SECTION */
         .privacy-banner {
             position: relative;
             height: 320px;
-            background: url('{{ asset("assets/img/hero.png") }}') center center / cover no-repeat;
+            background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
         }
 
         .privacy-banner-overlay {
@@ -34,7 +46,6 @@
         .contact-section {
             padding: 60px 9rem;
             background: #fafafa;
-            font-family: 'Inter', sans-serif;
         }
 
         .contact-container {
@@ -71,6 +82,7 @@
         }
     </style>
 
+
     <!-- Banner Section -->
     <section class="privacy-banner">
         <div class="privacy-banner-overlay">
@@ -85,7 +97,8 @@
     <section class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
-            <h2 style="color: #d62828; display: inline;">LIMA</h2> <h2 style="display: inline; margin-left: 8px;">Office</h2>
+                <h2 style="color: #d62828; display: inline;">LIMA</h2>
+                <h2 style="display: inline; margin-left: 8px;">Office</h2>
                 <p>{{ $WebContact->address }}</p>
                 <p>
                     <strong>E-mail :</strong>
@@ -95,9 +108,7 @@
                 </p>
             </div>
             <div class="contact-map">
-                <iframe 
-                    src="https://www.google.com/maps?q=-6.2075874,106.8190741&z=17&output=embed" 
-                    allowfullscreen>
+                <iframe src="https://www.google.com/maps?q=-6.2075874,106.8190741&z=17&output=embed" allowfullscreen>
                 </iframe>
             </div>
         </div>
