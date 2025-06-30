@@ -62,8 +62,7 @@
                 </div>
                 <div class="footer-address">
                     PT. BINA MAHASISWA INDONESIA<br>
-                    Sahid Office Boutique Blok G, Jl. Jend. Sudirman Kav. 86<br>
-                    Jakarta Pusat, DKI Jakarta, 10220
+                    <p>{{ $WebContact->address ?? 'Alamat belum tersedia.' }}</p>
                 </div>
             </div>
             <div class="footer-nav">
@@ -87,11 +86,21 @@
         <div class="footer-middle">
             <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
             <div class="socials">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                @if(!empty($WebContact->facebook))
+                    <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                @endif
+                @if(!empty($WebContact->instagram))
+                    <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                @endif
+                @if(!empty($WebContact->twitter))
+                    <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+                @endif
+                @if(!empty($WebContact->youtube))
+                    <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                @endif
+                @if(!empty($WebContact->tiktok))
+                    <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                @endif
             </div>
         </div>
 
