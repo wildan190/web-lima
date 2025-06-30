@@ -16,12 +16,14 @@
     <header class="navbar">
         <div class="container">
             <div class="logo" style="margin-right: auto;">
-                <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
+                </a>
             </div>
 
             <nav class="nav-links" id="navLinks">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Milestone</a></li>
                     <li><a href="#">Gallery</a></li>
