@@ -12,5 +12,6 @@ class WebProfile extends Model
         'about',
         'vision',
         'mission',
+        'history', // Added history field
     ];
 }

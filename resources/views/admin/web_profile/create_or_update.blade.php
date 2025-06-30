@@ -26,6 +26,9 @@
                 <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo">
             @endif
 
+            <label for="history">History</label>
+            <textarea name="history" id="history">{{ old('history', $profile->history ?? '') }}</textarea>
+
             <label for="about">About</label>
             <textarea name="about" id="about">{{ old('about', $profile->about ?? '') }}</textarea>
 
