@@ -16,7 +16,7 @@ position: relative;
 .cookie-container {
 max-width: 1200px;
 margin: 0 auto;
-padding: 16px 20px;
+padding: 16px 9rem;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
@@ -53,6 +53,15 @@ margin: 0;
 font-family: 'Poppins', sans-serif;
 background-color: #fff;
 color: #333;
+padding-top: 70px; /* Sesuaikan dengan tinggi navbar */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001; /* Pastikan navbar selalu di atas konten lain */
 }
 
 a {
@@ -61,6 +70,7 @@ color: inherit;
 }
 
 .navbar {
+    position: fixed;
 background: #fff;
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 padding: 1rem 9rem;
@@ -319,7 +329,7 @@ font-weight: 600;
 
 .latest-news {
 background-color: #ffeceb;
-padding: 60px 20px;
+padding: 60px 9rem;
 }
 
 .latest-news .container {

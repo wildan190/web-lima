@@ -26,7 +26,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
-Route::get('/privacy-policy', [\App\Http\Controllers\Web\AboutUsController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/privacy-policy', [\App\Http\Controllers\Web\HomeController::class, 'privacyPolicy'])->name('privacy.policy');
+Route::get('/contact', [\App\Http\Controllers\Web\HomeController::class, 'contact'])->name('contact');
 
 Route::post('/accept-cookies', function (Request $request) {
     return response('OK')->cookie('cookie_consent', 'accepted', 60 * 24 * 365); // 1 year

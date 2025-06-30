@@ -71,7 +71,7 @@
                     <li><a href="#">Milestone</a></li>
                     <li><a href="#">Gallery</a></li>
                     <li><a href="#">Newsroom</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </nav>
             <div class="navbar-language" id="navbarLanguage">🌐 EN</div>
@@ -112,12 +112,12 @@
     <aside class="sidebar" id="sidebar">
         <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="#">About Us</a></li>
             <li><a href="#">Milestone</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Newsroom</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
         <div class="sidebar-language">🌐 EN</div>
     </aside>
@@ -151,7 +151,7 @@
                 </ul>
                 <ul>
                     <li><strong>Find Us</strong></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>
         </div>
