@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Models\WebProfile;
+use App\Http\Controllers\Controller;
 use App\Models\Sport;
 use App\Models\WebContact;
-use App\Http\Controllers\Controller;
+use App\Models\WebProfile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

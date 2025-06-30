@@ -16,7 +16,7 @@ class NewsRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'slug' => 'required|string|max:255|unique:news,slug,' . $this->route('news'),
+            'slug' => 'required|string|max:255|unique:news,slug,'.$this->route('news'),
             'picture_upload' => 'nullable|image|max:2048',
             'content' => 'required|string',
             'tag' => 'nullable|string',
