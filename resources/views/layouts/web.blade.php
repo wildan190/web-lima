@@ -9,7 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 
 <body>
@@ -50,32 +49,12 @@
         <div class="sidebar-language">🌐 EN</div>
     </aside>
 
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        const closeSidebar = document.getElementById('closeSidebar');
-
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.add('active');
-        });
-
-        closeSidebar.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-        });
-
-        window.addEventListener('click', function(e) {
-            if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuToggle) {
-                sidebar.classList.remove('active');
-            }
-        });
-    </script>
-
     <main>
         @yield('content')
     </main>
 
     <footer>
-        {{-- Bagian 1: Gradien Merah ke Hitam --}}
+
         <div class="footer-top">
             <div class="footer-left">
                 <div class="logo">
@@ -103,32 +82,45 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-
         </div>
 
-
-        {{-- Bagian 2: Bar Putih --}}
         <div class="footer-middle">
-    <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
-    <div class="socials">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-    </div>
-</div>
+            <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
+            <div class="socials">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
 
-
-        {{-- Bagian 3: Footer Hitam Bawah --}}
         <div class="footer-bottom">
             <div class="privacy-policy"><a href="#">Privacy Policy</a></div>
             <div class="copyright">© 2025 Liga Mahasiswa, Inc.</div>
         </div>
     </footer>
 
-
-
 </body>
+
+<script>
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeSidebar = document.getElementById('closeSidebar');
+
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.add('active');
+    });
+
+    closeSidebar.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+    });
+
+    window.addEventListener('click', function(e) {
+        if (sidebar.classList.contains('active') && !sidebar.contains(e.target) && e.target !== menuToggle) {
+            sidebar.classList.remove('active');
+        }
+    });
+</script>
 
 </html>
