@@ -228,7 +228,7 @@
         </div>
 
         <div class="footer-bottom">
-            <div class="privacy-policy"><a href="#">Privacy Policy</a></div>
+            <div class="privacy-policy"><a href="{{route('privacy.policy')}}">Privacy Policy</a></div>
             <div class="copyright">© 2025 Liga Mahasiswa, Inc.</div>
         </div>
     </footer>
