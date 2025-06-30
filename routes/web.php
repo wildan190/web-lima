@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
+
+Route::post('/accept-cookies', function (Request $request) {
+    return response('OK')->cookie('cookie_consent', 'accepted', 60 * 24 * 365); // 1 year
+})->name('cookie.accept');
+
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');

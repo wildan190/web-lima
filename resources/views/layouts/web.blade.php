@@ -4,12 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIMA</title>
+    
+    <title>LIMA - Liga Mahasiswa Indonesia</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta name="description" content="LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.">
+    <meta name="keywords" content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia">
+    <meta name="author" content="LIMA Indonesia">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta property="og:description" content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
+    <meta property="og:image" content="{{ asset('assets/img/seo/cover.jpg') }}"> <!-- ubah ke gambar SEO utama -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta name="twitter:description" content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
+    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
+
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "LIMA - Liga Mahasiswa Indonesia",
+      "url": "{{ url('/') }}",
+      "logo": "{{ asset('assets/img/limalogo.png') }}",
+      "sameAs": [
+        "{{ $WebContact->facebook ?? '' }}",
+        "{{ $WebContact->instagram ?? '' }}",
+        "{{ $WebContact->twitter ?? '' }}",
+        "{{ $WebContact->youtube ?? '' }}"
+      ]
+    }
+    </script>
+
+    <!-- Stylesheets & Fonts -->
     <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 
 <body>
 
@@ -37,6 +80,79 @@
             </button>
         </div>
     </header>
+
+    @if (!request()->cookie('cookie_consent'))
+        <div id="cookieConsentBar">
+            <div class="cookie-container">
+                <p>
+                    We use Cookies on this site to serve you better.
+                    Visit our <a href="#" class="cookie-policy-link">Privacy Policy</a> page to learn more.
+                    By clicking the "Continue" button, you agree to the use of Cookies on this Site.
+                </p>
+                <button id="cookieAcceptBtn">Continue</button>
+            </div>
+        </div>
+
+        <style>
+            #cookieConsentBar {
+                background: #3a0f10;
+                color: #fff;
+                width: 100%;
+                z-index: 998;
+                position: relative;
+            }
+
+            .cookie-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 16px 20px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .cookie-container p {
+                margin: 0;
+                font-size: 14px;
+                line-height: 1.5;
+                flex: 1 1 70%;
+            }
+
+            .cookie-policy-link {
+                color: white;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+
+            #cookieAcceptBtn {
+                background: linear-gradient(to right, #e53935, #721313);
+                color: white;
+                padding: 10px 24px;
+                border: none;
+                border-radius: 24px;
+                cursor: pointer;
+                font-weight: 600;
+                flex-shrink: 0;
+            }
+        </style>
+
+        <script>
+            document.getElementById('cookieAcceptBtn').addEventListener('click', function() {
+                document.getElementById('cookieConsentBar').style.display = 'none';
+
+                fetch('{{ route('cookie.accept') }}', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({})
+                });
+            });
+        </script>
+    @endif
 
     <aside class="sidebar" id="sidebar">
         <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
@@ -88,20 +204,25 @@
         <div class="footer-middle">
             <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
             <div class="socials">
-                @if(!empty($WebContact->facebook))
-                    <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+                @if (!empty($WebContact->facebook))
+                    <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><i
+                            class="fab fa-facebook-f"></i></a>
                 @endif
-                @if(!empty($WebContact->instagram))
-                    <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+                @if (!empty($WebContact->instagram))
+                    <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><i
+                            class="fab fa-instagram"></i></a>
                 @endif
-                @if(!empty($WebContact->twitter))
-                    <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+                @if (!empty($WebContact->twitter))
+                    <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener"><i
+                            class="fab fa-x-twitter"></i></a>
                 @endif
-                @if(!empty($WebContact->youtube))
-                    <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                @if (!empty($WebContact->youtube))
+                    <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener"><i
+                            class="fab fa-youtube"></i></a>
                 @endif
-                @if(!empty($WebContact->tiktok))
-                    <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i></a>
+                @if (!empty($WebContact->tiktok))
+                    <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener"><i
+                            class="fab fa-tiktok"></i></a>
                 @endif
             </div>
         </div>
