@@ -92,5 +92,3 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('privacy-policies', [PrivacyPolicyController::class, 'edit'])->name('privacy-policies.edit');
     Route::put('privacy-policies', [PrivacyPolicyController::class, 'update'])->name('privacy-policies.update');
 });
-
-

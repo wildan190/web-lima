@@ -293,23 +293,32 @@ font-size: 0.9rem;
 
 /* Bagian 2: Putih */
 .footer-middle {
-background-color: white;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1.5rem 9rem;
-flex-wrap: wrap;
+    background-color: #fff;
+    padding: 1rem 9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.footer-middle .language-select {
-font-weight: bold;
+.language-select {
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.footer-middle .socials img {
-width: 24px;
-height: 24px;
-margin: 0 0.5rem;
+.socials a {
+    margin: 0 0.5rem;
+    font-size: 1.25rem;
+    color: #000;
+    transition: color 0.3s ease;
 }
+
+.socials a:hover {
+    color: #b30000;
+}
+
 
 /* Bagian 3: Hitam Pekat */
 .footer-bottom {

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 </head>
 
 <body>
@@ -107,15 +109,16 @@
 
         {{-- Bagian 2: Bar Putih --}}
         <div class="footer-middle">
-            <div class="language-select">🌐 English</div>
-            <div class="socials">
-                <a href="#"><img src="{{ asset('assets/img/icons/facebook.png') }}" alt="Facebook"></a>
-                <a href="#"><img src="{{ asset('assets/img/icons/instagram.png') }}" alt="Instagram"></a>
-                <a href="#"><img src="{{ asset('assets/img/icons/twitter-x.png') }}" alt="X"></a>
-                <a href="#"><img src="{{ asset('assets/img/icons/youtube.png') }}" alt="YouTube"></a>
-                <a href="#"><img src="{{ asset('assets/img/icons/tiktok.png') }}" alt="TikTok"></a>
-            </div>
-        </div>
+    <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
+    <div class="socials">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="X Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+    </div>
+</div>
+
 
         {{-- Bagian 3: Footer Hitam Bawah --}}
         <div class="footer-bottom">
