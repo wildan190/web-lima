@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
@@ -91,6 +93,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::put('privacy-policies', [PrivacyPolicyController::class, 'update'])->name('privacy-policies.update');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
