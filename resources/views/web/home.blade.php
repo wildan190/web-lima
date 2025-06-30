@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'Home')
+
 @section('content')
     <section class="hero">
         <div class="hero-overlay">
