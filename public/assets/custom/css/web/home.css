@@ -22,7 +22,7 @@ a {
 
 /* === Cookie Bar === */
 #cookieConsentBar {
-  position: relative;
+  position: fixed;
   z-index: 998;
   width: 100%;
   background: #3a0f10;
