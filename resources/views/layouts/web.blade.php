@@ -93,51 +93,6 @@
             </div>
         </div>
 
-        <style>
-            #cookieConsentBar {
-                background: #3a0f10;
-                color: #fff;
-                width: 100%;
-                z-index: 998;
-                position: relative;
-            }
-
-            .cookie-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 16px 20px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .cookie-container p {
-                margin: 0;
-                font-size: 14px;
-                line-height: 1.5;
-                flex: 1 1 70%;
-            }
-
-            .cookie-policy-link {
-                color: white;
-                text-decoration: underline;
-                font-weight: 600;
-            }
-
-            #cookieAcceptBtn {
-                background: linear-gradient(to right, #e53935, #721313);
-                color: white;
-                padding: 10px 24px;
-                border: none;
-                border-radius: 24px;
-                cursor: pointer;
-                font-weight: 600;
-                flex-shrink: 0;
-            }
-        </style>
-
         <script>
             document.getElementById('cookieAcceptBtn').addEventListener('click', function() {
                 document.getElementById('cookieConsentBar').style.display = 'none';
