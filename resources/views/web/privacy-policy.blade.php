@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'Privacy Policy Use of Cookie')
+
 @section('content')
 
 {{-- SECTION: Banner --}}

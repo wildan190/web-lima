@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'About Us')
+
 @section('content')
     <style>
         @font-face {
