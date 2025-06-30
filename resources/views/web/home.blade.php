@@ -2,9 +2,16 @@
 
 @section('content')
 <section class="hero">
-    <div class="overlay">
-        <h1>LIGA MAHASISWA</h1>
-        <p>Awal Masa Depan</p>
+    <div class="hero-overlay">
+        <div class="hero-text">
+            <h1>LIGA MAHASISWA</h1>
+            <p>Awal Masa Depan</p>
+            <div class="hero-slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
     </div>
 </section>
 
