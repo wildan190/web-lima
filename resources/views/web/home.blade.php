@@ -46,17 +46,18 @@
         </div>
         <div class="news-right">
             @for ($i = 0; $i < 3; $i++)
-                <div class="news-card">
-                    <div class="news-img">
-                        <img src="{{ asset('assets/img/exarticleimg.png') }}" alt="News Image">
-                        <div class="overlay">
-                            <p>1 Mei 2025 &nbsp;•&nbsp; News Category</p>
-                            <h4>LIMA Basketball Championship 2024 Digelar...</h4>
-                            <span>Read →</span>
-                        </div>
-                    </div>
-                </div>
-            @endfor
+    <div class="news-card">
+        <div class="news-img">
+            <img src="{{ asset('assets/img/exarticleimg.png') }}" alt="News Image">
+            <div class="overlay">
+                <p>1 Mei 2025 &nbsp;•&nbsp; News Category</p>
+                <h4>LIMA Basketball Championship 2024 Digelar...</h4>
+                <span>Read →</span>
+            </div>
+        </div>
+    </div>
+@endfor
+
         </div>
     </div>
 </section>
