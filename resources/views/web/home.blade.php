@@ -16,22 +16,26 @@
 </section>
 
 <section class="about">
-    <div class="logo-grid">
-        <img src="{{ asset('assets/images/logo1.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo2.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo3.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo4.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo5.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo6.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo7.png') }}" alt="">
-        <img src="{{ asset('assets/images/logo8.png') }}" alt="">
-    </div>
-    <div class="about-text">
-        <h2>About <span>LIMA</span></h2>
-        <p>Since 2012, we have grown into the leading force behind collegiate sports in Indonesia — driving the growth of student competitions nationwide.</p>
-        <a href="#" class="btn">Learn More</a>
+    <div class="about-wrapper">
+
+        <div class="about-logos">
+            <div class="logo-grid">
+                @foreach($sports as $index => $sport)
+                    <div class="logo-box {{ ($index >= 6) ? 'last-row' : '' }}">
+                        <img src="{{ asset('storage/' . $sport->logo) }}" alt="{{ $sport->name }}">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="about-text">
+            <h2>About <span>LIMA</span></h2>
+            <p>{{ $webProfile->about ?? 'Deskripsi belum tersedia.' }}</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
     </div>
 </section>
+
 
 <section class="news">
     <h2>Latest News</h2>
