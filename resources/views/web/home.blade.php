@@ -37,17 +37,28 @@
 </section>
 
 
-<section class="news">
-    <h2>Latest News</h2>
-    <p>Here is some breaking news especially for you.</p>
-    <div class="news-slider">
-        <div class="news-card">
-            <img src="{{ asset('assets/images/news1.jpg') }}" alt="">
-            <h3>LIMA Basketball Championship 2024 Digelar</h3>
-            <a href="#">Read →</a>
+<section class="latest-news">
+    <div class="container">
+        <div class="news-left">
+            <h2>Latest <strong>News</strong></h2>
+            <p>Here is some breaking news especially for you.</p>
+            <a href="#" class="btn-see-more">See More</a>
         </div>
-        <!-- Duplicate news cards if needed -->
+        <div class="news-right">
+            @for ($i = 0; $i < 3; $i++)
+                <div class="news-card">
+                    <div class="news-img">
+                        <img src="{{ asset('assets/img/exarticleimg.png') }}" alt="News Image">
+                        <div class="overlay">
+                            <p>1 Mei 2025 &nbsp;•&nbsp; News Category</p>
+                            <h4>LIMA Basketball Championship 2024 Digelar...</h4>
+                            <span>Read →</span>
+                        </div>
+                    </div>
+                </div>
+            @endfor
+        </div>
     </div>
-    <a href="#" class="btn">See More</a>
 </section>
+
 @endsection
