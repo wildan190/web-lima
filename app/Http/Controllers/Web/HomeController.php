@@ -16,6 +16,8 @@ class HomeController extends Controller
         $sports = Sport::all(); // ambil semua sport dan logo
         $WebContact = WebContact::first(); // hanya ambil satu kontak
 
-        return view('web.home', compact('webProfile', 'sports', 'WebContact'));
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.home', compact('webProfile', 'sports', 'WebContact', 'newsLatest'));
     }
 }
