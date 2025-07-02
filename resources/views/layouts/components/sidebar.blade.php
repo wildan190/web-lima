@@ -39,6 +39,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.contact_banner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.contact_banner.form') }}">
+                    <i class="fas fa-envelope-open-text"></i> Contact Banner
+                </a>
+            </li>
+
             <li class="sidebar-section-title">Sports Management</li>
 
             <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">

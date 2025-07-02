@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AboutBannerRequest;
-use App\Modules\Admin\AboutBanner\CreateOrUpdate;
+use App\Modules\Admin\AboutBanner\Action\CreateOrUpdate;
 use App\Repositories\Interface\AboutBannerRepositoryInterface;
 
 class AboutBannerController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules\Admin\AboutBanner;
+namespace App\Modules\Admin\AboutBanner\Action;
 
 use App\Repositories\Interface\AboutBannerRepositoryInterface;
 

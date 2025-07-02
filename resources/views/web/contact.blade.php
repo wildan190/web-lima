@@ -86,11 +86,12 @@
 
 
     <!-- Banner Section -->
-    <section class="privacy-banner">
+    <section class="privacy-banner"
+        style="background: url('{{ $contactBanner?->upload_picture ? asset('storage/' . $contactBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
-                <h1>Contact</h1>
-                <p style="color: white; margin: 0;">Stay connected with us</p>
+                <h1>{{ $contactBanner?->title ?? 'Contact' }}</h1>
+                <p style="color: white; margin: 0;">{{ $contactBanner?->subtitle ?? 'Stay connected with us' }}</p>
             </div>
         </div>
     </section>

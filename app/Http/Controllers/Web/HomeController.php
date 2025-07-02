@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\AboutBanner;
+use App\Models\ContactBanner;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
 use App\Models\WebContact;
@@ -45,6 +46,7 @@ class HomeController extends Controller
     public function contact(Request $request)
     {
         $WebContact = WebContact::first();
-        return view('web.contact', compact('WebContact'));
+        $contactBanner = ContactBanner::first();
+        return view('web.contact', compact('WebContact', 'contactBanner'));
     }
 }

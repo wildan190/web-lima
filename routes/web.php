@@ -118,3 +118,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::get('/about-banner', [AboutBannerController::class, 'create'])->name('about_banner.create');
     Route::post('/about-banner', [AboutBannerController::class, 'storeOrUpdate'])->name('about_banner.store_or_update');
 });
+
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    Route::get('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'form'])->name('contact_banner.form');
+    Route::post('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'storeOrUpdate'])->name('contact_banner.store_or_update');
+});
