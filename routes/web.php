@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutBannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MilestoneController;
@@ -111,4 +112,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('privacy-policies', [PrivacyPolicyController::class, 'edit'])->name('privacy-policies.edit');
     Route::put('privacy-policies', [PrivacyPolicyController::class, 'update'])->name('privacy-policies.update');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    Route::get('/about-banner', [AboutBannerController::class, 'create'])->name('about_banner.create');
+    Route::post('/about-banner', [AboutBannerController::class, 'storeOrUpdate'])->name('about_banner.store_or_update');
 });

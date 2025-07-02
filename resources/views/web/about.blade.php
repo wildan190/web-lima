@@ -6,7 +6,7 @@
     <style>
         @font-face {
             font-family: 'Poppins';
-            src: url('{{ asset("assets/font/Poppins-Regular.ttf") }}');
+            src: url('{{ asset('assets/font/Poppins-Regular.ttf') }}');
         }
 
         body {
@@ -16,7 +16,7 @@
         .privacy-banner {
             position: relative;
             height: 320px;
-            background: url('{{ asset("assets/img/hero.png") }}') center center / cover no-repeat;
+            background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
         }
 
         .privacy-banner-overlay {
@@ -98,14 +98,14 @@
             position: relative;
         }
 
-.vm-box img {
-    width: 64px;
-    height: 64px;
-    position: absolute;
-    top: -32px;
-    left: 50%;
-    transform: translateX(-50%);
-}
+        .vm-box img {
+            width: 64px;
+            height: 64px;
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
 
         .vm-box h3 {
@@ -122,12 +122,12 @@
         }
     </style>
 
-    <!-- Banner Section -->
-    <section class="privacy-banner">
+    <section class="privacy-banner"
+        style="background: url('{{ $aboutBanner?->upload_picture ? asset('storage/' . $aboutBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
-                <h1>About Us</h1>
-                <p>Get to know LIMA, and what our main focus is</p>
+                <h1>{{ $aboutBanner?->title ?? 'About Us' }}</h1>
+                <p>{{ $aboutBanner?->subtitle ?? 'Get to know LIMA, and what our main focus is' }}</p>
             </div>
         </div>
     </section>
@@ -160,26 +160,26 @@
     </section>
 
     <section class="latest-news">
-    <div class="container">
-        <div class="news-left">
-            <h2>Latest <strong>News</strong></h2>
-            <p>Here is some breaking news especially for you.</p>
-            <a href="#" class="btn-see-more">See More</a>
-        </div>
-        <div class="news-right">
-            @foreach ($newsLatest as $news)
-                <div class="news-card">
-                    <div class="news-img">
-                        <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}">
-                        <div class="overlay">
-                            <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                            <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                            <a href="#"><span>Read →</span></a>
+        <div class="container">
+            <div class="news-left">
+                <h2>Latest <strong>News</strong></h2>
+                <p>Here is some breaking news especially for you.</p>
+                <a href="#" class="btn-see-more">See More</a>
+            </div>
+            <div class="news-right">
+                @foreach ($newsLatest as $news)
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}">
+                            <div class="overlay">
+                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                <a href="#"><span>Read →</span></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 @endsection

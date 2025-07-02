@@ -33,6 +33,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.about_banner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.about_banner.create') }}">
+                    <i class="fas fa-image"></i> About Banner
+                </a>
+            </li>
+
             <li class="sidebar-section-title">Sports Management</li>
 
             <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">

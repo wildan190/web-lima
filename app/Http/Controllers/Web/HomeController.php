@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutBanner;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
 use App\Models\WebContact;
@@ -33,11 +34,12 @@ class HomeController extends Controller
     {
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
+        $aboutBanner = AboutBanner::first();
         
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.about', compact('webProfile', 'WebContact', 'newsLatest'));
+        return view('web.about', compact('webProfile', 'WebContact', 'newsLatest', 'aboutBanner'));
     }
 
     public function contact(Request $request)
