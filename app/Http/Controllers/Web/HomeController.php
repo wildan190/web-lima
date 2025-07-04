@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\MilestoneRequest;
 use App\Models\AboutBanner;
 use App\Models\ContactBanner;
 use App\Models\MilestioneBanner;

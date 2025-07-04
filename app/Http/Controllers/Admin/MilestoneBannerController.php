@@ -12,6 +12,7 @@ class MilestoneBannerController extends Controller
     public function create(MilestoneBannerRepositoryInterface $repository)
     {
         $banner = $repository->get();
+
         return view('admin.milestone_banner.create_or_update', compact('banner'));
     }
 
