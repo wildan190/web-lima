@@ -36,7 +36,6 @@ class HomeController extends Controller
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
         $aboutBanner = AboutBanner::first();
-        
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
@@ -47,6 +46,7 @@ class HomeController extends Controller
     {
         $WebContact = WebContact::first();
         $contactBanner = ContactBanner::first();
+
         return view('web.contact', compact('WebContact', 'contactBanner'));
     }
 
@@ -63,9 +63,10 @@ class HomeController extends Controller
     {
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
+        $sports = Sport::all();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest'));
+        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports'));
     }
 
     public function news(Request $request)
