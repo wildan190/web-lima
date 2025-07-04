@@ -12,6 +12,7 @@ class AboutBannerController extends Controller
     public function create(AboutBannerRepositoryInterface $repository)
     {
         $banner = $repository->first(); // Ambil banner pertama
+
         return view('admin.about_banner.create_or_update', compact('banner'));
     }
 
@@ -20,6 +21,7 @@ class AboutBannerController extends Controller
         CreateOrUpdate $action
     ) {
         $action->execute($request->validated());
+
         return redirect()->back()->with('success', 'About Banner saved successfully.');
     }
 }

@@ -2,10 +2,15 @@
 
 namespace App\Providers;
 
+use App\Repositories\AboutBannerRepository;
 use App\Repositories\AuthRepository;
+use App\Repositories\ContactBannerRepository;
 use App\Repositories\GalleryRepository;
+use App\Repositories\Interface\AboutBannerRepositoryInterface;
 use App\Repositories\Interface\AuthRepositoryInterface;
+use App\Repositories\Interface\ContactBannerRepositoryInterface;
 use App\Repositories\Interface\GalleryRepositoryInterface;
+use App\Repositories\Interface\MilestoneBannerRepositoryInterface;
 use App\Repositories\Interface\MilestoneRepositoryInterface;
 use App\Repositories\Interface\NewsRepositoryInterface;
 use App\Repositories\Interface\PrivacyPolicyInterface;
@@ -13,10 +18,7 @@ use App\Repositories\Interface\SportRepositoryInterface;
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
-use App\Repositories\Interface\AboutBannerRepositoryInterface;
-use App\Repositories\Interface\ContactBannerRepositoryInterface;
-use App\Repositories\ContactBannerRepository;
-use App\Repositories\AboutBannerRepository;
+use App\Repositories\MilestoneBannerRepository;
 use App\Repositories\MilestoneRepository;
 use App\Repositories\NewsRepository;
 use App\Repositories\PrivacyPolicyRepository;
@@ -44,6 +46,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NewsRepositoryInterface::class, NewsRepository::class);
         $this->app->bind(AboutBannerRepositoryInterface::class, AboutBannerRepository::class);
         $this->app->bind(ContactBannerRepositoryInterface::class, ContactBannerRepository::class);
+        $this->app->bind(MilestoneBannerRepositoryInterface::class, MilestoneBannerRepository::class);
     }
 
     /**

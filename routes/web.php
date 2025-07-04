@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutBannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\MilestoneBannerController;
 use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
@@ -11,9 +12,8 @@ use App\Http\Controllers\Admin\UniversityCoverageController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +38,6 @@ Route::get('/news/{id}', [\App\Http\Controllers\Web\HomeController::class, 'news
 Route::post('/accept-cookies', function (Request $request) {
     return response('OK')->cookie('cookie_consent', 'accepted', 60 * 24 * 365); // 1 year
 })->name('cookie.accept');
-
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -126,4 +125,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'form'])->name('contact_banner.form');
     Route::post('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'storeOrUpdate'])->name('contact_banner.store_or_update');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('milestone-banner', [MilestoneBannerController::class, 'create'])->name('admin.milestone_banner.create');
+    Route::post('milestone-banner', [MilestoneBannerController::class, 'storeOrUpdate'])->name('admin.milestone_banner.store_or_update');
 });

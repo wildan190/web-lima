@@ -58,30 +58,66 @@
 
 <body>
 
-    <header class="navbar">
-        <div class="container">
-            <div class="logo" style="margin-right: auto;">
-                <a href="{{ route('home') }}">
-                    <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
-                </a>
-            </div>
+@php
+    $currentRoute = Route::currentRouteName();
+@endphp
 
-            <nav class="nav-links" id="navLinks">
-                <ul>
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">About Us</a></li>
-                    <li><a href="#">Milestone</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Newsroom</a></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="navbar-language" id="navbarLanguage">🌐 EN</div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-                &#9776;
-            </button>
+<style>
+    .nav-links ul {
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links ul li a {
+        color: #111; /* black text */
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-bottom: 2px solid transparent;
+        transition: color 0.3s ease, border-bottom 0.3s ease;
+    }
+
+    .nav-links ul li a.active {
+        color: #e02a26;
+        border-bottom: 2px solid #e02a26;
+    }
+
+    .nav-links ul li a:hover {
+        color: #e02a26;
+    }
+</style>
+
+<header class="navbar">
+    <div class="container">
+        <div class="logo" style="margin-right: auto;">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
+            </a>
         </div>
-    </header>
+
+        <nav class="nav-links" id="navLinks">
+            <ul>
+                <li><a href="{{ route('home') }}" class="{{ $currentRoute === 'home' ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('about') }}" class="{{ $currentRoute === 'about' ? 'active' : '' }}">About Us</a></li>
+                <li><a href="{{ route('milestones') }}" class="{{ $currentRoute === 'milestones' ? 'active' : '' }}">Milestone</a></li>
+                <li><a href="{{ route('gallery') }}" class="{{ $currentRoute === 'gallery' ? 'active' : '' }}">Gallery</a></li>
+                <li><a href="{{ route('news') }}" class="{{ $currentRoute === 'news' ? 'active' : '' }}">Newsroom</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ $currentRoute === 'contact' ? 'active' : '' }}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="navbar-language" id="navbarLanguage">🌐 EN</div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+            &#9776;
+        </button>
+    </div>
+</header>
+
 
     @if (!request()->cookie('cookie_consent'))
         <div id="cookieConsentBar">
@@ -116,9 +152,9 @@
         <ul>
             <li><a href="{{ route('home') }}">Home</a></li>
             <li><a href="{{ route('about') }}">About Us</a></li>
-            <li><a href="#">Milestone</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Newsroom</a></li>
+            <li><a href="{{ route('milestones')}}">Milestone</a></li>
+            <li><a href="{{ route('gallery')}}">Gallery</a></li>
+            <li><a href="{{ route('news')}}">Newsroom</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
         <div class="sidebar-language">🌐 EN</div>
@@ -148,7 +184,7 @@
                 </ul>
                 <ul>
                     <li><strong>Info</strong></li>
-                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="{{ route('news')}}">Newsroom</a></li>
                     <li><a href="#">Press Release</a></li>
                 </ul>
                 <ul>

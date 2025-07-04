@@ -15,6 +15,7 @@ class AboutBannerRepository implements AboutBannerRepositoryInterface
     public function update(int $id, array $data)
     {
         $banner = AboutBanner::findOrFail($id);
+
         return $banner->update($data);
     }
 
