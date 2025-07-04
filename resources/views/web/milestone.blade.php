@@ -182,123 +182,123 @@
         }
     </style>
 
-<section class="lima-inum-section">
-    <div class="lima-inum-container">
-        <h2><span style="color: #E02A26;">LIMA</span> in Number</h2>
+    <section class="lima-inum-section">
+        <div class="lima-inum-container">
+            <h2><span style="color: #E02A26;">LIMA</span> in Number</h2>
 
-        <div class="lima-inum-grid">
-            <!-- KIRI: Card Besar -->
-            <div class="lima-inum-card"
-                style="background-image: url('{{ asset('assets/img/hero.png') }}'); grid-row: span 2;">
-                <div class="lima-inum-overlay red"></div>
-                <div class="lima-inum-text">12.000 +<br><span>Student Athlete</span></div>
-            </div>
+            <div class="lima-inum-grid">
+                <!-- KIRI: Card Besar -->
+                <div class="lima-inum-card"
+                    style="background-image: url('{{ asset('assets/img/hero.png') }}'); grid-row: span 2;">
+                    <div class="lima-inum-overlay red"></div>
+                    <div class="lima-inum-text">12.000 +<br><span>Student Athlete</span></div>
+                </div>
 
-            <!-- KANAN ATAS -->
-            <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset1.png') }}');">
-                <div class="lima-inum-overlay purple"></div>
-                <div class="lima-inum-text">1.000 +<br><span>Matches</span></div>
-            </div>
+                <!-- KANAN ATAS -->
+                <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset1.png') }}');">
+                    <div class="lima-inum-overlay purple"></div>
+                    <div class="lima-inum-text">1.000 +<br><span>Matches</span></div>
+                </div>
 
-            <!-- KANAN BAWAH -->
-            <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset2.png') }}');">
-                <div class="lima-inum-overlay yellow"></div>
-                <div class="lima-inum-text">400 +<br><span>University</span></div>
+                <!-- KANAN BAWAH -->
+                <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset2.png') }}');">
+                    <div class="lima-inum-overlay yellow"></div>
+                    <div class="lima-inum-text">400 +<br><span>University</span></div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-.lima-inum-section {
-    padding: 60px 0;
-    background-color: #fff;
-    text-align: center;
-}
+    <style>
+        .lima-inum-section {
+            padding: 60px 0;
+            background-color: #fff;
+            text-align: center;
+        }
 
-.lima-inum-container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        .lima-inum-container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.lima-inum-section h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 40px;
-    color: #000;
-}
+        .lima-inum-section h2 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            color: #000;
+        }
 
-.lima-inum-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: repeat(2, 160px);
-    gap: 20px;
-}
+        .lima-inum-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-template-rows: repeat(2, 160px);
+            gap: 20px;
+        }
 
-.lima-inum-card {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    overflow: hidden;
-    color: #fff;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-}
+        .lima-inum-card {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            overflow: hidden;
+            color: #fff;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
 
-.lima-inum-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 2;
-    z-index: 1;
-    border-radius: 12px;
-}
+        .lima-inum-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 2;
+            z-index: 1;
+            border-radius: 12px;
+        }
 
-.lima-inum-overlay.red {
-    background-color: rgba(224, 42, 38, 0.55);
-}
+        .lima-inum-overlay.red {
+            background-color: rgba(224, 42, 38, 0.55);
+        }
 
-.lima-inum-overlay.purple {
-    background-color: rgba(141, 82, 163, 0.55);
-}
+        .lima-inum-overlay.purple {
+            background-color: rgba(141, 82, 163, 0.55);
+        }
 
-.lima-inum-overlay.yellow {
-    background-color: rgba(235, 195, 52, 0.55);
-}
+        .lima-inum-overlay.yellow {
+            background-color: rgba(235, 195, 52, 0.55);
+        }
 
-.lima-inum-text {
-    position: relative;
-    z-index: 2;
-    font-size: 22px;
-    font-weight: bold;
-    text-align: left;
-    color: #fff;
-    line-height: 1.3;
-}
+        .lima-inum-text {
+            position: relative;
+            z-index: 2;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: left;
+            color: #fff;
+            line-height: 1.3;
+        }
 
-.lima-inum-text span {
-    font-size: 15px;
-    font-weight: normal;
-    margin-top: 4px;
-    display: block;
-}
+        .lima-inum-text span {
+            font-size: 15px;
+            font-weight: normal;
+            margin-top: 4px;
+            display: block;
+        }
 
-@media (max-width: 768px) {
-    .lima-inum-grid {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
+        @media (max-width: 768px) {
+            .lima-inum-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
 
-    .lima-inum-card {
-        height: 160px;
-    }
-}
-</style>
+            .lima-inum-card {
+                height: 160px;
+            }
+        }
+    </style>
 
 
     <section class="university-coverage-section">

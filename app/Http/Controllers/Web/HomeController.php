@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\AboutBanner;
 use App\Models\ContactBanner;
+use App\Models\Milestone;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
 use App\Models\UniversityCoverage;
@@ -66,9 +67,10 @@ class HomeController extends Controller
         $WebContact = WebContact::first();
         $sports = Sport::all();
         $universities = UniversityCoverage::all();
+        $milestones = Milestone::all();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities'));
+        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities', 'milestones'));
     }
 
     public function news(Request $request)
