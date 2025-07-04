@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutBannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
+use App\Http\Controllers\Admin\MilestoneBannerController;
 use App\Http\Controllers\Admin\MilestoneController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
@@ -124,4 +125,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'form'])->name('contact_banner.form');
     Route::post('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'storeOrUpdate'])->name('contact_banner.store_or_update');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('milestone-banner', [MilestoneBannerController::class, 'create'])->name('admin.milestone_banner.create');
+    Route::post('milestone-banner', [MilestoneBannerController::class, 'storeOrUpdate'])->name('admin.milestone_banner.store_or_update');
 });

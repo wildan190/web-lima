@@ -3,19 +3,50 @@
 @section('title', 'Milestone')
 
 @section('content')
-    <section class="hero">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <h1>LIGA MAHASISWA</h1>
-                <p>Awal Masa Depan</p>
-                <div class="hero-slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
+        <section class="privacy-banner"
+        style="background: url('{{ $milestoneBanner?->upload_picture ? asset('storage/' . $milestoneBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
+        <div class="privacy-banner-overlay">
+            <div class="privacy-banner-text">
+                <h1>{{ $milestoneBanner?->title ?? 'About Us' }}</h1>
+                <p>{{ $milestoneBanner?->subtitle ?? 'Get to know LIMA, and what our main focus is' }}</p>
             </div>
         </div>
     </section>
+
+    <style>
+    .privacy-banner {
+            position: relative;
+            height: 320px;
+            background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
+        }
+
+        .privacy-banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(114, 19, 19, 0.7);
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+        }
+
+        .privacy-banner-text {
+            padding: 24px 12rem;
+            color: white;
+        }
+
+        .privacy-banner-text h1 {
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .privacy-banner-text p {
+            margin: 4px 0 0 0;
+        }
+    </style>
 
     <section class="about">
         <div class="about-wrapper">

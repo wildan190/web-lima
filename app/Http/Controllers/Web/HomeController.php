@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MilestoneRequest;
 use App\Models\AboutBanner;
 use App\Models\ContactBanner;
+use App\Models\MilestioneBanner;
 use App\Models\Milestone;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
@@ -68,9 +70,10 @@ class HomeController extends Controller
         $sports = Sport::all();
         $universities = UniversityCoverage::all();
         $milestones = Milestone::all();
+        $milestoneBanner = MilestioneBanner::first();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities', 'milestones'));
+        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities', 'milestones', 'milestoneBanner'));
     }
 
     public function news(Request $request)

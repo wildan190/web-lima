@@ -45,6 +45,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.milestone_banner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.milestone_banner.create') }}">
+                    <i class="fas fa-flag"></i> Milestone Banner
+                </a>
+            </li>
+
             <li class="sidebar-section-title">Sports Management</li>
 
             <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">
