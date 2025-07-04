@@ -30,6 +30,10 @@ Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->nam
 Route::get('/privacy-policy', [\App\Http\Controllers\Web\HomeController::class, 'privacyPolicy'])->name('privacy.policy');
 Route::get('/contact', [\App\Http\Controllers\Web\HomeController::class, 'contact'])->name('contact');
 Route::get('/about', [\App\Http\Controllers\Web\HomeController::class, 'about'])->name('about');
+Route::get('/gallery', [\App\Http\Controllers\Web\HomeController::class, 'gallery'])->name('gallery');
+Route::get('/milestones', [\App\Http\Controllers\Web\HomeController::class, 'milestones'])->name('milestones');
+Route::get('/news', [\App\Http\Controllers\Web\HomeController::class, 'news'])->name('news');
+Route::get('/news/{id}', [\App\Http\Controllers\Web\HomeController::class, 'newsDetail'])->name('news.detail');
 
 Route::post('/accept-cookies', function (Request $request) {
     return response('OK')->cookie('cookie_consent', 'accepted', 60 * 24 * 365); // 1 year

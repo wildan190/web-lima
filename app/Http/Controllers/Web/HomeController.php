@@ -49,4 +49,41 @@ class HomeController extends Controller
         $contactBanner = ContactBanner::first();
         return view('web.contact', compact('WebContact', 'contactBanner'));
     }
+
+    public function gallery(Request $request)
+    {
+        $webProfile = WebProfile::first();
+        $WebContact = WebContact::first();
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.gallery', compact('webProfile', 'WebContact', 'newsLatest'));
+    }
+
+    public function milestones(Request $request)
+    {
+        $webProfile = WebProfile::first();
+        $WebContact = WebContact::first();
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest'));
+    }
+
+    public function news(Request $request)
+    {
+        $webProfile = WebProfile::first();
+        $WebContact = WebContact::first();
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.news', compact('webProfile', 'WebContact', 'newsLatest'));
+    }
+
+    public function newsDetail(Request $request, $id)
+    {
+        $webProfile = WebProfile::first();
+        $WebContact = WebContact::first();
+        $news = \App\Models\News::findOrFail($id);
+        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest'));
+    }
 }
