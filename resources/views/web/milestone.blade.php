@@ -46,16 +46,19 @@
                 <button class="milestone-arrow prev" onclick="scrollMilestone(-1)">&#8592;</button>
 
                 <div class="milestone-cards" id="milestoneCards">
-                    @foreach ([['year' => 2012, 'desc' => 'Lorem Ipsum is simply dummy text of the printing and typesetting industry'], ['year' => 2014, 'desc' => 'Another dummy text for the 2014 milestone'], ['year' => 2016, 'desc' => 'Important updates were made this year'], ['year' => 2018, 'desc' => 'Major milestone achieved in 2018'], ['year' => 2022, 'desc' => 'LIMA expanded into new areas'], ['year' => 2025, 'desc' => 'Future plans and projections']] as $item)
-                        <div class="milestone-card">
+                    @foreach ($milestones as $item)
+                        <div class="milestone-card" data-year="{{ $item->year }}">
                             <div class="milestone-card-inner">
                                 <div class="milestone-img">
-                                    <img src="{{ asset('assets/img/exarticleimg.png') }}" alt="Milestone Image">
+                                    <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="Milestone Image">
                                 </div>
                                 <div class="milestone-content">
                                     <small>LIMA Milestone in</small>
-                                    <h3>{{ $item['year'] }}</h3>
-                                    <p>{{ $item['desc'] }}</p>
+                                    <h3>{{ $item->year }}</h3>
+                                    <p>{{ $item->description }}</p>
+                                    @if ($item->location)
+                                        <p><strong>Location:</strong> {{ $item->location }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -66,12 +69,14 @@
             </div>
 
             <div class="milestone-timeline">
-                @foreach ([2012, 2014, 2016, 2018, 2022, 2025] as $year)
-                    <span class="milestone-year {{ $year == 2012 ? 'active' : '' }}">{{ $year }}</span>
+                @foreach ($milestones->pluck('year')->unique() as $year)
+                    <span class="milestone-year {{ $loop->first ? 'active' : '' }}"
+                        onclick="goToYear({{ $year }})">{{ $year }}</span>
                 @endforeach
             </div>
         </div>
     </section>
+
 
     <section class="sports-section">
         <div class="sports-container">
@@ -616,6 +621,29 @@
                 behavior: 'smooth'
             });
         }
+
+        function goToYear(year) {
+            const container = document.getElementById('milestoneCards');
+            const cards = container.querySelectorAll('.milestone-card');
+            const timelineYears = document.querySelectorAll('.milestone-year');
+
+            let targetCard = null;
+            cards.forEach((card, index) => {
+                if (card.dataset.year == year) {
+                    targetCard = card;
+                    const scrollLeft = index * (card.offsetWidth + 20);
+                    container.scrollTo({
+                        left: scrollLeft,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            // Highlight active year
+            timelineYears.forEach(span => span.classList.remove('active'));
+            document.querySelector(`.milestone-year[onclick="goToYear(${year})"]`)?.classList.add('active');
+        }
     </script>
+
 
 @endsection
