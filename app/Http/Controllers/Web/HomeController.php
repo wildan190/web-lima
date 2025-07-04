@@ -7,6 +7,7 @@ use App\Models\AboutBanner;
 use App\Models\ContactBanner;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
+use App\Models\UniversityCoverage;
 use App\Models\WebContact;
 use App\Models\WebProfile;
 use Illuminate\Http\Request;
@@ -64,9 +65,10 @@ class HomeController extends Controller
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
         $sports = Sport::all();
+        $universities = UniversityCoverage::all();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports'));
+        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities'));
     }
 
     public function news(Request $request)
