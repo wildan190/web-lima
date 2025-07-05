@@ -3,19 +3,57 @@
 @section('title', 'Home')
 
 @section('content')
-    <section class="hero">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <h1>LIGA MAHASISWA</h1>
-                <p>Awal Masa Depan</p>
-                <div class="hero-slider-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+<section class="hero">
+    @foreach ($heroSlide as $index => $slide)
+        <div class="hero-slide" style="background: url('{{ asset('storage/' . $slide->picture_upload) }}') center/cover no-repeat; {{ $index === 0 ? '' : 'display: none;' }}">
+            <div class="hero-overlay">
+                <div class="hero-text">
+                    <h1>{{ $slide->title }}</h1>
+                    <p>{{ $slide->subtitle }}</p>
                 </div>
             </div>
         </div>
-    </section>
+    @endforeach
+
+    <div class="hero-slider-dots">
+        @foreach ($heroSlide as $index => $slide)
+            <span class="dot {{ $index === 0 ? 'active' : '' }}" data-index="{{ $index }}"></span>
+        @endforeach
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll(".hero-slide");
+        const dots = document.querySelectorAll(".dot");
+        let currentIndex = 0;
+        let interval = setInterval(nextSlide, 5000); // 5 detik per slide
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? "block" : "none";
+                dots[i].classList.toggle("active", i === index);
+            });
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentIndex + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+
+        dots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                clearInterval(interval); // stop auto slide on manual control
+                showSlide(parseInt(dot.dataset.index));
+                interval = setInterval(nextSlide, 5000); // restart auto slide
+            });
+        });
+
+        showSlide(currentIndex);
+    });
+</script>
+
 
     <section class="about">
         <div class="about-wrapper">
