@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Modules\Admin\UniversityCoverage\Action;
+namespace App\Modules\Admin\Gallery\Action;
 
+use App\Repositories\Interface\GalleryRepositoryInterface;
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 
-class CreateUniversityCoverage
+class CreateGallery
 {
-    protected UniversityCoverageRepositoryInterface $repository;
+    protected GalleryRepositoryInterface $repository;
 
-    public function __construct(UniversityCoverageRepositoryInterface $repository)
+    public function __construct(GalleryRepositoryInterface $repository)
     {
         $this->repository = $repository;
     }
 
     public function execute(array $data): void
     {
-        if (isset($data['logo']) && $data['logo']->isValid()) {
-            $data['logo'] = $data['logo']->store('university_coverages', 'public');
+        if (isset($data['picture_upload']) && $data['picture_upload']->isValid()) {
+            $data['picture_upload'] = $data['picture_upload']->store('galleries', 'public');
         }
 
         $this->repository->create($data);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutBannerController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryBannerController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\MilestoneBannerController;
 use App\Http\Controllers\Admin\MilestoneController;
@@ -130,4 +131,9 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('milestone-banner', [MilestoneBannerController::class, 'create'])->name('admin.milestone_banner.create');
     Route::post('milestone-banner', [MilestoneBannerController::class, 'storeOrUpdate'])->name('admin.milestone_banner.store_or_update');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('gallery-banner', [GalleryBannerController::class, 'create'])->name('admin.gallery_banner.create');
+    Route::post('gallery-banner', [GalleryBannerController::class, 'storeOrUpdate'])->name('admin.gallery_banner.store_or_update');
 });

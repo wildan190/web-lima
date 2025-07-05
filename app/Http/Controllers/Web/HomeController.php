@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\AboutBanner;
 use App\Models\ContactBanner;
+use App\Models\Gallery;
+use App\Models\GalleryBanner;
 use App\Models\MilestioneBanner;
 use App\Models\Milestone;
 use App\Models\PrivacyPolicy;
@@ -58,8 +60,11 @@ class HomeController extends Controller
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+        $gallery = Gallery::all();
+        $sports = Sport::all();
+        $galleryBanner = GalleryBanner::first();
 
-        return view('web.gallery', compact('webProfile', 'WebContact', 'newsLatest'));
+        return view('web.gallery', compact('webProfile', 'galleryBanner', 'WebContact', 'newsLatest', 'gallery', 'sports'));
     }
 
     public function milestones(Request $request)

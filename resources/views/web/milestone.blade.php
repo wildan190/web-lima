@@ -3,7 +3,7 @@
 @section('title', 'Milestone')
 
 @section('content')
-        <section class="privacy-banner"
+    <section class="privacy-banner"
         style="background: url('{{ $milestoneBanner?->upload_picture ? asset('storage/' . $milestoneBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
@@ -14,7 +14,7 @@
     </section>
 
     <style>
-    .privacy-banner {
+        .privacy-banner {
             position: relative;
             height: 320px;
             background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;

@@ -45,6 +45,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.gallery_banner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.gallery_banner.create') }}">
+                    <i class="fas fa-flag"></i> Gallery Banner
+                </a>
+            </li>
+
             <li class="{{ request()->routeIs('admin.milestone_banner.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.milestone_banner.create') }}">
                     <i class="fas fa-flag"></i> Milestone Banner
