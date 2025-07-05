@@ -57,6 +57,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.hero.index') }}">
+                    <i class="fas fa-images"></i> Hero Banner
+                </a>
+            </li>
+
             <li class="sidebar-section-title">Sports Management</li>
 
             <li class="{{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">

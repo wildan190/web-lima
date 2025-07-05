@@ -7,6 +7,7 @@ use App\Models\AboutBanner;
 use App\Models\ContactBanner;
 use App\Models\Gallery;
 use App\Models\GalleryBanner;
+use App\Models\Hero;
 use App\Models\MilestioneBanner;
 use App\Models\Milestone;
 use App\Models\PrivacyPolicy;
@@ -23,10 +24,11 @@ class HomeController extends Controller
         $webProfile = WebProfile::first(); // hanya ambil satu
         $sports = Sport::all(); // ambil semua sport dan logo
         $WebContact = WebContact::first(); // hanya ambil satu kontak
+        $heroSlide = Hero::all(); // ambil semua hero slide
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.home', compact('webProfile', 'sports', 'WebContact', 'newsLatest'));
+        return view('web.home', compact('webProfile', 'sports', 'WebContact', 'newsLatest', 'heroSlide'));
     }
 
     public function privacyPolicy(Request $request)
