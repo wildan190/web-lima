@@ -12,6 +12,7 @@ class HeroController extends Controller
     public function index()
     {
         $heroes = Hero::latest()->get();
+
         return view('admin.hero.index', compact('heroes'));
     }
 
@@ -29,6 +30,7 @@ class HeroController extends Controller
         }
 
         Hero::create($data);
+
         return redirect()->route('admin.hero.index')->with('success', 'Hero created successfully.');
     }
 
@@ -49,6 +51,7 @@ class HeroController extends Controller
         }
 
         $hero->update($data);
+
         return redirect()->route('admin.hero.index')->with('success', 'Hero updated successfully.');
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Modules\Admin\Gallery\Action;
 
 use App\Repositories\Interface\GalleryRepositoryInterface;
-use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 
 class CreateGallery
 {

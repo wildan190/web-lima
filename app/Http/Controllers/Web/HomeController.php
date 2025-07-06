@@ -87,8 +87,11 @@ class HomeController extends Controller
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+        $sports = Sport::all();
+        $newsBanner = \App\Models\NewsBanner::first();
+        $gallery = Gallery::all();
 
-        return view('web.news', compact('webProfile', 'WebContact', 'newsLatest'));
+        return view('web.news', compact('webProfile', 'WebContact', 'newsLatest', 'newsBanner', 'sports', 'gallery'));
     }
 
     public function newsDetail(Request $request, $id)
