@@ -15,6 +15,6 @@ class News extends Model
         'tag',
         'keywords',
         'status',
-        'category', // Tambahkan kolom category
+        'category',
     ];
 }
