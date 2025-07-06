@@ -15,8 +15,10 @@
     <table class="news-table">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Image</th>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Slug</th>
                 <th>Status</th>
                 <th style="width: 150px;">Actions</th>
@@ -25,10 +27,12 @@
         <tbody>
             @foreach ($news as $item)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>
                         <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="News Image">
                     </td>
                     <td>{{ $item->title }}</td>
+                    <td>{{ $item->category }}</td>
                     <td>{{ $item->slug }}</td>
                     <td>{{ ucfirst($item->status) }}</td>
                     <td>

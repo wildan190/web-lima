@@ -34,6 +34,18 @@
             <label for="slug">Slug</label>
             <input type="text" name="slug" id="slug" value="{{ old('slug', $news->slug) }}">
 
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="Basketball" {{ old('category') == 'Basketball' ? 'selected' : '' }}>Basketball</option>
+                <option value="Futsall" {{ old('category') == 'Futsall' ? 'selected' : '' }}>Futsall</option>
+                <option value="Badminton" {{ old('category') == 'Badminton' ? 'selected' : '' }}>Badminton</option>
+                <option value="Golf" {{ old('category') == 'Golf' ? 'selected' : '' }}>Golf</option>
+                <option value="Swimming" {{ old('category') == 'Swimming' ? 'selected' : '' }}>Swimming</option>
+                <option value="Mini Socer" {{ old('category') == 'Mini Socer' ? 'selected' : '' }}>Mini Socer</option>
+                <option value="eSport" {{ old('category') == 'eSport' ? 'selected' : '' }}>eSport</option>
+                <option value="Volley Ball" {{ old('category') == 'Volley Ball' ? 'selected' : '' }}>Volley Ball</option>
+            </select>
+
             <label for="picture_upload">Picture</label>
             <div style="margin-bottom: 10px;">
                 <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="Current Image" id="existing-image" style="max-width: 200px; border: 1px solid #ccc;">
