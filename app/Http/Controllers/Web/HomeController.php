@@ -10,6 +10,8 @@ use App\Models\GalleryBanner;
 use App\Models\Hero;
 use App\Models\MilestioneBanner;
 use App\Models\Milestone;
+use App\Models\News;
+use App\Models\NewsBanner;
 use App\Models\PrivacyPolicy;
 use App\Models\Sport;
 use App\Models\UniversityCoverage;
@@ -86,12 +88,29 @@ class HomeController extends Controller
     {
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+        $newsBanner = NewsBanner::first();
         $sports = Sport::all();
-        $newsBanner = \App\Models\NewsBanner::first();
         $gallery = Gallery::all();
+        $pressRelease = News::paginate(15);
 
-        return view('web.news', compact('webProfile', 'WebContact', 'newsLatest', 'newsBanner', 'sports', 'gallery'));
+        $query = News::query();
+
+        $categories = $request->input('categories', []);
+
+        if (! empty($categories) && ! in_array('all', $categories)) {
+            $query->whereIn('category', $categories);
+        }
+
+        $sort = $request->input('sort', 'newest');
+        if ($sort === 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $news = $query->paginate(6)->appends($request->all());
+
+        return view('web.news', compact('pressRelease', 'webProfile', 'WebContact', 'news', 'newsBanner', 'sports', 'gallery'));
     }
 
     public function newsDetail(Request $request, $id)
