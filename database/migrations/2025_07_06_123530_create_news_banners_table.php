@@ -19,6 +19,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('milestione_banners');
+        Schema::dropIfExists('news_banners');
     }
 };
