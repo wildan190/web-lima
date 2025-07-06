@@ -57,6 +57,12 @@
                 </a>
             </li>
 
+            <li class="{{ request()->routeIs('admin.news_banner.*') ? 'active' : '' }}">
+                <a href="{{ route('admin.news_banner.create') }}">
+                    <i class="fas fa-newspaper"></i> News Banner
+                </a>
+            </li>
+
             <li class="{{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.hero.index') }}">
                     <i class="fas fa-images"></i> Hero Banner
