@@ -56,6 +56,18 @@
             <label for="slug">Slug</label>
             <input type="text" name="slug" id="slug" value="{{ old('slug') }}">
 
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <option value="Basketball" {{ old('category') == 'Basketball' ? 'selected' : '' }}>Basketball</option>
+                <option value="Futsall" {{ old('category') == 'Futsall' ? 'selected' : '' }}>Futsall</option>
+                <option value="Badminton" {{ old('category') == 'Badminton' ? 'selected' : '' }}>Badminton</option>
+                <option value="Golf" {{ old('category') == 'Golf' ? 'selected' : '' }}>Golf</option>
+                <option value="Swimming" {{ old('category') == 'Swimming' ? 'selected' : '' }}>Swimming</option>
+                <option value="Mini Socer" {{ old('category') == 'Mini Socer' ? 'selected' : '' }}>Mini Socer</option>
+                <option value="eSport" {{ old('category') == 'eSport' ? 'selected' : '' }}>eSport</option>
+                <option value="Volley Ball" {{ old('category') == 'Volley Ball' ? 'selected' : '' }}>Volley Ball</option>
+            </select>
+
             <label for="picture_upload">Picture</label>
             <input type="file" name="picture_upload" id="picture_upload">
             <img id="preview-image" alt="Image Preview" />

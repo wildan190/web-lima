@@ -22,6 +22,7 @@ class NewsRequest extends FormRequest
             'tag' => 'nullable|string',
             'keywords' => 'nullable|string',
             'status' => 'required|in:draft,publish,hidden',
+            'category' => 'nullable|string|max:255', // Aturan untuk kolom category
         ];
     }
 }

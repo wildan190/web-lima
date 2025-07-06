@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\MilestoneBannerController;
 use App\Http\Controllers\Admin\MilestoneController;
+use App\Http\Controllers\Admin\NewsBannerController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\SportController;
@@ -137,6 +138,11 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('gallery-banner', [GalleryBannerController::class, 'create'])->name('admin.gallery_banner.create');
     Route::post('gallery-banner', [GalleryBannerController::class, 'storeOrUpdate'])->name('admin.gallery_banner.store_or_update');
+});
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('news-banner', [NewsBannerController::class, 'create'])->name('admin.news_banner.create');
+    Route::post('news-banner', [NewsBannerController::class, 'storeOrUpdate'])->name('admin.news_banner.store_or_update');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {

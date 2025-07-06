@@ -19,6 +19,8 @@ use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
 use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
 use App\Repositories\Interface\GalleryBannerRepositoryInterface;
+use App\Repositories\Interface\NewsBannerRepositoryInterface;
+use App\Repositories\NewsBannerRepository;
 use App\Repositories\GalleryBannerRepository;
 use App\Repositories\MilestoneBannerRepository;
 use App\Repositories\MilestoneRepository;
@@ -50,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ContactBannerRepositoryInterface::class, ContactBannerRepository::class);
         $this->app->bind(MilestoneBannerRepositoryInterface::class, MilestoneBannerRepository::class);
         $this->app->bind(GalleryBannerRepositoryInterface::class, GalleryBannerRepository::class);
+        $this->app->bind(NewsBannerRepositoryInterface::class, NewsBannerRepository::class);
     }
 
     /**
