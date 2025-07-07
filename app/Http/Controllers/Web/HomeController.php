@@ -91,7 +91,7 @@ class HomeController extends Controller
         $newsBanner = NewsBanner::first();
         $sports = Sport::all();
         $gallery = Gallery::all();
-        $pressRelease = News::paginate(15);
+        $pressRelease = News::paginate(15, ['*'], 'press_page');
 
         $query = News::query();
 

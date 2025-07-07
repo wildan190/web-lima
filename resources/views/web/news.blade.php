@@ -407,6 +407,10 @@
                     </div>
                 @endforeach
             </div>
+            <div class="press-pagination" style="margin-top: 40px;">
+                {{ $pressRelease->appends(request()->except('press_page'))->links() }}
+            </div>
+
         </div>
     </section>
 
@@ -495,6 +499,38 @@
         .container {
             max-width: 100%;
             margin: 0 auto;
+        }
+
+        .press-pagination nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .press-pagination .pagination {
+            display: flex;
+            list-style: none;
+            gap: 8px;
+            padding: 0;
+        }
+
+        .press-pagination .page-item a,
+        .press-pagination .page-item span {
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+
+        .press-pagination .page-item.active span {
+            background-color: #B30202;
+            color: white;
+            border-color: #B30202;
+        }
+
+        .press-pagination .page-item.disabled span {
+            color: #aaa;
         }
     </style>
 
