@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class News extends Model
 {
@@ -17,4 +18,11 @@ class News extends Model
         'status',
         'category',
     ];
+
+    protected static function booted()
+    {
+        static::creating(function ($news) {
+            $news->slug = Str::slug($news->title);
+        });
+    }
 }
