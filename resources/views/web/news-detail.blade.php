@@ -65,17 +65,22 @@
         </div>
 
         <div class="related-section">
-            <h3 class="related-title">Baca Juga</h3>
-            <ul class="related-list">
-                @foreach ($newsLatest as $item)
-                    <li class="related-item">
-                        <a href="{{ route('news.detail', $item->id) }}">
-                            <span class="related-category">[{{ $item->category }}]</span> {{ $item->title }}
-                        </a>
-                    </li>
+            <p class="related-label">Baca Juga:
+                @if ($newsLatest->first())
+                    <a href="{{ route('news.detail', $newsLatest->first()->slug) }}" class="related-link">
+                        {{ $newsLatest->first()->title }}
+                    </a>
+                @endif
+            </p>
+
+            <div class="related-tags">
+                @foreach ($newsLatest->take(3) as $item)
+                    <span class="related-tag">{{ $item->category }}</span>
                 @endforeach
-            </ul>
+            </div>
         </div>
+
+
     </section>
 
     <!-- Font Awesome -->
@@ -194,42 +199,45 @@
             margin-bottom: 40px;
         }
 
-        .related-section {
-            margin-top: 60px;
-        }
-
-        .related-title {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 16px;
-        }
-
-        .related-list {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-        }
-
-        .related-item {
-            margin-bottom: 12px;
-        }
-
-        .related-item a {
-            text-decoration: none;
-            color: #B30202;
+        .related-label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
             font-size: 15px;
         }
 
-        .related-item a:hover {
+        .related-link {
+            color: #0b57d0;
             text-decoration: underline;
+            font-weight: 500;
         }
 
-        .related-category {
-            color: #555;
-            font-weight: normal;
-            font-size: 13px;
-            margin-right: 6px;
+        .related-link:hover {
+            color: #083ea1;
         }
+
+        .related-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .related-tag {
+            padding: 6px 14px;
+            border: 1px solid #ccc;
+            border-radius: 999px;
+            font-size: 13px;
+            color: #666;
+            background-color: #f9f9f9;
+            cursor: default;
+            transition: all 0.3s;
+        }
+
+        .related-tag:hover {
+            background-color: #eee;
+        }
+
 
         @media (max-width: 768px) {
             .news-layout {
