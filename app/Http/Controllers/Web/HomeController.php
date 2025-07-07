@@ -23,10 +23,10 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        $webProfile = WebProfile::first(); // hanya ambil satu
-        $sports = Sport::all(); // ambil semua sport dan logo
-        $WebContact = WebContact::first(); // hanya ambil satu kontak
-        $heroSlide = Hero::all(); // ambil semua hero slide
+        $webProfile = WebProfile::first();
+        $sports = Sport::all();
+        $WebContact = WebContact::first();
+        $heroSlide = Hero::all();
 
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
@@ -91,7 +91,7 @@ class HomeController extends Controller
         $newsBanner = NewsBanner::first();
         $sports = Sport::all();
         $gallery = Gallery::all();
-        $pressRelease = News::paginate(15);
+        $pressRelease = News::paginate(15, ['*'], 'press_page');
 
         $query = News::query();
 
@@ -113,12 +113,12 @@ class HomeController extends Controller
         return view('web.news', compact('pressRelease', 'webProfile', 'WebContact', 'news', 'newsBanner', 'sports', 'gallery'));
     }
 
-    public function newsDetail(Request $request, $id)
+    public function newsDetail(Request $request, $slug)
     {
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
-        $news = \App\Models\News::findOrFail($id);
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+        $news = News::where('slug', $slug)->firstOrFail();
+        $newsLatest = News::orderBy('created_at', 'desc')->take(5)->get();
 
         return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest'));
     }
