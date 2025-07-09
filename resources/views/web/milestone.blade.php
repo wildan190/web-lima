@@ -638,6 +638,92 @@
         .milestone-cards::-webkit-scrollbar {
             display: none;
         }
+
+        @media (max-width: 768px) {
+            .milestone-section {
+                padding: 40px 1rem;
+            }
+
+            .milestone-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .milestone-slider-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            /* Sembunyikan panah di mobile */
+            .milestone-arrow {
+                display: none;
+            }
+
+            .milestone-cards {
+                max-width: 100%;
+                padding: 0;
+                gap: 16px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .milestone-card {
+                scroll-snap-align: center;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .milestone-card-inner {
+                flex-direction: column;
+            }
+
+            .milestone-img {
+                width: 100%;
+                height: 180px;
+            }
+
+            .milestone-img img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .milestone-content {
+                width: 100%;
+                padding: 16px;
+                text-align: left;
+            }
+
+            .milestone-content small {
+                font-size: 13px;
+            }
+
+            .milestone-content h3 {
+                font-size: 16px;
+                margin-top: 4px;
+            }
+
+            .milestone-timeline {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 30px;
+                padding-top: 16px;
+                border-top: 1px solid #ddd;
+            }
+
+            .milestone-year {
+                font-size: 12px;
+            }
+
+            .milestone-year.active::after {
+                width: 5px;
+                height: 5px;
+                margin-top: 4px;
+            }
+        }
     </style>
 
     <script>
