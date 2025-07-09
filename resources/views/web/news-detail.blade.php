@@ -1,102 +1,82 @@
 @extends('layouts.web')
 
 @section('content')
-    <!-- Progress Scroll -->
     <div id="scrollProgress"></div>
 
-    <section class="news-detail-section" style="padding: 60px 9rem;">
-        <div class="breadcrumb">
-            <a href="{{ url('/') }}">News</a> › <a href="#">News Category</a> › <span>{{ $news->title }}</span>
-        </div>
+    <section class="news-container">
+        {{-- Breadcrumb --}}
+        <nav class="breadcrumb">
+            <a href="{{ url('/') }}">Home</a> &rsaquo;
+            <a href="#">News Category</a> &rsaquo;
+            <span>{{ $news->title }}</span>
+        </nav>
 
-        <div class="news-layout">
-            <!-- Left Share Column -->
-            <aside class="news-share-box">
-                <p class="share-title">Share to</p>
-                <div class="share-icons-inline">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
-                        target="_blank" title="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank"
-                        title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank" title="WhatsApp">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="#" onclick="copyLink()" title="Copy Link">
-                        <i class="fas fa-link"></i>
-                    </a>
+        {{-- Main Content --}}
+        <article class="news-content">
+            <h1 class="news-title">{{ $news->title }}</h1>
+
+            <div class="news-meta">
+                <span class="news-date">{{ \Carbon\Carbon::parse($news->created_at)->format('j M Y') }}</span>
+                <div class="news-meta-icons">
+                    <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
+                        target="_blank" title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}"
+                        target="_blank" title="Share to Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank"
+                        title="Share to WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" onclick="copyLink()" title="Copy Link"><i class="fas fa-link"></i></a>
                 </div>
-                <small id="copyStatus" style="display:none; color: green;">Link Copied</small>
-            </aside>
-
-            <!-- Main News Content -->
-            <div class="news-detail">
-                <h1 class="news-title">{{ $news->title }}</h1>
-
-                <div class="meta-share">
-                    <p class="news-date">{{ \Carbon\Carbon::parse($news->created_at)->format('j M Y') }}</p>
-                    <div class="meta-icons">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
-                            target="_blank" title="Facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank"
-                            title="Twitter">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank" title="WhatsApp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="#" onclick="copyLink()" title="Copy Link">
-                            <i class="fas fa-link"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}" class="news-image">
-
-                <div class="news-content">
-                    {!! $news->content !!}
-                </div>
+                <small id="copyStatus" style="display:none; color: green;">Link copied</small>
             </div>
-        </div>
 
-        <div class="related-section">
-            <p class="related-label">Baca Juga:
+            <img src="{{ asset('storage/' . $news->picture_upload) }}" class="news-image" alt="{{ $news->title }}">
+
+            <div class="news-body-content">
+                {!! $news->content !!}
+            </div>
+        </article>
+
+        {{-- Related Section --}}
+        <div class="news-related">
+            <p class="related-title">
+                Baca Juga:
                 @if ($newsLatest->first())
-                    <a href="{{ route('news.detail', $newsLatest->first()->slug) }}" class="related-link">
-                        {{ $newsLatest->first()->title }}
-                    </a>
+                    <a href="{{ route('news.detail', $newsLatest->first()->slug) }}">{{ $newsLatest->first()->title }}</a>
                 @endif
             </p>
 
             <div class="related-tags">
                 @foreach ($newsLatest->take(3) as $item)
-                    <span class="related-tag">{{ $item->category }}</span>
+                    <span class="tag">{{ $item->category }}</span>
                 @endforeach
             </div>
         </div>
-
-
     </section>
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    {{-- Font Awesome --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
 
-    <!-- Styles -->
     <style>
+        :root {
+            --primary-color: #B30202;
+            --text-dark: #222;
+            --text-muted: #777;
+        }
+
         #scrollProgress {
             position: fixed;
-            top: 70px;
+            top: 0;
             left: 0;
             height: 4px;
-            background: #B30202;
+            background: var(--primary-color);
             width: 0%;
             z-index: 9999;
-            transition: width 0.25s ease-out;
+        }
+
+        .news-container {
+            max-width: 960px;
+            margin: auto;
+            padding: 60px 24px;
         }
 
         .breadcrumb {
@@ -105,163 +85,119 @@
         }
 
         .breadcrumb a {
-            color: #888;
+            color: var(--text-muted);
             text-decoration: none;
         }
 
-        .news-layout {
-            display: flex;
-            gap: 40px;
-        }
-
-        .news-share-box {
-            width: 150px;
-            flex-shrink: 0;
-            text-align: center;
-            margin-top: 70vh;
-            transform: translateY(-50%);
-        }
-
-
-        .share-title {
-            font-weight: bold;
-            font-size: 14px;
-            margin-bottom: 10px;
-        }
-
-        .share-icons-inline {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            font-size: 18px;
-        }
-
-        .share-icons-inline a {
-            color: #333;
-            transition: 0.3s;
-        }
-
-        .share-icons-inline a:hover {
-            color: #B30202;
-        }
-
-        .news-detail {
-            flex: 1;
-            max-width: 900px;
+        .news-content {
+            width: 100%;
         }
 
         .news-title {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            color: var(--text-dark);
         }
 
-        .meta-share {
+        .news-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .news-date {
+            color: var(--text-muted);
             font-size: 14px;
-            color: #666;
-            margin: 0;
         }
 
-        .meta-icons {
+        .news-meta-icons {
             display: flex;
             gap: 14px;
             font-size: 18px;
         }
 
-        .meta-icons a {
-            color: #333;
-            transition: 0.3s;
+        .news-meta-icons a {
+            color: var(--text-dark);
+            transition: color 0.3s;
         }
 
-        .meta-icons a:hover {
-            color: #B30202;
+        .news-meta-icons a:hover {
+            color: var(--primary-color);
         }
 
         .news-image {
             width: 100%;
-            height: 400px;
+            height: auto;
+            max-height: 420px;
             object-fit: cover;
-            border-radius: 12px;
+            border-radius: 10px;
             margin-bottom: 24px;
         }
 
-        .news-content {
+        .news-body-content {
             font-size: 16px;
-            color: #333;
-            line-height: 1.7;
-            margin-bottom: 40px;
+            color: var(--text-dark);
+            line-height: 1.8;
         }
 
-        .related-label {
-            font-weight: 500;
-            color: #333;
+        .news-related {
+            margin-top: 60px;
+        }
+
+        .related-title {
+            font-weight: 600;
+            color: var(--text-dark);
             margin-bottom: 10px;
-            font-size: 15px;
+            font-size: 16px;
         }
 
-        .related-link {
+        .related-title a {
             color: #0b57d0;
             text-decoration: underline;
             font-weight: 500;
         }
 
-        .related-link:hover {
-            color: #083ea1;
-        }
-
         .related-tags {
             display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            margin-top: 10px;
+            flex-wrap: wrap;
         }
 
-        .related-tag {
+        .tag {
             padding: 6px 14px;
+            font-size: 13px;
             border: 1px solid #ccc;
             border-radius: 999px;
-            font-size: 13px;
-            color: #666;
-            background-color: #f9f9f9;
-            cursor: default;
-            transition: all 0.3s;
+            background: #f4f4f4;
+            color: #555;
         }
 
-        .related-tag:hover {
-            background-color: #eee;
-        }
-
-
+        /* Mobile */
         @media (max-width: 768px) {
-            .news-layout {
-                flex-direction: column;
+            .news-container {
+                padding: 32px 16px;
             }
 
-            .news-share-box {
-                width: 100%;
-                margin-bottom: 20px;
+            .news-title {
+                font-size: 24px;
             }
 
-            .share-icons-inline {
-                justify-content: start;
-            }
-
-            .meta-share {
+            .news-meta {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
+                gap: 6px;
+            }
+
+            .news-image {
+                max-height: 260px;
             }
         }
     </style>
 
-    <!-- Scripts -->
     <script>
         // Scroll progress bar
         window.addEventListener('scroll', () => {

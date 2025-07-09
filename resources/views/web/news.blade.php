@@ -453,50 +453,51 @@
         });
     </script>
 
+<section class="press-release-section">
+    <div class="container">
+        <h2 class="press-title">Press Release</h2>
 
-    <section class="press-release-section">
-        <div class="container">
-            <h2 class="press-title">Press Release</h2>
+        @if ($pressRelease->count() > 0)
+            @php
+                $first = $pressRelease[0];
+                $second = $pressRelease->get(1);
+                $rest = $pressRelease->slice(2);
+            @endphp
 
             <div class="press-row press-featured">
-                @if ($pressRelease->count() > 0)
-                    @php
-                        $first = $pressRelease[0];
-                        $second = $pressRelease->get(1);
-                        $rest = $pressRelease->slice(2);
-                    @endphp
+                {{-- First Large Item --}}
+                <a href="{{ route('news.detail', $item->slug) }}" class="press-card press-large">
+                    <img src="{{ asset('storage/' . $first->picture_upload) }}" alt="{{ $first->title }}">
+                    <div class="press-content">
+                        <div class="press-meta">
+                            <span>Oleh Admin</span>
+                            <span>{{ \Carbon\Carbon::parse($first->created_at)->format('j M Y') }}</span>
+                        </div>
+                        <h3 class="press-title-red">{{ $first->title }}</h3>
+                        <p>{{ \Illuminate\Support\Str::limit(strip_tags($first->content), 150) }}</p>
+                    </div>
+                </a>
 
-                    <div class="press-card press-large">
-                        <img src="{{ asset('storage/' . $first->picture_upload) }}" alt="{{ $first->title }}">
+                {{-- Second Item --}}
+                @if ($second)
+                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
+                        <img src="{{ asset('storage/' . $second->picture_upload) }}" alt="{{ $second->title }}">
                         <div class="press-content">
                             <div class="press-meta">
                                 <span>Oleh Admin</span>
-                                <span>{{ \Carbon\Carbon::parse($first->created_at)->format('j M Y') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($second->created_at)->format('j M Y') }}</span>
                             </div>
-                            <h3 class="press-title-red">{{ $first->title }}</h3>
-                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($first->content), 150) }}</p>
+                            <h3 class="press-title-red">{{ $second->title }}</h3>
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($second->content), 100) }}</p>
                         </div>
-                    </div>
-
-                    @if ($second)
-                        <div class="press-card">
-                            <img src="{{ asset('storage/' . $second->picture_upload) }}" alt="{{ $second->title }}">
-                            <div class="press-content">
-                                <div class="press-meta">
-                                    <span>Oleh Admin</span>
-                                    <span>{{ \Carbon\Carbon::parse($second->created_at)->format('j M Y') }}</span>
-                                </div>
-                                <h3 class="press-title-red">{{ $second->title }}</h3>
-                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($second->content), 100) }}</p>
-                            </div>
-                        </div>
-                    @endif
+                    </a>
                 @endif
             </div>
 
+            {{-- Grid List of Press Items --}}
             <div class="press-grid">
                 @foreach ($rest as $item)
-                    <div class="press-card">
+                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
                         <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}">
                         <div class="press-content">
                             <div class="press-meta">
@@ -506,15 +507,18 @@
                             <h3 class="press-title-red">{{ $item->title }}</h3>
                             <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->content), 100) }}</p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
+
+            {{-- Pagination --}}
             <div class="press-pagination" style="margin-top: 40px;">
                 {{ $pressRelease->appends(request()->except('press_page'))->links() }}
             </div>
+        @endif
+    </div>
+</section>
 
-        </div>
-    </section>
 
     <style>
         .press-release-section {
