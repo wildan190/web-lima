@@ -3,10 +3,10 @@
 @section('title', 'Milestone')
 
 @section('content')
-    <section class="privacy-banner"
+    <section class="milestone-banner"
         style="background: url('{{ $milestoneBanner?->upload_picture ? asset('storage/' . $milestoneBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
-        <div class="privacy-banner-overlay">
-            <div class="privacy-banner-text">
+        <div class="milestone-banner-overlay">
+            <div class="milestone-banner-text">
                 <h1>{{ $milestoneBanner?->title ?? 'About Us' }}</h1>
                 <p>{{ $milestoneBanner?->subtitle ?? 'Get to know LIMA, and what our main focus is' }}</p>
             </div>
@@ -14,13 +14,13 @@
     </section>
 
     <style>
-        .privacy-banner {
+        .milestone-banner {
             position: relative;
             height: 320px;
             background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
         }
 
-        .privacy-banner-overlay {
+        .milestone-banner-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -32,21 +32,36 @@
             justify-content: flex-start;
         }
 
-        .privacy-banner-text {
-            padding: 24px 12rem;
+        .milestone-banner-text {
+            padding: 24px 9rem;
             color: white;
         }
 
-        .privacy-banner-text h1 {
+        .milestone-banner-text h1 {
             font-size: 32px;
             font-weight: 600;
             margin: 0;
         }
 
-        .privacy-banner-text p {
+        .milestone-banner-text p {
             margin: 4px 0 0 0;
         }
+
+        @media (max-width: 768px) {
+            .milestone-banner-text {
+                padding: 24px 1.5rem;
+            }
+
+            .milestone-banner-text h1 {
+                font-size: 24px;
+            }
+
+            .milestone-banner {
+                height: 240px;
+            }
+        }
     </style>
+
 
     <section class="about">
         <div class="about-wrapper">
