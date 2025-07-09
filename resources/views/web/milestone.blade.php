@@ -3,10 +3,10 @@
 @section('title', 'Milestone')
 
 @section('content')
-    <section class="privacy-banner"
+    <section class="milestone-banner"
         style="background: url('{{ $milestoneBanner?->upload_picture ? asset('storage/' . $milestoneBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
-        <div class="privacy-banner-overlay">
-            <div class="privacy-banner-text">
+        <div class="milestone-banner-overlay">
+            <div class="milestone-banner-text">
                 <h1>{{ $milestoneBanner?->title ?? 'About Us' }}</h1>
                 <p>{{ $milestoneBanner?->subtitle ?? 'Get to know LIMA, and what our main focus is' }}</p>
             </div>
@@ -14,13 +14,13 @@
     </section>
 
     <style>
-        .privacy-banner {
+        .milestone-banner {
             position: relative;
             height: 320px;
             background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
         }
 
-        .privacy-banner-overlay {
+        .milestone-banner-overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -32,21 +32,36 @@
             justify-content: flex-start;
         }
 
-        .privacy-banner-text {
-            padding: 24px 12rem;
+        .milestone-banner-text {
+            padding: 24px 9rem;
             color: white;
         }
 
-        .privacy-banner-text h1 {
+        .milestone-banner-text h1 {
             font-size: 32px;
             font-weight: 600;
             margin: 0;
         }
 
-        .privacy-banner-text p {
+        .milestone-banner-text p {
             margin: 4px 0 0 0;
         }
+
+        @media (max-width: 768px) {
+            .milestone-banner-text {
+                padding: 24px 1.5rem;
+            }
+
+            .milestone-banner-text h1 {
+                font-size: 24px;
+            }
+
+            .milestone-banner {
+                height: 240px;
+            }
+        }
     </style>
+
 
     <section class="about">
         <div class="about-wrapper">
@@ -505,7 +520,7 @@
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="#"><span>Read →</span></a>
+                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
                             </div>
                         </div>
                     </div>
@@ -637,6 +652,92 @@
         /* Optional: hide scrollbar */
         .milestone-cards::-webkit-scrollbar {
             display: none;
+        }
+
+        @media (max-width: 768px) {
+            .milestone-section {
+                padding: 40px 1rem;
+            }
+
+            .milestone-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .milestone-slider-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            /* Sembunyikan panah di mobile */
+            .milestone-arrow {
+                display: none;
+            }
+
+            .milestone-cards {
+                max-width: 100%;
+                padding: 0;
+                gap: 16px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .milestone-card {
+                scroll-snap-align: center;
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+
+            .milestone-card-inner {
+                flex-direction: column;
+            }
+
+            .milestone-img {
+                width: 100%;
+                height: 180px;
+            }
+
+            .milestone-img img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .milestone-content {
+                width: 100%;
+                padding: 16px;
+                text-align: left;
+            }
+
+            .milestone-content small {
+                font-size: 13px;
+            }
+
+            .milestone-content h3 {
+                font-size: 16px;
+                margin-top: 4px;
+            }
+
+            .milestone-timeline {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 30px;
+                padding-top: 16px;
+                border-top: 1px solid #ddd;
+            }
+
+            .milestone-year {
+                font-size: 12px;
+            }
+
+            .milestone-year.active::after {
+                width: 5px;
+                height: 5px;
+                margin-top: 4px;
+            }
         }
     </style>
 

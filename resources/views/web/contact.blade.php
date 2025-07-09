@@ -82,6 +82,44 @@
             color: #d62828;
             text-decoration: none;
         }
+
+        @media (max-width: 768px) {
+            .privacy-banner-text {
+                padding: 24px 1rem;
+            }
+
+            .privacy-banner-text h1 {
+                font-size: 22px;
+            }
+
+            .privacy-banner-text p {
+                font-size: 14px;
+            }
+
+            .contact-section {
+                padding: 40px 1rem;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .contact-info h2 {
+                font-size: 20px;
+            }
+
+            .contact-info p,
+            .contact-info a {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .contact-map iframe {
+                height: 220px;
+                border-radius: 8px;
+            }
+        }
     </style>
 
 

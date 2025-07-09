@@ -106,7 +106,7 @@
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="#"><span>Read →</span></a>
+                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
                             </div>
                         </div>
                     </div>
@@ -267,14 +267,124 @@
         }
 
         @media (max-width: 768px) {
+            .privacy-banner-text {
+                padding: 1.5rem 2rem;
+            }
+
+            .privacy-banner-text h1 {
+                font-size: 24px;
+            }
+
+            .privacy-banner-text p {
+                font-size: 14px;
+            }
+
+            .lima-gallery-container {
+                padding: 0 2rem;
+            }
+
+            .lima-gallery-title {
+                font-size: 22px;
+                margin-bottom: 1.5rem;
+            }
+
+            .lima-gallery-tabs {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+                font-size: 14px;
+            }
+
+            .lima-gallery-tab {
+                padding: 8px 12px;
+            }
+
             .lima-gallery-grid {
                 column-count: 2;
+                column-gap: 12px;
+            }
+
+            .lima-gallery-item {
+                margin-bottom: 16px;
+            }
+
+            .lima-gallery-see-more {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+
+            #limaSeeMoreBtn {
+                font-size: 14px;
+            }
+
+            .news-left h2 {
+                font-size: 22px;
+            }
+
+            .news-left p {
+                font-size: 14px;
+            }
+
+            .news-card {
+                margin-bottom: 1.5rem;
+            }
+
+            .news-img .overlay h4 {
+                font-size: 16px;
+            }
+
+            .news-img .overlay span {
+                font-size: 14px;
             }
         }
 
         @media (max-width: 480px) {
+            .privacy-banner {
+                height: 200px;
+            }
+
+            .privacy-banner-text {
+                padding: 1rem;
+            }
+
+            .privacy-banner-text h1 {
+                font-size: 20px;
+            }
+
+            .privacy-banner-text p {
+                font-size: 12px;
+            }
+
+            .lima-gallery-container {
+                padding: 0 1rem;
+            }
+
+            .lima-gallery-title {
+                font-size: 20px;
+            }
+
             .lima-gallery-grid {
                 column-count: 1;
+            }
+
+            .lima-gallery-tab {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
+
+            .lima-gallery-modal-close {
+                top: 20px;
+                right: 20px;
+                font-size: 32px;
+            }
+
+            .latest-news .container {
+                flex-direction: column;
+                padding: 2rem 1rem;
+            }
+
+            .news-left {
+                margin-bottom: 2rem;
             }
         }
     </style>

@@ -120,6 +120,126 @@
             font-size: 16px;
             color: #333;
         }
+
+        @media (max-width: 768px) {
+  .privacy-banner-text {
+    padding: 16px 2rem;
+  }
+
+  .privacy-banner-text h1 {
+    font-size: 24px;
+  }
+
+  .privacy-banner-text p {
+    font-size: 14px;
+  }
+
+  .about-section {
+    padding: 2rem;
+  }
+
+  .about-section h2 {
+    font-size: 24px;
+    margin-bottom: 2rem;
+  }
+
+  .about-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-left,
+  .about-right {
+    min-width: 100%;
+  }
+
+  .about-right iframe {
+    height: 200px;
+  }
+
+  .vision-mission {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .vm-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .vm-box h3 {
+    font-size: 18px;
+    margin-top: 36px;
+  }
+
+  .vm-box p {
+    font-size: 14px;
+  }
+
+  .latest-news .container {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+
+  .news-left {
+    margin-bottom: 2rem;
+  }
+
+  .news-left h2 {
+    font-size: 22px;
+  }
+
+  .news-left p {
+    font-size: 14px;
+  }
+
+  .news-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .news-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  .news-img .overlay {
+    padding: 1rem;
+  }
+
+  .news-img .overlay h4 {
+    font-size: 16px;
+  }
+
+  .news-img .overlay span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .privacy-banner {
+    height: 200px;
+  }
+
+  .privacy-banner-text {
+    padding: 1rem;
+  }
+
+  .privacy-banner-text h1 {
+    font-size: 20px;
+  }
+
+  .privacy-banner-text p {
+    font-size: 12px;
+  }
+
+  .about-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .vm-box {
+    padding: 1.5rem 1rem;
+  }
+}
+
     </style>
 
     <section class="privacy-banner"
@@ -174,7 +294,7 @@
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="#"><span>Read →</span></a>
+                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
                             </div>
                         </div>
                     </div>
