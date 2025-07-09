@@ -106,7 +106,7 @@
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="#"><span>Read →</span></a>
+                                <a href="{{ route('news.detail', $item->slug) }}"><span>Read →</span></a>
                             </div>
                         </div>
                     </div>
