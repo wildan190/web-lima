@@ -4,7 +4,7 @@ namespace App\Modules\Admin\WebProfile\Action;
 
 use App\Repositories\Interface\WebProfileRepositoryInterface;
 
-class GetWebprofile
+class GetWebProfile
 {
     public function __construct(protected WebProfileRepositoryInterface $repository) {}
 
