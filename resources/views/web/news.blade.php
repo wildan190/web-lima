@@ -5,7 +5,7 @@
 @section('content')
 
     <section class="privacy-banner"
-        style="background: url('{{ $newsBanner?->upload_picture ? asset('storage/' . $newsBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
+        style="background: url('{{ $newsBanner?->upload_picture ? $newsBanner->upload_picture : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
                 <h1>{{ $newsBanner?->title ?? 'About Us' }}</h1>
@@ -103,7 +103,7 @@
                 <div class="news-grid">
                     @foreach ($news as $item)
                         <div class="news-card">
-                            <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}">
+                            <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}">
                             <div class="news-card-overlay">
                                 <span class="date">{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }} • News
                                     Category</span>
@@ -453,71 +453,71 @@
         });
     </script>
 
-<section class="press-release-section">
-    <div class="container">
-        <h2 class="press-title">Press Release</h2>
+    <section class="press-release-section">
+        <div class="container">
+            <h2 class="press-title">Press Release</h2>
 
-        @if ($pressRelease->count() > 0)
-            @php
-                $first = $pressRelease[0];
-                $second = $pressRelease->get(1);
-                $rest = $pressRelease->slice(2);
-            @endphp
+            @if ($pressRelease->count() > 0)
+                @php
+                    $first = $pressRelease[0];
+                    $second = $pressRelease->get(1);
+                    $rest = $pressRelease->slice(2);
+                @endphp
 
-            <div class="press-row press-featured">
-                {{-- First Large Item --}}
-                <a href="{{ route('news.detail', $item->slug) }}" class="press-card press-large">
-                    <img src="{{ asset('storage/' . $first->picture_upload) }}" alt="{{ $first->title }}">
-                    <div class="press-content">
-                        <div class="press-meta">
-                            <span>Oleh Admin</span>
-                            <span>{{ \Carbon\Carbon::parse($first->created_at)->format('j M Y') }}</span>
-                        </div>
-                        <h3 class="press-title-red">{{ $first->title }}</h3>
-                        <p>{{ \Illuminate\Support\Str::limit(strip_tags($first->content), 150) }}</p>
-                    </div>
-                </a>
-
-                {{-- Second Item --}}
-                @if ($second)
-                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
-                        <img src="{{ asset('storage/' . $second->picture_upload) }}" alt="{{ $second->title }}">
+                <div class="press-row press-featured">
+                    {{-- First Large Item --}}
+                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card press-large">
+                        <img src="{{ $first->picture_upload }}" alt="{{ $first->title }}">
                         <div class="press-content">
                             <div class="press-meta">
                                 <span>Oleh Admin</span>
-                                <span>{{ \Carbon\Carbon::parse($second->created_at)->format('j M Y') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($first->created_at)->format('j M Y') }}</span>
                             </div>
-                            <h3 class="press-title-red">{{ $second->title }}</h3>
-                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($second->content), 100) }}</p>
+                            <h3 class="press-title-red">{{ $first->title }}</h3>
+                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($first->content), 150) }}</p>
                         </div>
                     </a>
-                @endif
-            </div>
 
-            {{-- Grid List of Press Items --}}
-            <div class="press-grid">
-                @foreach ($rest as $item)
-                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
-                        <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}">
-                        <div class="press-content">
-                            <div class="press-meta">
-                                <span>Oleh Admin</span>
-                                <span>{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }}</span>
+                    {{-- Second Item --}}
+                    @if ($second)
+                        <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
+                            <img src="{{ asset('storage/' . $second->picture_upload) }}" alt="{{ $second->title }}">
+                            <div class="press-content">
+                                <div class="press-meta">
+                                    <span>Oleh Admin</span>
+                                    <span>{{ \Carbon\Carbon::parse($second->created_at)->format('j M Y') }}</span>
+                                </div>
+                                <h3 class="press-title-red">{{ $second->title }}</h3>
+                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($second->content), 100) }}</p>
                             </div>
-                            <h3 class="press-title-red">{{ $item->title }}</h3>
-                            <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->content), 100) }}</p>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+                        </a>
+                    @endif
+                </div>
 
-            {{-- Pagination --}}
-            <div class="press-pagination" style="margin-top: 40px;">
-                {{ $pressRelease->appends(request()->except('press_page'))->links() }}
-            </div>
-        @endif
-    </div>
-</section>
+                {{-- Grid List of Press Items --}}
+                <div class="press-grid">
+                    @foreach ($rest as $item)
+                        <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
+                            <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}">
+                            <div class="press-content">
+                                <div class="press-meta">
+                                    <span>Oleh Admin</span>
+                                    <span>{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }}</span>
+                                </div>
+                                <h3 class="press-title-red">{{ $item->title }}</h3>
+                                <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->content), 100) }}</p>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+
+                {{-- Pagination --}}
+                <div class="press-pagination" style="margin-top: 40px;">
+                    {{ $pressRelease->appends(request()->except('press_page'))->links() }}
+                </div>
+            @endif
+        </div>
+    </section>
 
 
     <style>
@@ -720,6 +720,7 @@
         }
     </style>
 
+    <!-- Gallery Section -->
     <section class="lima-gallery-section">
         <div class="lima-gallery-container">
             <h2 class="lima-gallery-title">
@@ -741,9 +742,8 @@
                     @if (!Str::endsWith($item->picture_upload, ['.mp4', '.mov', '.webm']))
                         <div class="lima-gallery-item" data-sport="{{ $item->sport_id }}">
                             <div class="lima-gallery-media">
-                                <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="Gallery Image"
-                                    class="lima-gallery-modal-trigger"
-                                    data-full="{{ asset('storage/' . $item->picture_upload) }}">
+                                <img src="{{ $item->picture_upload }}" alt="Gallery Image"
+                                    class="lima-gallery-modal-trigger" data-full="{{ $item->picture_upload }}">
                             </div>
                         </div>
                     @endif

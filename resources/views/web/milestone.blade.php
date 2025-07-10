@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="milestone-banner"
-        style="background: url('{{ $milestoneBanner?->upload_picture ? asset('storage/' . $milestoneBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
+        style="background: url('{{ $milestoneBanner?->upload_picture ?: asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="milestone-banner-overlay">
             <div class="milestone-banner-text">
                 <h1>{{ $milestoneBanner?->title ?? 'About Us' }}</h1>
@@ -62,7 +62,6 @@
         }
     </style>
 
-
     <section class="about">
         <div class="about-wrapper">
 
@@ -70,7 +69,7 @@
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
                         <div class="logo-box {{ $index >= 6 ? 'last-row' : '' }}">
-                            <img src="{{ asset('storage/' . $sport->logo) }}" alt="{{ $sport->name }}">
+                            <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -96,7 +95,7 @@
                         <div class="milestone-card" data-year="{{ $item->year }}">
                             <div class="milestone-card-inner">
                                 <div class="milestone-img">
-                                    <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="Milestone Image">
+                                    <img src="{{ $item->picture_upload }}" alt="Milestone Image">
                                 </div>
                                 <div class="milestone-content">
                                     <small>LIMA Milestone in</small>
@@ -123,7 +122,6 @@
         </div>
     </section>
 
-
     <section class="sports-section">
         <div class="sports-container">
             <h2 class="sports-title">{{ count($sports) }} Sports</h2>
@@ -132,7 +130,7 @@
                     <div class="sport-card">
                         <div class="sport-card-inner">
                             <div class="sport-logo">
-                                <img src="{{ asset('storage/' . $sport->logo) }}" alt="{{ $sport->name }}">
+                                <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
                             </div>
                             <p class="sport-name">{{ $sport->name }}</p>
                         </div>
@@ -360,7 +358,7 @@
                 @foreach ($universities as $index => $university)
                     <div class="coverage-card {{ $index >= 10 ? 'hidden' : '' }}">
                         <div class="coverage-logo">
-                            <img src="{{ asset('storage/' . $university->logo) }}" alt="{{ $university->name }}">
+                            <img src="{{ $university->logo }}" alt="{{ $university->name }}">
                         </div>
                         <div class="coverage-name">{{ $university->name }}</div>
                     </div>
@@ -516,7 +514,7 @@
                 @foreach ($newsLatest as $news)
                     <div class="news-card">
                         <div class="news-img">
-                            <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}">
+                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>

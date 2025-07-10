@@ -29,7 +29,7 @@
                 <small id="copyStatus" style="display:none; color: green;">Link copied</small>
             </div>
 
-            <img src="{{ asset('storage/' . $news->picture_upload) }}" class="news-image" alt="{{ $news->title }}">
+            <img src="{{ $news->picture_upload }}" class="news-image" alt="{{ $news->title }}">
 
             <div class="news-body-content">
                 {!! $news->content !!}
