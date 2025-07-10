@@ -481,7 +481,7 @@
                     {{-- Second Item --}}
                     @if ($second)
                         <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
-                            <img src="{{ asset('storage/' . $second->picture_upload) }}" alt="{{ $second->title }}">
+                            <img src="{{ asset($second->picture_upload) }}" alt="{{ $second->title }}">
                             <div class="press-content">
                                 <div class="press-meta">
                                     <span>Oleh Admin</span>
@@ -498,7 +498,7 @@
                 <div class="press-grid">
                     @foreach ($rest as $item)
                         <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
-                            <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}">
+                            <img src="{{ asset($item->picture_upload) }}" alt="{{ $item->title }}">
                             <div class="press-content">
                                 <div class="press-meta">
                                     <span>Oleh Admin</span>
