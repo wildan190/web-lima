@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\UniversityCoverage\Action;
 
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
+use Google\Cloud\Storage\StorageClient;
 
 class UpdateUniversityCoverage
 {
@@ -19,13 +19,25 @@ class UpdateUniversityCoverage
         $item = $this->repository->findById($id);
 
         if (isset($data['logo']) && $data['logo']->isValid()) {
-            if ($item->logo && Storage::disk('public')->exists($item->logo)) {
-                Storage::disk('public')->delete($item->logo);
-            }
+            $file = $data['logo'];
+            $filename = 'university_coverages/logo_'.time().'.'.$file->getClientOriginalExtension();
 
-            $data['logo'] = $data['logo']->store('university_coverages', 'public');
+            $storage = new StorageClient([
+                'projectId' => config('filesystems.disks.gcs.project_id'),
+                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
+            ]);
+
+            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
+
+            $bucket->upload(
+                file_get_contents($file->getRealPath()), [
+                    'name' => $filename,
+                ]
+            );
+
+            $data['logo'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
         } else {
-            unset($data['logo']);
+            unset($data['logo']); // agar tidak menimpa logo lama jika tidak diupload
         }
 
         $this->repository->update($id, $data);

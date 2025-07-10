@@ -30,13 +30,15 @@ use App\Repositories\SportRepository;
 use App\Repositories\UniversityCoverageRepository;
 use App\Repositories\WebContactRepository;
 use App\Repositories\WebProfileRepository;
+use Google\Cloud\Storage\StorageClient;
+use Illuminate\Filesystem\FilesystemAdapter;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\Filesystem;
+use League\Flysystem\GoogleCloudStorage\GoogleCloudStorageAdapter;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
@@ -55,11 +57,20 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(NewsBannerRepositoryInterface::class, NewsBannerRepository::class);
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
+        Storage::extend('gcs', function ($app, $config) {
+            $storageClient = new StorageClient([
+                'projectId' => $config['project_id'],
+                'keyFilePath' => $config['key_file'],
+            ]);
+
+            $bucket = $storageClient->bucket($config['bucket']);
+
+            $adapter = new GoogleCloudStorageAdapter($bucket, $config['path_prefix'] ?? '');
+            $filesystem = new Filesystem($adapter);
+
+            return new FilesystemAdapter($filesystem, $adapter, $config);
+        });
     }
 }

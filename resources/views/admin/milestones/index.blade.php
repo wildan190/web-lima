@@ -32,7 +32,7 @@
                     <td>{{ \Illuminate\Support\Str::limit($milestone->description, 50) }}</td>
                     <td>
                         @if ($milestone->picture_upload)
-                            <img src="{{ asset('storage/' . $milestone->picture_upload) }}" alt="Milestone Image">
+                            <img src="{{ $milestone->picture_upload }}" alt="Milestone Image" style="max-width: 150px;">
                         @else
                             <span>-</span>
                         @endif

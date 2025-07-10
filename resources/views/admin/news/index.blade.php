@@ -29,7 +29,11 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>
-                        <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="News Image">
+                        @if ($item->picture_upload)
+                            <img src="{{ $item->picture_upload }}" alt="News Image" style="max-width: 120px;">
+                        @else
+                            <span>No Image</span>
+                        @endif
                     </td>
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->category }}</td>

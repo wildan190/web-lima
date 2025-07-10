@@ -25,7 +25,11 @@
             @forelse ($galleries as $gallery)
                 <tr>
                     <td>
-                        <img src="{{ asset('storage/' . $gallery->picture_upload) }}" alt="Gallery Image">
+                        @if (!empty($gallery->picture_upload))
+                            <img src="{{ $gallery->picture_upload }}" alt="Gallery Image">
+                        @else
+                            <span>No Image</span>
+                        @endif
                     </td>
                     <td>{{ $gallery->sport->name ?? '-' }}</td>
                     <td>{{ $gallery->description }}</td>
