@@ -139,12 +139,12 @@
             <div class="contact-info">
                 <h2 style="color: #d62828; display: inline;">LIMA</h2>
                 <h2 style="display: inline; margin-left: 8px;">Office</h2>
-                <p>{{ $WebContact->address }}</p>
+                <p>{{ $WebContact->address?? 'n/a' }}</p>
                 <p>
                     <strong>E-mail :</strong>
-                    <a href="mailto:{{ $WebContact->email }}">{{ $WebContact->email }}</a><br>
+                    <a href="mailto:{{ $WebContact->email?? 'none@email.com' }}">{{ $WebContact->email?? 'none@email.com' }}</a><br>
                     <strong>Office :</strong>
-                    <a href="tel:{{ $WebContact->phone }}">{{ $WebContact->phone }}</a>
+                    <a href="tel:{{ $WebContact->phone?? 'n/a' }}">{{ $WebContact->phone?? 'n/a' }}</a>
                 </p>
             </div>
             <div class="contact-map">
