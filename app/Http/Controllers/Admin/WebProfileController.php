@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WebProfileRequest;
 use App\Modules\Admin\WebProfile\Action\CreateOrUpdateWebProfile;
-use App\Modules\Admin\WebProfile\Action\GetWebprofile;
+use App\Modules\Admin\WebProfile\Action\GetWebProfile;
 use Google\Cloud\Storage\StorageClient;
 
 class WebProfileController extends Controller
 {
-    public function index(GetWebprofile $getter)
+    public function index(GetWebProfile $getter)
     {
         $profile = $getter->handle();
 
