@@ -38,10 +38,16 @@
         @csrf
 
         <label for="upload_picture">Picture</label>
-        @if(!empty($banner?->upload_picture))
-            <img src="{{ asset('storage/' . $banner->upload_picture) }}" alt="Current Image" style="max-width: 200px; margin-bottom: 10px;">
-        @endif
-        <input type="file" name="upload_picture" id="upload_picture">
+
+@if(!empty($banner?->upload_picture))
+    <div style="margin-bottom: 10px;">
+        <img src="{{ $banner->upload_picture }}" alt="Current Image" style="max-width: 200px;">
+        <p><small>Current Image from GCS</small></p>
+    </div>
+@endif
+
+<input type="file" name="upload_picture" id="upload_picture">
+
 
         <label for="title">Title</label>
         <input type="text" name="title" id="title" value="{{ old('title', $banner->title ?? '') }}">

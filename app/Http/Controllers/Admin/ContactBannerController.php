@@ -13,7 +13,7 @@ class ContactBannerController extends Controller
 
     public function form()
     {
-        $banner = $this->repository->getFirst();
+        $banner = $this->repository->first();
 
         return view('admin.contact_banner.create_or_update', compact('banner'));
     }

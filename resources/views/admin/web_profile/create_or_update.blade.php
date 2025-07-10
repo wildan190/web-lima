@@ -18,13 +18,16 @@
             @csrf
 
             <label for="web_name">Web Name</label>
-            <input type="text" name="web_name" id="web_name" value="{{ old('web_name', $profile->web_name ?? '') }}" required>
+            <input type="text" name="web_name" id="web_name" value="{{ old('web_name', $profile->web_name ?? '') }}"
+                required>
 
             <label for="logo">Logo (image)</label>
             <input type="file" name="logo" id="logo">
-            @if(!empty($profile->logo))
-                <img src="{{ asset('storage/' . $profile->logo) }}" alt="Logo">
+
+            @if (!empty($profile->logo))
+                <img src="{{ $profile->logo }}" alt="Logo" style="max-height: 80px; margin-top: 10px;">
             @endif
+
 
             <label for="history">History</label>
             <textarea name="history" id="history">{{ old('history', $profile->history ?? '') }}</textarea>

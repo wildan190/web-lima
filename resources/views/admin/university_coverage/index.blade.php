@@ -26,7 +26,7 @@
                     <td>{{ $item->name }}</td>
                     <td>
                         @if ($item->logo)
-                            <img src="{{ asset('storage/' . $item->logo) }}" alt="Logo">
+                            <img src="{{ $item->logo }}" alt="Logo" style="max-width: 100px;">
                         @else
                             -
                         @endif

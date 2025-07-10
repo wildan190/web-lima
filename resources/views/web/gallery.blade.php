@@ -3,7 +3,7 @@
 @section('content')
     <!-- Hero Banner -->
     <section class="privacy-banner"
-        style="background: url('{{ $galleryBanner?->upload_picture ? asset('storage/' . $galleryBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
+        style="background: url('{{ $galleryBanner?->upload_picture ? $galleryBanner->upload_picture : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
                 <h1>{{ $galleryBanner?->title ?? 'About Us' }}</h1>
@@ -69,9 +69,8 @@
                     @if (!Str::endsWith($item->picture_upload, ['.mp4', '.mov', '.webm']))
                         <div class="lima-gallery-item" data-sport="{{ $item->sport_id }}">
                             <div class="lima-gallery-media">
-                                <img src="{{ asset('storage/' . $item->picture_upload) }}" alt="Gallery Image"
-                                    class="lima-gallery-modal-trigger"
-                                    data-full="{{ asset('storage/' . $item->picture_upload) }}">
+                                <img src="{{ $item->picture_upload }}" alt="Gallery Image"
+                                    class="lima-gallery-modal-trigger" data-full="{{ $item->picture_upload }}">
                             </div>
                         </div>
                     @endif
@@ -102,7 +101,7 @@
                 @foreach ($newsLatest as $news)
                     <div class="news-card">
                         <div class="news-img">
-                            <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}">
+                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                             <div class="overlay">
                                 <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>

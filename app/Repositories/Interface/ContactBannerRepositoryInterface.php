@@ -4,7 +4,9 @@ namespace App\Repositories\Interface;
 
 interface ContactBannerRepositoryInterface
 {
-    public function getFirst();
+    public function first();
 
-    public function updateOrCreate(array $data);
+    public function update(int $id, array $data);
+
+    public function create(array $data);
 }

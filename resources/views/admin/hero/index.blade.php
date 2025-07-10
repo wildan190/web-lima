@@ -2,7 +2,7 @@
 @section('title', 'Hero Banners')
 
 @section('content')
-    <style>
+        <style>
         .hero-index {
             background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
             padding: 40px 2vw;
@@ -144,6 +144,7 @@
             }
         }
     </style>
+
     <div class="hero-index">
         <h3><i class="fas fa-images"></i> Hero List</h3>
 
@@ -168,7 +169,7 @@
                         <tr>
                             <td>
                                 @if($hero->picture_upload)
-                                    <img src="{{ asset('storage/' . $hero->picture_upload) }}">
+                                    <img src="{{ $hero->picture_upload }}" alt="Hero Image">
                                 @else
                                     <span class="text-muted">No Image</span>
                                 @endif
@@ -192,6 +193,7 @@
             </table>
         </div>
     </div>
-    {{-- Font Awesome CDN for icons --}}
+
+    {{-- Font Awesome CDN --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 @endsection

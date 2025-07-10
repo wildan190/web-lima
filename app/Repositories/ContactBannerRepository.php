@@ -4,27 +4,21 @@ namespace App\Repositories;
 
 use App\Models\ContactBanner;
 use App\Repositories\Interface\ContactBannerRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
 
 class ContactBannerRepository implements ContactBannerRepositoryInterface
 {
-    public function getFirst()
+    public function first()
     {
         return ContactBanner::first();
     }
 
-    public function updateOrCreate(array $data)
+    public function update(int $id, array $data)
     {
-        $existing = ContactBanner::first();
+        return ContactBanner::where('id', $id)->update($data);
+    }
 
-        if ($existing) {
-            if (isset($data['upload_picture']) && $existing->upload_picture) {
-                Storage::disk('public')->delete($existing->upload_picture);
-            }
-
-            $existing->update($data);
-        } else {
-            ContactBanner::create($data);
-        }
+    public function create(array $data)
+    {
+        return ContactBanner::create($data);
     }
 }

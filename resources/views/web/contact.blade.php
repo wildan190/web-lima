@@ -122,10 +122,9 @@
         }
     </style>
 
-
     <!-- Banner Section -->
     <section class="privacy-banner"
-        style="background: url('{{ $contactBanner?->upload_picture ? asset('storage/' . $contactBanner->upload_picture) : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
+        style="background: url('{{ $contactBanner?->upload_picture ? $contactBanner->upload_picture : asset('assets/img/hero.png') }}') center center / cover no-repeat;">
         <div class="privacy-banner-overlay">
             <div class="privacy-banner-text">
                 <h1>{{ $contactBanner?->title ?? 'Contact' }}</h1>

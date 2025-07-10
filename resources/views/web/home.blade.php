@@ -3,57 +3,57 @@
 @section('title', 'Home')
 
 @section('content')
-<section class="hero">
-    @foreach ($heroSlide as $index => $slide)
-        <div class="hero-slide" style="background: url('{{ asset('storage/' . $slide->picture_upload) }}') center/cover no-repeat; {{ $index === 0 ? '' : 'display: none;' }}">
-            <div class="hero-overlay">
-                <div class="hero-text">
-                    <h1>{{ $slide->title }}</h1>
-                    <p>{{ $slide->subtitle }}</p>
+    <section class="hero">
+        @foreach ($heroSlide as $index => $slide)
+            <div class="hero-slide"
+                style="background: url('{{ $slide->picture_upload }}') center/cover no-repeat; {{ $index === 0 ? '' : 'display: none;' }}">
+                <div class="hero-overlay">
+                    <div class="hero-text">
+                        <h1>{{ $slide->title }}</h1>
+                        <p>{{ $slide->subtitle }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    @endforeach
-
-    <div class="hero-slider-dots">
-        @foreach ($heroSlide as $index => $slide)
-            <span class="dot {{ $index === 0 ? 'active' : '' }}" data-index="{{ $index }}"></span>
         @endforeach
-    </div>
-</section>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const slides = document.querySelectorAll(".hero-slide");
-        const dots = document.querySelectorAll(".dot");
-        let currentIndex = 0;
-        let interval = setInterval(nextSlide, 5000); // 5 detik per slide
+        <div class="hero-slider-dots">
+            @foreach ($heroSlide as $index => $slide)
+                <span class="dot {{ $index === 0 ? 'active' : '' }}" data-index="{{ $index }}"></span>
+            @endforeach
+        </div>
+    </section>
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.style.display = i === index ? "block" : "none";
-                dots[i].classList.toggle("active", i === index);
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slides = document.querySelectorAll(".hero-slide");
+            const dots = document.querySelectorAll(".dot");
+            let currentIndex = 0;
+            let interval = setInterval(nextSlide, 5000); // 5 detik per slide
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.style.display = i === index ? "block" : "none";
+                    dots[i].classList.toggle("active", i === index);
+                });
+                currentIndex = index;
+            }
+
+            function nextSlide() {
+                let nextIndex = (currentIndex + 1) % slides.length;
+                showSlide(nextIndex);
+            }
+
+            dots.forEach(dot => {
+                dot.addEventListener("click", () => {
+                    clearInterval(interval); // stop auto slide on manual control
+                    showSlide(parseInt(dot.dataset.index));
+                    interval = setInterval(nextSlide, 5000); // restart auto slide
+                });
             });
-            currentIndex = index;
-        }
 
-        function nextSlide() {
-            let nextIndex = (currentIndex + 1) % slides.length;
-            showSlide(nextIndex);
-        }
-
-        dots.forEach(dot => {
-            dot.addEventListener("click", () => {
-                clearInterval(interval); // stop auto slide on manual control
-                showSlide(parseInt(dot.dataset.index));
-                interval = setInterval(nextSlide, 5000); // restart auto slide
-            });
+            showSlide(currentIndex);
         });
-
-        showSlide(currentIndex);
-    });
-</script>
-
+    </script>
 
     <section class="about">
         <div class="about-wrapper">
@@ -62,7 +62,7 @@
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
                         <div class="logo-box {{ $index >= 6 ? 'last-row' : '' }}">
-                            <img src="{{ asset('storage/' . $sport->logo) }}" alt="{{ $sport->name }}">
+                            <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -76,29 +76,28 @@
         </div>
     </section>
 
-
-<section class="latest-news">
-    <div class="container">
-        <div class="news-left">
-            <h2>Latest <strong>News</strong></h2>
-            <p>Here is some breaking news especially for you.</p>
-            <a href="#" class="btn-see-more">See More</a>
-        </div>
-        <div class="news-right">
-            @foreach ($newsLatest as $news)
-                <div class="news-card">
-                    <div class="news-img">
-                        <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="{{ $news->title }}">
-                        <div class="overlay">
-                            <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                            <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                            <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+    <section class="latest-news">
+        <div class="container">
+            <div class="news-left">
+                <h2>Latest <strong>News</strong></h2>
+                <p>Here is some breaking news especially for you.</p>
+                <a href="#" class="btn-see-more">See More</a>
+            </div>
+            <div class="news-right">
+                @foreach ($newsLatest as $news)
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                            <div class="overlay">
+                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 @endsection
