@@ -11,7 +11,7 @@ services:
     working_dir: /var/www
     volumes:
       - ./:/var/www
-      - ./storage/app/indigo-cider-465012-g4-08bc9bcc9457.json:/var/www/google-key.json
+      - ./storage/app:/var/www/html/storage/app
     networks:
       - webnet
     command: >
