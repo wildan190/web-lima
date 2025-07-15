@@ -414,6 +414,23 @@ font-weight: 600;
   display: block;
 }
 
+.news-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.news-img:hover img {
+    transform: scale(1.1); /* efek zoom saat hover */
+}
+
+
 /* === Fixed overlay at bottom === */
 .overlay {
   position: absolute;
@@ -596,7 +613,7 @@ padding: 6px;
 /* === Latest News Section Mobile === */
 .latest-news {
 padding: 2rem 1rem;
-text-align: center;
+text-align: left;
 }
 
 .latest-news .container {
@@ -610,9 +627,16 @@ margin-bottom: 1.5rem;
 }
 
 .news-right {
-width: 100%;
-gap: 16px;
-overflow-x: auto;
+    width: 100%;
+    gap: 16px;
+    overflow-x: auto;
+    display: flex; /* penting untuk horizontal scroll */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.news-right::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 .news-card {

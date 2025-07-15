@@ -86,6 +86,7 @@
             <div class="news-right">
                 @foreach ($newsLatest as $news)
                     <div class="news-card">
+                    <a href="{{ route('news.detail', $news->slug) }}">
                         <div class="news-img">
                             <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                             <div class="overlay">
@@ -93,6 +94,7 @@
                                 <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
                                 <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
                             </div>
+                            </a>
                         </div>
                     </div>
                 @endforeach
