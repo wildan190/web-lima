@@ -171,6 +171,9 @@
         <div class="sidebar-language">🌐 EN</div>
     </aside>
 
+    <!-- Overlay -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
     <main>
         @yield('content')
     </main>
