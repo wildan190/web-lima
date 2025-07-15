@@ -351,6 +351,20 @@ border-color: white;
 opacity: 1;
 }
 
+.subtitle-typing {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid white;
+    animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
 /* === About Section === */
 .about {
 padding: 60px 20px;
