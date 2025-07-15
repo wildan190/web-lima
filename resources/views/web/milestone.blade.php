@@ -64,7 +64,6 @@
 
     <section class="about">
         <div class="about-wrapper">
-
             <div class="about-logos">
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
@@ -550,7 +549,6 @@
         </div>
     </section>
 
-
     <style>
         .milestone-section {
             padding: 60px 0;
@@ -600,6 +598,8 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            /* <-- cursor pointer */
         }
 
         .milestone-card-inner {
@@ -618,6 +618,8 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            cursor: pointer;
+            /* <-- cursor pointer */
         }
 
         .milestone-content {
@@ -653,6 +655,8 @@
             font-size: 14px;
             color: #888;
             position: relative;
+            cursor: pointer;
+            /* <-- cursor pointer */
         }
 
         .milestone-year.active {
@@ -692,7 +696,6 @@
                 gap: 0;
             }
 
-            /* Sembunyikan panah di mobile */
             .milestone-arrow {
                 display: none;
             }
