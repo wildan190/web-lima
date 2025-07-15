@@ -85,6 +85,35 @@
 
             </aside>
 
+            <!-- Mobile Horizontal Scroll Categories -->
+            <div class="mobile-category-scroll">
+                <form id="filterFormMobile" method="GET" action="{{ route('news') }}">
+                    <ul class="category-list">
+                        <li>
+                            <label>
+                                All
+                                <input type="checkbox" name="categories[]" value="all"
+                                    {{ !request('categories') || in_array('all', request('categories', [])) ? 'checked' : '' }}
+                                    onchange="this.form.submit()">
+                                <span class="custom-checkbox"></span>
+                            </label>
+                        </li>
+                        @foreach ($sports as $sport)
+                            <li>
+                                <label>
+                                    {{ $sport->name }}
+                                    <input type="checkbox" name="categories[]" value="{{ $sport->name }}"
+                                        {{ request('categories') && in_array($sport->name, request('categories', [])) ? 'checked' : '' }}
+                                        onchange="this.form.submit()">
+                                    <span class="custom-checkbox"></span>
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul>
+                </form>
+            </div>
+
+
             <!-- Main Content -->
             <div class="news-main">
                 <!-- Filter + Sort Row -->
@@ -326,6 +355,17 @@
             background-color: #f0f0f0;
         }
 
+        .mobile-category-scroll {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-category-scroll {
+                display: block;
+            }
+        }
+
+
         @media (max-width: 768px) {
             .news-wrapper {
                 padding: 24px 1rem;
@@ -336,65 +376,85 @@
                 gap: 24px;
             }
 
-            /* Pindahkan kategori ke atas */
             .news-sidebar {
+                display: none;
+            }
+
+            /* Horizontal Scrollbar for Mobile Categories */
+            .mobile-category-scroll {
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 20px;
+                padding: 8px 0;
                 width: 100%;
-                max-width: 100%;
-                background-color: #f9f9f9;
-                padding: 16px 16px 12px 16px;
-                border-radius: 8px;
-                order: -1;
                 box-sizing: border-box;
             }
 
-            .sidebar-header {
-                margin-bottom: 12px;
-                font-size: 16px;
+            .mobile-category-scroll::-webkit-scrollbar {
+                height: 6px;
             }
 
-            .category-list {
+            .mobile-category-scroll::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                border-radius: 4px;
+            }
+
+            .mobile-category-scroll .category-list {
                 display: flex;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 gap: 12px;
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-
-            .category-list li {
-                flex: 0 1 calc(50% - 6px);
-                border: none;
-                padding: 4px 0;
+                list-style: none;
+                margin: 0;
+                padding: 0 10px;
+                width: max-content;
+                /* penting agar scroll muncul */
                 box-sizing: border-box;
             }
 
-            .category-list label {
+            .mobile-category-scroll .category-list li {
+                flex: 0 0 auto;
+            }
+
+            .mobile-category-scroll label {
                 background-color: #eee;
-                padding: 8px 10px;
+                padding: 6px 12px;
                 border-radius: 6px;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 font-size: 13px;
-                box-sizing: border-box;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                white-space: nowrap;
+                cursor: pointer;
             }
 
-            .custom-checkbox {
+            .mobile-category-scroll .custom-checkbox {
                 width: 16px;
                 height: 16px;
                 border: 2px solid #bbb;
+                border-radius: 4px;
+                position: relative;
             }
 
-            .category-list input[type="checkbox"]:checked+.custom-checkbox {
+            .mobile-category-scroll input[type="checkbox"] {
+                display: none;
+            }
+
+            .mobile-category-scroll input[type="checkbox"]:checked+.custom-checkbox {
                 background-color: #C62828;
                 border-color: #C62828;
             }
 
-            .category-list input[type="checkbox"]:checked+.custom-checkbox::after {
-                top: 1px;
-                left: 4px;
+            .mobile-category-scroll input[type="checkbox"]:checked+.custom-checkbox::after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 5px;
                 width: 4px;
                 height: 8px;
+                border: solid white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
             }
 
             .news-header-bar {
@@ -439,6 +499,30 @@
                 padding: 5px 10px;
                 font-size: 13px;
             }
+
+            .mobile-category-scroll {
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 20px;
+                padding: 8px 0;
+                width: 100%;
+                box-sizing: border-box;
+                scrollbar-width: none;
+                /* Firefox */
+                -ms-overflow-style: none;
+                /* IE 10+ */
+            }
+
+            .mobile-category-scroll::-webkit-scrollbar {
+                display: none;
+                /* Safari & Chrome */
+            }
+
+            .header-title-mobile {
+                display: none;
+            }
+
         }
     </style>
 

@@ -287,25 +287,46 @@
 
         .lima-inum-card {
             position: relative;
-            background-size: cover;
-            background-position: center;
             border-radius: 12px;
             overflow: hidden;
             color: #fff;
             display: flex;
             align-items: flex-end;
             padding: 20px;
+            z-index: 0;
         }
 
+        /* Background image via inline style */
+        .lima-inum-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: inherit;
+            transform: scale(1);
+            transition: transform 0.4s ease;
+            z-index: 0;
+            border-radius: 12px;
+        }
+
+        /* Zoom on hover */
+        .lima-inum-card:hover::before {
+            transform: scale(1.1);
+        }
+
+        /* Overlay layer */
         .lima-inum-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            opacity: 2;
             z-index: 1;
             border-radius: 12px;
+            opacity: 1;
+            /* fixed from 2 to 1 */
         }
 
         .lima-inum-overlay.red {
@@ -320,6 +341,7 @@
             background-color: rgba(235, 195, 52, 0.55);
         }
 
+        /* Text content */
         .lima-inum-text {
             position: relative;
             z-index: 2;
@@ -337,6 +359,7 @@
             display: block;
         }
 
+        /* Responsive grid layout */
         @media (max-width: 768px) {
             .lima-inum-grid {
                 grid-template-columns: 1fr;
