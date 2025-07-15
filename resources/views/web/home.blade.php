@@ -10,7 +10,7 @@
                 <div class="hero-overlay">
                     <div class="hero-text">
                         <h1>{{ $slide->title }}</h1>
-                        <p>{{ $slide->subtitle }}</p>
+                        <p class="subtitle-typing" data-subtitle="{{ $slide->subtitle }}"></p>
                     </div>
                 </div>
             </div>
@@ -22,6 +22,42 @@
             @endforeach
         </div>
     </section>
+
+    <script>
+    function typeText(element, text, speed = 50) {
+        let index = 0;
+        element.textContent = "";
+        const typing = () => {
+            if (index < text.length) {
+                element.textContent += text.charAt(index);
+                index++;
+                setTimeout(typing, speed);
+            }
+        };
+        typing();
+    }
+
+    // Call typing effect on visible slide only
+    function activateTypingOnVisibleSlide() {
+        const visibleSlide = document.querySelector('.hero-slide:not([style*="display: none"])');
+        const subtitle = visibleSlide?.querySelector('.subtitle-typing');
+
+        if (subtitle) {
+            const text = subtitle.getAttribute('data-subtitle');
+            typeText(subtitle, text);
+        }
+    }
+
+    // Run on page load
+    window.addEventListener('DOMContentLoaded', activateTypingOnVisibleSlide);
+
+    // OPTIONAL: Re-run when slide changes (if slide is auto-swapping)
+    // Example only – adapt based on your slider logic
+    setInterval(() => {
+        activateTypingOnVisibleSlide();
+    }, 5000); // assuming slide changes every 5s
+</script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
