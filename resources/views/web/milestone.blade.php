@@ -161,7 +161,6 @@
         .sports-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            /* 4 kolom untuk layar besar */
             gap: 20px;
         }
 
@@ -212,15 +211,12 @@
             word-wrap: break-word;
         }
 
-        /* Untuk tampilan tablet dan layar kecil */
         @media (max-width: 992px) {
             .sports-grid {
                 grid-template-columns: repeat(3, 1fr);
-                /* 3 kolom untuk layar lebih kecil */
             }
         }
 
-        /* Untuk tampilan ponsel besar */
         @media (max-width: 768px) {
             .sports-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -228,11 +224,9 @@
             }
         }
 
-        /* Untuk tampilan ponsel kecil */
         @media (max-width: 480px) {
             .sports-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* Pastikan 2 kolom juga di sini */
             }
         }
     </style>
@@ -243,14 +237,12 @@
             <h2><span style="color: #E02A26;">LIMA</span> in Number</h2>
 
             <div class="lima-inum-grid">
-                <!-- KIRI: Card Besar -->
                 <div class="lima-inum-card"
                     style="background-image: url('{{ asset('assets/img/hero.png') }}'); grid-row: span 2;">
                     <div class="lima-inum-overlay red"></div>
                     <div class="lima-inum-text">12.000 +<br><span>Student Athlete</span></div>
                 </div>
 
-                <!-- KANAN ATAS -->
                 <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset1.png') }}');">
                     <div class="lima-inum-overlay purple"></div>
                     <div class="lima-inum-text">1.000 +<br><span>Matches</span></div>
@@ -333,7 +325,6 @@
             z-index: 1;
             border-radius: 12px;
             opacity: 1;
-            /* fixed from 2 to 1 */
         }
 
         .lima-inum-overlay.red {
