@@ -79,7 +79,7 @@
 
             <!-- See More -->
             <div class="lima-gallery-see-more">
-                <button id="limaSeeMoreBtn">See more ⌄</button>
+                <button id="limaSeeMoreBtn">See more</button>
             </div>
         </div>
     </section>
@@ -507,7 +507,7 @@
             seeMoreBtn.addEventListener("click", () => {
                 expanded = !expanded;
                 galleryGrid.style.maxHeight = expanded ? 'none' : '1000px';
-                seeMoreBtn.innerHTML = expanded ? 'See less ▲' : 'See more ⌄';
+                seeMoreBtn.innerHTML = expanded ? 'See less' : 'See more';
             });
 
             // Modal

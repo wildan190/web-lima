@@ -4,9 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>@yield('title', 'LIMA')</title>
-
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/favicon.ico') }}">
 
     <!-- Primary Meta Tags -->
@@ -25,7 +23,7 @@
     <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia">
     <meta property="og:description"
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta property="og:image" content="{{ asset('assets/img/seo/cover.jpg') }}"> <!-- ubah ke gambar SEO utama -->
+    <meta property="og:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -59,9 +57,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-
 <body>
-
     @php
         $currentRoute = Route::currentRouteName();
     @endphp
@@ -77,7 +73,6 @@
 
         .nav-links ul li a {
             color: #111;
-            /* black text */
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
@@ -93,6 +88,75 @@
 
         .nav-links ul li a:hover {
             color: #e02a26;
+        }
+
+        /* Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Icon Styling */
+        .dropdown-content a {
+            font-size: 16px;
+            padding: 8px 16px;
+        }
+
+        .navbar-language i {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .dropdown-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dropdown-label i {
+            font-size: 20px;
+        }
+
+        .dropdown-label span {
+            font-size: 16px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .navbar-language {
+                display: none;
+                /* Hide language dropdown in navbar for mobile */
+            }
+
+            .sidebar .language-select {
+                display: block;
+                /* Show language dropdown in sidebar */
+                padding: 16px;
+            }
         }
     </style>
 
@@ -121,7 +185,17 @@
                 </ul>
             </nav>
 
-            <div class="navbar-language" id="navbarLanguage">🌐 EN</div>
+            <!-- Language Dropdown in Navbar -->
+            <div class="dropdown navbar-language" id="navbarLanguage">
+                <div class="dropdown-label">
+                    <i class="fa-solid fa-globe"></i>
+                    <span>English</span> <!-- Default Language -->
+                </div>
+                <div class="dropdown-content">
+                    <a href="#">🇬🇧 English</a>
+                    <a href="#">🇮🇩 Indonesia</a>
+                </div>
+            </div>
 
             <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
                 &#9776;
@@ -129,35 +203,7 @@
         </div>
     </header>
 
-
-    @if (!request()->cookie('cookie_consent'))
-        <div id="cookieConsentBar">
-            <div class="cookie-container">
-                <p>
-                    We use Cookies on this site to serve you better.
-                    Visit our <a href="#" class="cookie-policy-link">Privacy Policy</a> page to learn more.
-                    By clicking the "Continue" button, you agree to the use of Cookies on this Site.
-                </p>
-                <button id="cookieAcceptBtn">Continue</button>
-            </div>
-        </div>
-
-        <script>
-            document.getElementById('cookieAcceptBtn').addEventListener('click', function() {
-                document.getElementById('cookieConsentBar').style.display = 'none';
-
-                fetch('{{ route('cookie.accept') }}', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({})
-                });
-            });
-        </script>
-    @endif
-
+    <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
         <ul>
@@ -168,18 +214,26 @@
             <li><a href="{{ route('news') }}">Newsroom</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
-        <div class="sidebar-language">🌐 EN</div>
+
+        <!-- Language Dropdown in Sidebar -->
+        <div class="language-select">
+            <i class="fa-solid fa-globe"></i>
+            <span>English</span> <!-- Default Language -->
+            <div class="dropdown-content">
+                <a href="#">🇬🇧 English</a>
+                <a href="#">🇮🇩 Indonesia</a>
+            </div>
+        </div>
     </aside>
 
     <!-- Overlay -->
-<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <main>
         @yield('content')
     </main>
 
     <footer>
-
         <div class="footer-top">
             <div class="footer-left">
                 <div class="logo">
@@ -209,7 +263,16 @@
         </div>
 
         <div class="footer-middle">
-            <div class="language-select"><i class="fa-solid fa-globe"></i> English</div>
+            <!-- Language Dropdown in Footer -->
+            <div class="language-select">
+                <i class="fa-solid fa-globe"></i>
+                <span>English</span> <!-- Default Language -->
+                <div class="dropdown-content">
+                    <a href="#">🇬🇧 English</a>
+                    <a href="#">🇮🇩 Indonesia</a>
+                </div>
+            </div>
+
             <div class="socials">
                 @if (!empty($WebContact->facebook))
                     <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
