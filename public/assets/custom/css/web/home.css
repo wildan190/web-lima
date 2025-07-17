@@ -67,28 +67,28 @@ flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
-    #cookieConsentBar {
-        margin-top: 20px;
-    }
-  .cookie-container {
-    padding: 12px 16px;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
+#cookieConsentBar {
+margin-top: 20px;
+}
+.cookie-container {
+padding: 12px 16px;
+flex-direction: column;
+align-items: flex-start;
+text-align: left;
+}
 
-  .cookie-container p {
-    flex: 1 1 auto;
-    width: 100%;
-    font-size: 13px;
-  }
+.cookie-container p {
+flex: 1 1 auto;
+width: 100%;
+font-size: 13px;
+}
 
-  #cookieAcceptBtn {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 14px;
-  }
+#cookieAcceptBtn {
+width: 100%;
+padding: 10px;
+border-radius: 8px;
+font-size: 14px;
+}
 }
 
 
@@ -278,9 +278,12 @@ padding-top: 1rem;
 
 /* === Hero Section === */
 .hero {
+width: 100%;
+height: 50vh; /* Gunakan 50% dari tinggi layar pada perangkat besar */
 position: relative;
 height: 500px;
 overflow: hidden;
+background-size: cover; /* Pastikan gambar mengisi seluruh area */
 }
 
 .hero-slide {
@@ -352,17 +355,17 @@ opacity: 1;
 }
 
 .subtitle-typing {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 1.2rem;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid white;
-    animation: blink 0.7s steps(1) infinite;
+font-family: 'Poppins', sans-serif;
+font-weight: 300;
+font-size: 1.2rem;
+white-space: nowrap;
+overflow: hidden;
+border-right: 2px solid white;
+animation: blink 0.7s steps(1) infinite;
 }
 
 @keyframes blink {
-    50% { border-color: transparent; }
+50% { border-color: transparent; }
 }
 
 /* === About Section === */
@@ -817,11 +820,21 @@ align-items: center;
 
 }
 
+/* === Hero Section Tablet === */
+@media (max-width: 768px) {
+.hero {
+min-height: 70vh; /* Membuat hero lebih tinggi pada layar tablet */
+}
+}
 
+/* === Hero Section Mobile === */
 @media (max-width: 480px) {
 .hero {
-height: 150px;
+min-height: 80vh; /* Menambah tinggi hero menjadi lebih tinggi pada perangkat mobile */
 }
+}
+
+@media (max-width: 480px) {
 
 .about {
 padding: 1rem;
