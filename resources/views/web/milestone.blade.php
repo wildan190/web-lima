@@ -339,7 +339,6 @@
             background-color: rgba(235, 195, 52, 0.55);
         }
 
-        /* Text content */
         .lima-inum-text {
             position: relative;
             z-index: 2;
@@ -357,7 +356,6 @@
             display: block;
         }
 
-        /* Responsive grid layout */
         @media (max-width: 768px) {
             .lima-inum-grid {
                 grid-template-columns: 1fr;
@@ -387,7 +385,6 @@
             </div>
 
             @if (count($universities) > 10)
-                {{-- Transparent gradient with clickable text --}}
                 <div class="coverage-gradient-overlay" id="coverageGradient">
                     <span class="see-more-text" onclick="showMoreUniversities()">
                         See more
@@ -461,7 +458,6 @@
             display: none;
         }
 
-        /* Gradient overlay with transparent effect */
         .coverage-gradient-overlay {
             position: relative;
             margin-top: -60px;
@@ -479,11 +475,8 @@
             font-size: 16px;
             font-weight: 600;
             color: rgb(0, 0, 0);
-
             padding: 6px 14px;
-
             cursor: pointer;
-
             transition: color 0.3s ease;
             z-index: 2;
         }
@@ -492,7 +485,6 @@
             color: #b91c1c;
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .coverage-grid {
                 grid-template-columns: repeat(4, 1fr);
@@ -503,14 +495,12 @@
         @media (max-width: 768px) {
             .coverage-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* 2 kolom untuk layar ponsel besar */
             }
         }
 
         @media (max-width: 480px) {
             .coverage-grid {
                 grid-template-columns: repeat(2, 1fr);
-                /* 2 kolom untuk layar ponsel kecil */
             }
         }
     </style>
@@ -602,7 +592,6 @@
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            /* <-- cursor pointer */
         }
 
         .milestone-card-inner {
@@ -622,7 +611,6 @@
             object-fit: cover;
             display: block;
             cursor: pointer;
-            /* <-- cursor pointer */
         }
 
         .milestone-content {
@@ -659,7 +647,6 @@
             color: #888;
             position: relative;
             cursor: pointer;
-            /* <-- cursor pointer */
         }
 
         .milestone-year.active {
@@ -677,7 +664,6 @@
             border-radius: 50%;
         }
 
-        /* Optional: hide scrollbar */
         .milestone-cards::-webkit-scrollbar {
             display: none;
         }
@@ -774,7 +760,7 @@
             const card = container.querySelector('.milestone-card');
             if (!card) return;
 
-            const cardWidth = card.offsetWidth + 20; // card width + gap
+            const cardWidth = card.offsetWidth + 20;
             container.scrollBy({
                 left: direction * cardWidth,
                 behavior: 'smooth'
@@ -798,7 +784,6 @@
                 }
             });
 
-            // Highlight active year
             timelineYears.forEach(span => span.classList.remove('active'));
             document.querySelector(`.milestone-year[onclick="goToYear(${year})"]`)?.classList.add('active');
         }
