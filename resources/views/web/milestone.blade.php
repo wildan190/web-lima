@@ -87,7 +87,9 @@
             <h2 class="milestone-title">Milestone</h2>
 
             <div class="milestone-slider-wrapper">
-                <button class="milestone-arrow prev" onclick="scrollMilestone(-1)">&#8592;</button>
+                <button class="milestone-arrow prev" onclick="scrollMilestone(-1)">
+                    <span class="chevron">&#10094;</span>
+                </button>
 
                 <div class="milestone-cards" id="milestoneCards">
                     @foreach ($milestones as $item)
@@ -109,7 +111,9 @@
                     @endforeach
                 </div>
 
-                <button class="milestone-arrow next" onclick="scrollMilestone(1)">&#8594;</button>
+                <button class="milestone-arrow next" onclick="scrollMilestone(1)">
+                    <span class="chevron">&#10095;</span>
+                </button>
             </div>
 
             <div class="milestone-timeline">
@@ -231,7 +235,6 @@
         }
     </style>
 
-
     <section class="lima-inum-section">
         <div class="lima-inum-container">
             <h2><span style="color: #E02A26;">LIMA</span> in Number</h2>
@@ -248,7 +251,6 @@
                     <div class="lima-inum-text">1.000 +<br><span>Matches</span></div>
                 </div>
 
-                <!-- KANAN BAWAH -->
                 <div class="lima-inum-card" style="background-image: url('{{ asset('assets/img/asset2.png') }}');">
                     <div class="lima-inum-overlay yellow"></div>
                     <div class="lima-inum-text">400 +<br><span>University</span></div>
@@ -564,15 +566,29 @@
         }
 
         .milestone-arrow {
-            background-color: #e02a26;
+            background: linear-gradient(135deg, #ff4f4f, #e02a26);
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
             cursor: pointer;
             flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s ease;
+        }
+
+        .milestone-arrow:hover {
+            background: linear-gradient(135deg, #d42d26, #ff5733);
+        }
+
+        .milestone-arrow .chevron {
+            font-size: 24px;
+            font-weight: bold;
         }
 
         .milestone-cards {
