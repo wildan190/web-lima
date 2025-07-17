@@ -121,114 +121,118 @@
         </div>
     </section>
 
-    <section class="sports-section">
-        <div class="sports-container">
-            <h2 class="sports-title">{{ count($sports) }} Sports</h2>
-            <div class="sports-grid">
-                @foreach ($sports as $sport)
-                    <div class="sport-card">
-                        <div class="sport-card-inner">
-                            <div class="sport-logo">
-                                <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
-                            </div>
-                            <p class="sport-name">{{ $sport->name }}</p>
+<section class="sports-section">
+    <div class="sports-container">
+        <h2 class="sports-title">{{ count($sports) }} Sports</h2>
+        <div class="sports-grid">
+            @foreach ($sports as $sport)
+                <div class="sport-card">
+                    <div class="sport-card-inner">
+                        <div class="sport-logo">
+                            <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
                         </div>
+                        <p class="sport-name">{{ $sport->name }}</p>
                     </div>
-                @endforeach
-            </div>
+                </div>
+            @endforeach
         </div>
-    </section>
+    </div>
+</section>
 
-    <style>
-        .sports-section {
-            padding: 60px 0;
-            background-color: #fff;
-            text-align: center;
-        }
+<style>
+    .sports-section {
+        padding: 60px 0;
+        background-color: #fff;
+        text-align: center;
+    }
 
-        .sports-title {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 40px;
-        }
+    .sports-title {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
 
-        .sports-container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .sports-container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
+    .sports-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk layar besar */
+        gap: 20px;
+    }
+
+    .sport-card {
+        aspect-ratio: 1 / 1;
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sport-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .sport-card-inner {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .sport-logo {
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .sport-logo img {
+        max-height: 60px;
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .sport-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin: 0;
+        word-wrap: break-word;
+    }
+
+    /* Untuk tampilan tablet dan layar kecil */
+    @media (max-width: 992px) {
         .sports-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom untuk layar lebih kecil */
         }
+    }
 
-        .sport-card {
-            aspect-ratio: 1 / 1;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    /* Untuk tampilan ponsel besar */
+    @media (max-width: 768px) {
+        .sports-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar mobile */
         }
+    }
 
-        .sport-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    /* Untuk tampilan ponsel kecil */
+    @media (max-width: 480px) {
+        .sports-grid {
+            grid-template-columns: repeat(2, 1fr); /* Pastikan 2 kolom juga di sini */
         }
+    }
+</style>
 
-        .sport-card-inner {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-        }
-
-        .sport-logo {
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .sport-logo img {
-            max-height: 60px;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
-        .sport-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-            margin: 0;
-            word-wrap: break-word;
-        }
-
-        @media (max-width: 992px) {
-            .sports-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sports-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .sports-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 
     <section class="lima-inum-section">
         <div class="lima-inum-container">
@@ -372,146 +376,146 @@
     </style>
 
 
-    <section class="university-coverage-section">
-        <div class="coverage-container">
-            <h2 class="coverage-title">University Coverage</h2>
+<section class="university-coverage-section">
+    <div class="coverage-container">
+        <h2 class="coverage-title">University Coverage</h2>
 
-            <div class="coverage-grid" id="universityGrid">
-                @foreach ($universities as $index => $university)
-                    <div class="coverage-card {{ $index >= 10 ? 'hidden' : '' }}">
-                        <div class="coverage-logo">
-                            <img src="{{ $university->logo }}" alt="{{ $university->name }}">
-                        </div>
-                        <div class="coverage-name">{{ $university->name }}</div>
+        <div class="coverage-grid" id="universityGrid">
+            @foreach ($universities as $index => $university)
+                <div class="coverage-card {{ $index >= 10 ? 'hidden' : '' }}">
+                    <div class="coverage-logo">
+                        <img src="{{ $university->logo }}" alt="{{ $university->name }}">
                     </div>
-                @endforeach
-            </div>
-
-            @if (count($universities) > 10)
-                {{-- Transparent gradient with clickable text --}}
-                <div class="coverage-gradient-overlay" id="coverageGradient">
-                    <span class="see-more-text" onclick="showMoreUniversities()">
-                        See more
-                        {{-- <span style="display:inline-block; font-size:18px; vertical-align:middle;">&#8964;</span> --}}
-                    </span>
+                    <div class="coverage-name">{{ $university->name }}</div>
                 </div>
-            @endif
+            @endforeach
         </div>
-    </section>
 
-    <style>
-        .university-coverage-section {
-            padding: 60px 0;
-            background-color: #fff;
-            position: relative;
-        }
+        @if (count($universities) > 10)
+            {{-- Transparent gradient with clickable text --}}
+            <div class="coverage-gradient-overlay" id="coverageGradient">
+                <span class="see-more-text" onclick="showMoreUniversities()">
+                    See more
+                </span>
+            </div>
+        @endif
+    </div>
+</section>
 
-        .coverage-container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
+<style>
+    .university-coverage-section {
+        padding: 60px 0;
+        background-color: #fff;
+        position: relative;
+    }
 
-        .coverage-title {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
+    .coverage-container {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 20px;
+        text-align: center;
+    }
 
+    .coverage-title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 40px;
+    }
+
+    .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 kolom untuk layar besar */
+        gap: 24px;
+        justify-items: center;
+    }
+
+    .coverage-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 24px 16px;
+        width: 100%;
+        max-width: 160px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+
+    .coverage-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .coverage-logo img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+        margin-bottom: 16px;
+    }
+
+    .coverage-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    /* Gradient overlay with transparent effect */
+    .coverage-gradient-overlay {
+        position: relative;
+        margin-top: -60px;
+        padding-top: 100px;
+        background: linear-gradient(to top, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        z-index: 1;
+    }
+
+    .see-more-text {
+        position: absolute;
+        top: -20px;
+        font-size: 16px;
+        font-weight: 600;
+        color: rgb(0, 0, 0);
+
+        padding: 6px 14px;
+
+        cursor: pointer;
+
+        transition: color 0.3s ease;
+        z-index: 2;
+    }
+
+    .see-more-text:hover {
+        color: #b91c1c;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
         .coverage-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 24px;
-            justify-items: center;
+            grid-template-columns: repeat(4, 1fr); /* 4 kolom untuk tablet */
         }
+    }
 
-        .coverage-card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            padding: 24px 16px;
-            width: 100%;
-            max-width: 160px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: all 0.3s ease;
+    @media (max-width: 768px) {
+        .coverage-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar ponsel besar */
         }
+    }
 
-        .coverage-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    @media (max-width: 480px) {
+        .coverage-grid {
+            grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar ponsel kecil */
         }
+    }
+</style>
 
-        .coverage-logo img {
-            width: 64px;
-            height: 64px;
-            object-fit: contain;
-            margin-bottom: 16px;
-        }
-
-        .coverage-name {
-            font-size: 14px;
-            font-weight: 700;
-            color: #333;
-            text-align: center;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Gradient overlay with transparent effect */
-        .coverage-gradient-overlay {
-            position: relative;
-            margin-top: -60px;
-            padding-top: 100px;
-            background: linear-gradient(to top, rgba(255, 255, 255, 1) 40%, rgba(255, 255, 255, 0) 100%);
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            z-index: 1;
-        }
-
-        .see-more-text {
-            position: absolute;
-            top: -20px;
-            font-size: 16px;
-            font-weight: 600;
-            color: rgb(0, 0, 0);
-
-            padding: 6px 14px;
-
-            cursor: pointer;
-
-            transition: color 0.3s ease;
-            z-index: 2;
-        }
-
-        .see-more-text:hover {
-            color: #b91c1c;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .coverage-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .coverage-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .coverage-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 
     <script>
         function showMoreUniversities() {
