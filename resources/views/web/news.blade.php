@@ -310,12 +310,12 @@
     margin-top: 6px;
     margin-bottom: 6px;
     line-height: 1.3;
-    white-space: nowrap; /* Mencegah teks untuk membungkus */
-    overflow: hidden; /* Menyembunyikan bagian teks yang melampaui batas */
-    text-overflow: ellipsis; /* Menambahkan ... ketika teks terlalu panjang */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 1; /* Membatasi teks hanya satu baris */
-    -webkit-box-orient: vertical; /* Mengatur orientasi kotak */
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .news-card-overlay .read-more {
