@@ -87,8 +87,97 @@
     <!-- Modal -->
     <div id="limaImageModal" class="lima-gallery-modal">
         <span class="lima-gallery-modal-close" id="limaModalClose">&times;</span>
-        <img class="lima-gallery-modal-content" id="limaModalImage">
+
+        <!-- Modal Image -->
+        <div class="modal-content-container">
+            <img class="lima-gallery-modal-content" id="limaModalImage">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <button class="modal-nav-btn prev-btn" id="prevBtn">&#10094;</button>
+        <button class="modal-nav-btn next-btn" id="nextBtn">&#10095;</button>
     </div>
+
+    <!-- Styles for Navigation Buttons -->
+    <style>
+        .modal-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 30px;
+            padding: 12px;
+            cursor: pointer;
+            z-index: 10001;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+
+        .modal-nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const modal = document.getElementById("limaImageModal");
+            const modalImg = document.getElementById("limaModalImage");
+            const closeBtn = document.getElementById("limaModalClose");
+
+            const images = document.querySelectorAll(".lima-gallery-modal-trigger");
+            let currentImageIndex = -1;
+
+            // Function to open the modal with an image
+            function openModal(index) {
+                currentImageIndex = index;
+                modal.style.display = "block";
+                modalImg.src = images[currentImageIndex].dataset.full;
+            }
+
+            // Event listener for all images in gallery
+            images.forEach((img, index) => {
+                img.addEventListener("click", () => openModal(index));
+            });
+
+            // Close the modal
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                modalImg.src = "";
+            }
+
+            // Close the modal if clicked outside of the image
+            window.onclick = function(e) {
+                if (e.target == modal) {
+                    modal.style.display = "none";
+                    modalImg.src = "";
+                }
+            }
+
+            // Navigate to the previous image
+            const prevBtn = document.getElementById("prevBtn");
+            prevBtn.addEventListener("click", () => {
+                if (currentImageIndex > 0) {
+                    openModal(currentImageIndex - 1);
+                }
+            });
+
+            // Navigate to the next image
+            const nextBtn = document.getElementById("nextBtn");
+            nextBtn.addEventListener("click", () => {
+                if (currentImageIndex < images.length - 1) {
+                    openModal(currentImageIndex + 1);
+                }
+            });
+        });
+    </script>
 
     <section class="latest-news">
         <div class="container">
