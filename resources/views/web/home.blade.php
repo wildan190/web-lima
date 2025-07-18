@@ -24,39 +24,34 @@
     </section>
 
     <script>
-    function typeText(element, text, speed = 50) {
-        let index = 0;
-        element.textContent = "";
-        const typing = () => {
-            if (index < text.length) {
-                element.textContent += text.charAt(index);
-                index++;
-                setTimeout(typing, speed);
-            }
-        };
-        typing();
-    }
-
-    // Call typing effect on visible slide only
-    function activateTypingOnVisibleSlide() {
-        const visibleSlide = document.querySelector('.hero-slide:not([style*="display: none"])');
-        const subtitle = visibleSlide?.querySelector('.subtitle-typing');
-
-        if (subtitle) {
-            const text = subtitle.getAttribute('data-subtitle');
-            typeText(subtitle, text);
+        function typeText(element, text, speed = 50) {
+            let index = 0;
+            element.textContent = "";
+            const typing = () => {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(typing, speed);
+                }
+            };
+            typing();
         }
-    }
 
-    // Run on page load
-    window.addEventListener('DOMContentLoaded', activateTypingOnVisibleSlide);
+        function activateTypingOnVisibleSlide() {
+            const visibleSlide = document.querySelector('.hero-slide:not([style*="display: none"])');
+            const subtitle = visibleSlide?.querySelector('.subtitle-typing');
 
-    // OPTIONAL: Re-run when slide changes (if slide is auto-swapping)
-    // Example only – adapt based on your slider logic
-    setInterval(() => {
-        activateTypingOnVisibleSlide();
-    }, 5000); // assuming slide changes every 5s
-</script>
+            if (subtitle) {
+                const text = subtitle.getAttribute('data-subtitle');
+                typeText(subtitle, text);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', activateTypingOnVisibleSlide);
+
+        setInterval(() => {
+                    activateTypingOnVisibleSlide();
+    </script>
 
 
     <script>
@@ -64,7 +59,7 @@
             const slides = document.querySelectorAll(".hero-slide");
             const dots = document.querySelectorAll(".dot");
             let currentIndex = 0;
-            let interval = setInterval(nextSlide, 5000); // 5 detik per slide
+            let interval = setInterval(nextSlide, 5000);
 
             function showSlide(index) {
                 slides.forEach((slide, i) => {
@@ -81,9 +76,9 @@
 
             dots.forEach(dot => {
                 dot.addEventListener("click", () => {
-                    clearInterval(interval); // stop auto slide on manual control
+                    clearInterval(interval);
                     showSlide(parseInt(dot.dataset.index));
-                    interval = setInterval(nextSlide, 5000); // restart auto slide
+                    interval = setInterval(nextSlide, 5000);
                 });
             });
 
@@ -93,7 +88,6 @@
 
     <section class="about">
         <div class="about-wrapper">
-
             <div class="about-logos">
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
@@ -107,7 +101,7 @@
             <div class="about-text">
                 <h2>About <span>LIMA</span></h2>
                 <p>{{ $webProfile->about ?? 'Deskripsi belum tersedia.' }}</p>
-                <a href="#" class="btn">Learn More</a>
+                <a href="{{ route('about')}}" class="btn">Learn More</a>
             </div>
         </div>
     </section>
@@ -117,24 +111,24 @@
             <div class="news-left">
                 <h2>Latest <strong>News</strong></h2>
                 <p>Here is some breaking news especially for you.</p>
-                <a href="#" class="btn-see-more">See More</a>
+                <a href="{{ route('news')}}" class="btn-see-more">See More</a>
             </div>
             <div class="news-right">
                 @foreach ($newsLatest as $news)
                     <div class="news-card">
-                    <a href="{{ route('news.detail', $news->slug) }}">
-                        <div class="news-img">
-                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
-                            <div class="overlay">
-                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
-                            </div>
-                            </a>
-                        </div>
+                        <a href="{{ route('news.detail', $news->slug) }}">
+                            <div class="news-img">
+                                <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                <div class="overlay">
+                                    <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                    <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                    <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                                </div>
+                        </a>
                     </div>
-                @endforeach
             </div>
+            @endforeach
+        </div>
         </div>
     </section>
 
