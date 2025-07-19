@@ -3,32 +3,8 @@
 @section('title', 'Milestone Banner')
 
 @section('content')
-<style>
-    .form-container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    label {
-        display: block;
-        margin-top: 15px;
-    }
-    input[type="text"], input[type="file"] {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-    }
-    .btn-submit {
-        margin-top: 20px;
-        padding: 10px 20px;
-        background-color: #2c3e50;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-</style>
 
-<div class="form-container">
-    <h3>Milestone Banner</h3>
+    
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
@@ -36,8 +12,12 @@
 
     <form method="POST" action="{{ route('admin.milestone_banner.store_or_update') }}" enctype="multipart/form-data">
         @csrf
-
-        <label for="upload_picture">Picture</label>
+<div class="mb-3">
+        <label for="upload_picture" class="form-label">Picture</label>
+  
+        
+   <div class="card shadow-sm">
+    <div class="card-body">  
 
 @if(!empty($banner?->upload_picture))
     <div style="margin-bottom: 10px;">
@@ -45,17 +25,22 @@
         <p><small>Current Image from GCS</small></p>
     </div>
 @endif
+</div>
+</div>
 
-<input type="file" name="upload_picture" id="upload_picture">
+<input type="file" name="upload_picture" class="form-control mt-3" id="upload_picture">
 
-
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="{{ old('title', $banner->title ?? '') }}">
-
-        <label for="subtitle">Subtitle</label>
-        <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $banner->subtitle ?? '') }}">
-
-        <button type="submit" class="btn-submit">Save</button>
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" placeholder="Title" name="title" class="form-control" id="title" class="form-control mt-3" value="{{ old('title', $banner->title ?? '') }}">
+    </div>
+<div class="mb-3">
+        <label for="subtitle" class="form-label">Subtitle</label>
+        <input type="text" placeholder="Subtitle" name="subtitle" class="form-control" id="subtitle" value="{{ old('subtitle', $banner->subtitle ?? '') }}">
+</div>
+<div class="mb-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+</div>
     </form>
 </div>
 @endsection
