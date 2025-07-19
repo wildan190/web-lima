@@ -7,8 +7,6 @@
 @section('title', 'Web Profile Settings')
 
 @section('content')
-    <div class="web-profile-container">
-        <h3>Web Profile Settings</h3>
 
         @if (session('success'))
             <div class="success-message">{{ session('success') }}</div>
@@ -16,14 +14,32 @@
 
         <form action="{{ route('admin.web_profile.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+    <div class="mb-3>
+        <labael for="title" class="form-label">Title</label>
+        <input type="text" placeholder="Titile" name="title" class="form-control" id="title"
+        value="{{ old('title', $banner->title ?? '') }}">
+    </div>
 
-            <label for="web_name">Web Name</label>
-            <input type="text" name="web_name" id="web_name" value="{{ old('web_name', $profile->web_name ?? '') }}"
+    <div class="mb-3">
+        <label for="subtitile" class="form-label">Subtitle</label>
+        <input type="text" placeholder="Subtitle" name="subtitle" class="form-control" id="subtitle"
+        value="{{ old('subtitle', $banner->subtitle ?? '') }}">
+    </div>
+
+    <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+
+    <div class="mb-3">
+            <label class="form-label" for="web_name">Web Name</label>
+            <input type="text" placeholder="Nama Web" name="web_name" class="form-control id="web_name" value="{{ old('web_name', $profile->web_name ?? '') }}"
                 required>
+    </div>
 
-            <label for="logo">Logo (image)</label>
-            <input type="file" name="logo" id="logo">
-
+    <div class="mb-3">
+            <label class="form-label" for="logo">Logo (image)</label>
+            <input type="file" name="logo" class="form-control" id="logo">
+    </div>
             @if (!empty($profile->logo))
                 <img src="{{ $profile->logo }}" alt="Logo" style="max-height: 80px; margin-top: 10px;">
             @endif
@@ -43,5 +59,5 @@
 
             <button type="submit">Save Profile</button>
         </form>
-    </div>
+    
 @endsection
