@@ -3,8 +3,8 @@
 @section('title', 'Contact Banner')
 
 @section('content')
-    <div class="form-container">
-        <h3>Contact Banner</h3>
+    <div class="mb-3">
+        
 
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
@@ -12,24 +12,28 @@
 
         <form method="POST" action="{{ route('admin.contact_banner.store_or_update') }}" enctype="multipart/form-data">
             @csrf
-
-            <label for="upload_picture">Picture</label>
-
+    <div class="mb-3">
+            <label for="upload_picture" class="form-label">Picture</label>
+            <div class="card shadow-sm">
+                <div class="card-body">
             @if (!empty($banner?->upload_picture))
                 <div style="margin-bottom: 10px;">
                     <img src="{{ $banner->upload_picture }}" alt="Current Image" style="max-width: 200px;">
                     <p><small>Current image from Google Cloud Storage</small></p>
                 </div>
+    </div>
             @endif
+</div>
+</div>
 
-            <input type="file" name="upload_picture" id="upload_picture">
+            <input type="file" name="upload_picture" class="form-control" id="upload_picture">
 
 
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="{{ old('title', $banner->title ?? '') }}">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" placeholder="Title" name="title" class="form-control" id="title" value="{{ old('title', $banner->title ?? '') }}">
 
-            <label for="subtitle">Subtitle</label>
-            <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $banner->subtitle ?? '') }}">
+            <label for="subtitle" class="form-label">Subtitle</label>
+            <input type="text" placeholder="Subtitle" name="subtitle" class="form-control" id="subtitle" value="{{ old('subtitle', $banner->subtitle ?? '') }}">
 
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
