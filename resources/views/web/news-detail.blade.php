@@ -18,10 +18,10 @@
             <div class="news-meta">
                 <span class="news-date">{{ \Carbon\Carbon::parse($news->created_at)->format('j M Y') }}</span>
                 <div class="news-meta-icons">
-                    <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}"
-                        target="_blank" title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}"
-                        target="_blank" title="Share to Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
+                        title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank"
+                        title="Share to Twitter"><i class="fab fa-twitter"></i></a>
                     <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a href="#" onclick="copyLink()" title="Copy Link"><i class="fas fa-link"></i></a>
@@ -36,7 +36,24 @@
             </div>
         </article>
 
-        {{-- Related Section --}}
+        {{-- Related News Section --}}
+        <div class="news-related-section">
+            <h2>Related News</h2>
+            <div class="news-related-items">
+                @forelse ($relatedNews as $item)
+                    <div class="related-item">
+                        <a href="{{ route('news.detail', $item->slug) }}">
+                            <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
+                            <p class="related-title">{{ $item->title }}</p>
+                        </a>
+                    </div>
+                @empty
+                    <p>No related news available.</p> {{-- Pesan jika tidak ada berita terkait --}}
+                @endforelse
+            </div>
+        </div>
+
+        {{-- Baca Juga Section --}}
         <div class="news-related">
             <p class="related-title">
                 Baca Juga:
@@ -144,6 +161,41 @@
             line-height: 1.8;
         }
 
+        .news-related-section {
+            margin-top: 60px;
+        }
+
+        .news-related-section h2 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .news-related-items {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .related-item {
+            width: 30%;
+        }
+
+        .related-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .related-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-top: 12px;
+        }
+
         .news-related {
             margin-top: 60px;
         }
@@ -194,6 +246,15 @@
 
             .news-image {
                 max-height: 260px;
+            }
+
+            .news-related-items {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .related-item {
+                width: 100%;
             }
         }
     </style>
