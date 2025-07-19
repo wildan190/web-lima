@@ -44,20 +44,22 @@
                 <img src="{{ $profile->logo }}" alt="Logo" style="max-height: 80px; margin-top: 10px;">
             @endif
 
+        <div class="mb-3">
+            <label for="history" class="form-label">History</label>
+            <textarea name="history" class="form-control" id="history">{{ old('history', $profile->history ?? '') }}</textarea>
 
-            <label for="history">History</label>
-            <textarea name="history" id="history">{{ old('history', $profile->history ?? '') }}</textarea>
+            <label for="about" class="form-label">About</label>
+            <textarea name="about" class="form-control" id="about">{{ old('about', $profile->about ?? '') }}</textarea>
 
-            <label for="about">About</label>
-            <textarea name="about" id="about">{{ old('about', $profile->about ?? '') }}</textarea>
+            <label for="vision" class="form-label">Vision</label>
+            <textarea name="vision" class="form-control" id="vision">{{ old('vision', $profile->vision ?? '') }}</textarea>
 
-            <label for="vision">Vision</label>
-            <textarea name="vision" id="vision">{{ old('vision', $profile->vision ?? '') }}</textarea>
-
-            <label for="mission">Mission</label>
-            <textarea name="mission" id="mission">{{ old('mission', $profile->mission ?? '') }}</textarea>
-
-            <button type="submit">Save Profile</button>
+            <label for="mission" class="form-label">Mission</label>
+            <textarea name="mission" class="form-control" id="mission">{{ old('mission', $profile->mission ?? '') }}</textarea>
+<div class="mt-3">
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+</div>
+    </div>
         </form>
     
 @endsection
