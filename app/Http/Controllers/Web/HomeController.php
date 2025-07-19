@@ -97,7 +97,7 @@ class HomeController extends Controller
 
         $categories = $request->input('categories', []);
 
-        if (! empty($categories) && ! in_array('all', $categories)) {
+        if (!empty($categories) && !in_array('all', $categories)) {
             $query->whereIn('category', $categories);
         }
 
@@ -117,9 +117,18 @@ class HomeController extends Controller
     {
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
+
         $news = News::where('slug', $slug)->firstOrFail();
+
         $newsLatest = News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest'));
+        $relatedNews = News::where('category', $news->category)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        // dd($relatedNews);
+
+        return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest', 'relatedNews'));
     }
 }
