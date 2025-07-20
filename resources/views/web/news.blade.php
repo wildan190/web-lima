@@ -280,8 +280,10 @@
 
         .news-card img {
             width: 100%;
-            height: 280px;
+            height: 100%;
+            /* Sesuaikan tinggi agar gambar mengisi penuh */
             object-fit: cover;
+            /* Gambar akan menyesuaikan dengan proporsional */
             transition: transform 0.3s ease;
         }
 
@@ -297,6 +299,12 @@
             color: white;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
             padding: 16px;
+            /* Memberikan ruang di sekitar teks */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            height: 100%;
+            /* Pastikan overlay menutupi seluruh card */
         }
 
         .news-card-overlay .date {
@@ -314,7 +322,8 @@
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
-            -webkit-line-clamp: 1;
+            -webkit-line-clamp: 2;
+            /* Membatasi teks sampai 2 baris */
             -webkit-box-orient: vertical;
         }
 
@@ -502,14 +511,11 @@
             }
 
             .news-card img {
+                height: 160px;
                 width: 100%;
                 height: 160px;
                 object-fit: cover;
                 transition: transform 0.3s ease;
-            }
-
-            .news-card img {
-                object-fit: cover;
             }
 
             .news-card-overlay {
@@ -631,7 +637,6 @@
     <style>
         .press-release-section {
             padding: 60px 9rem;
-            /* sama dengan section news & hero */
         }
 
         .press-title {
@@ -677,7 +682,6 @@
             height: 180px;
             object-fit: cover;
             border-radius: 16px 16px 16px 16px;
-            /* Rounded top and bottom */
         }
 
         .press-card.press-large img {
@@ -696,21 +700,17 @@
             margin-bottom: 6px;
         }
 
-        /* Default Title Color */
         .press-title-red {
             font-size: 16px;
             color: #000;
-            /* Black color by default */
             font-weight: bold;
             margin-bottom: 8px;
             transition: color 0.3s ease;
-            /* Smooth transition when color changes */
         }
 
         /* Title Hover Effect */
         .press-title-red:hover {
             color: #B30202;
-            /* Red color on hover */
         }
 
 
