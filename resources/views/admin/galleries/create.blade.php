@@ -2,13 +2,7 @@
 
 @section('title', 'Add New Gallery')
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/custom/css/admin/gallery.css') }}">
-@endpush
-
 @section('content')
-<div class="gallery-form">
-    <h3>Add New Gallery</h3>
 
     @if ($errors->any())
         <div class="error-message">
@@ -22,22 +16,26 @@
 
     <form action="{{ route('admin.galleries.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-
-        <label for="picture_upload">Upload Image</label>
-        <input type="file" name="picture_upload" id="picture_upload" required>
-
-        <label for="sport_id">Sport</label>
-        <select name="sport_id" id="sport_id" required>
+<div class="mb-3">
+        <label for="picture_upload" class="form-label">Upload Image</label>
+        <input type="file" name="picture_upload" class="form-control" id="picture_upload" required>
+</div>
+<div class="mb-3">
+        <label for="sport_id" class="form-label">Sport</label>
+        <select name="sport_id" class="form-control" id="sport_id" required>
             <option value="">-- Select Sport --</option>
             @foreach (\App\Models\Sport::all() as $sport)
                 <option value="{{ $sport->id }}">{{ $sport->name }}</option>
             @endforeach
         </select>
-
-        <label for="description">Description</label>
-        <textarea name="description" id="description">{{ old('description') }}</textarea>
-
-        <button type="submit" class="btn btn-submit">Save</button>
-    </form>
 </div>
+<div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea name="description" class="form-control" id="description">{{ old('description') }}</textarea>
+</div>
+<div class="mt-3">
+        <button type="submit" class="btn btn-primary">Save</button>
+</div>
+    </form>
+
 @endsection
