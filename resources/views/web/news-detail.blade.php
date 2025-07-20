@@ -4,6 +4,7 @@
     <div id="scrollProgress"></div>
 
     <section class="news-container">
+        <br />
         {{-- Breadcrumb --}}
         <nav class="breadcrumb">
             <a href="{{ url('/') }}">Home</a> &rsaquo;

@@ -239,6 +239,47 @@
                 padding: 1.5rem 1rem;
             }
         }
+
+        @media (max-width: 768px) {
+            .vision-mission {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .vm-box {
+                padding: 2rem 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .vm-box h3 {
+                font-size: 18px;
+                margin-top: 36px;
+            }
+
+            .vm-box p {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .vision-mission {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .vm-box {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .vm-box h3 {
+                font-size: 16px;
+            }
+
+            .vm-box p {
+                font-size: 14px;
+            }
+        }
     </style>
 
     <section class="privacy-banner"
