@@ -768,6 +768,73 @@
                 margin-top: 4px;
             }
         }
+
+        @media (max-width: 768px) {
+            .milestone-timeline {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+                /* Menambah jarak antar tahun */
+                margin-top: 30px;
+                padding-top: 16px;
+                border-top: 1px solid #ddd;
+            }
+
+            .milestone-year {
+                font-size: 12px;
+                padding: 6px 12px;
+                /* Menambahkan padding horizontal dan vertikal */
+                background-color: #f5f5f5;
+                /* Menambahkan latar belakang agar lebih jelas */
+                border-radius: 20px;
+                /* Memberikan sedikit rounded corners */
+                margin: 4px 0;
+                /* Memberikan margin vertikal */
+            }
+
+            .milestone-year.active {
+                color: #e02a26;
+                font-weight: bold;
+                background-color: #fff;
+                /* Memberikan latar belakang putih pada yang aktif */
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+                /* Memberikan sedikit bayangan pada yang aktif */
+            }
+
+            .milestone-year.active::after {
+                width: 5px;
+                height: 5px;
+                margin-top: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .milestone-timeline {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+                /* Menambah gap lebih kecil di mobile */
+                margin-top: 30px;
+                padding-top: 12px;
+            }
+
+            .milestone-year {
+                font-size: 10px;
+                /* Ukuran font lebih kecil */
+                padding: 4px 8px;
+                /* Mengurangi padding di mobile */
+                background-color: #f5f5f5;
+                border-radius: 20px;
+                margin: 4px 0;
+            }
+
+            .milestone-year.active {
+                font-weight: bold;
+                background-color: #fff;
+                color: #e02a26;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
     </style>
 
     <script>

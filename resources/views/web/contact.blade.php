@@ -120,6 +120,62 @@
                 border-radius: 8px;
             }
         }
+
+        @media (max-width: 768px) {
+            .privacy-banner-text {
+                padding: 24px 1rem;
+            }
+
+            .privacy-banner-text h1 {
+                font-size: 22px;
+            }
+
+            .privacy-banner-text p {
+                font-size: 14px;
+            }
+
+            .contact-section {
+                padding: 40px 1rem;
+            }
+
+            .contact-container {
+                flex-direction: column;
+                gap: 32px;
+            }
+
+            .contact-info h2 {
+                font-size: 20px;
+            }
+
+            .contact-info p,
+            .contact-info a {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            /* Memastikan Map mengisi lebar penuh dan tidak ada margin kiri-kanan */
+            .contact-map {
+                width: 100%;
+                padding: 0;
+                /* Menghilangkan padding agar iframe benar-benar 100% */
+            }
+
+            .contact-map iframe {
+                width: 100%;
+                /* Membuat lebar iframe mengisi 100% */
+                height: 300px;
+                /* Tinggi iframe, sesuaikan sesuai kebutuhan */
+                border: 0;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-map iframe {
+                height: 220px;
+                /* Menyesuaikan tinggi untuk layar lebih kecil */
+            }
+        }
     </style>
 
     <!-- Banner Section -->
@@ -139,12 +195,13 @@
             <div class="contact-info">
                 <h2 style="color: #d62828; display: inline;">LIMA</h2>
                 <h2 style="display: inline; margin-left: 8px;">Office</h2>
-                <p>{{ $WebContact->address?? 'n/a' }}</p>
+                <p>{{ $WebContact->address ?? 'n/a' }}</p>
                 <p>
                     <strong>E-mail :</strong>
-                    <a href="mailto:{{ $WebContact->email?? 'none@email.com' }}">{{ $WebContact->email?? 'none@email.com' }}</a><br>
+                    <a
+                        href="mailto:{{ $WebContact->email ?? 'none@email.com' }}">{{ $WebContact->email ?? 'none@email.com' }}</a><br>
                     <strong>Office :</strong>
-                    <a href="tel:{{ $WebContact->phone?? 'n/a' }}">{{ $WebContact->phone?? 'n/a' }}</a>
+                    <a href="tel:{{ $WebContact->phone ?? 'n/a' }}">{{ $WebContact->phone ?? 'n/a' }}</a>
                 </p>
             </div>
             <div class="contact-map">
