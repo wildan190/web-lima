@@ -55,7 +55,7 @@
             <aside class="news-sidebar">
                 <div class="sidebar-header">
                     <h2>News Category</h2>
-                    <span class="chevron">&#9650;</span>
+                    <span class="chevron"><i class="fa-solid fa-chevron-down"></i></span>
                 </div>
                 <form id="filterForm" method="GET" action="{{ route('news') }}">
                     <ul class="category-list">
@@ -871,7 +871,7 @@
 
             <!-- See More -->
             <div class="lima-gallery-see-more">
-                <button id="limaSeeMoreBtn">See more ⌄</button>
+                <button id="limaSeeMoreBtn">See more <i class="fa-solid fa-chevron-down"></i></button>
             </div>
         </div>
     </section>
@@ -1183,7 +1183,7 @@
             seeMoreBtn.addEventListener("click", () => {
                 expanded = !expanded;
                 galleryGrid.style.maxHeight = expanded ? 'none' : '1000px';
-                seeMoreBtn.innerHTML = expanded ? 'See less ▲' : 'See more ⌄';
+                seeMoreBtn.innerHTML = expanded ? 'See less <i class="fa-solid fa-chevron-up"></i>' : 'See more <i class="fa-solid fa-chevron-down"></i>';
             });
 
             // Modal
