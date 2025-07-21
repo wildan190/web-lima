@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryRequest;
+use App\Models\Sport;
 use App\Modules\Admin\Gallery\Action\CreateGallery;
 use App\Modules\Admin\Gallery\Action\DeleteGallery;
 use App\Modules\Admin\Gallery\Action\GetGallery;
@@ -32,9 +33,10 @@ class GalleryController extends Controller
 
     public function edit($id, GetGallery $action)
     {
+        $sports = Sport::all();
         $gallery = $action->find($id);
 
-        return view('admin.galleries.edit', compact('gallery'));
+        return view('admin.galleries.edit', compact('gallery', 'sports'));
     }
 
     public function update(GalleryRequest $request, $id, UpdateGallery $action)

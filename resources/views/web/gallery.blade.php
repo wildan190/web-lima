@@ -369,6 +369,9 @@
 
             .lima-gallery-container {
                 padding: 0 2rem;
+                position: relative;
+                overflow: hidden;
+                /* Menjaga agar gambar terpotong */
             }
 
             .lima-gallery-title {
@@ -387,19 +390,68 @@
                 padding: 8px 12px;
             }
 
+            /* Gallery Grid */
             .lima-gallery-grid {
                 column-count: 2;
                 column-gap: 12px;
+                max-height: 250px;
+                /* Membatasi tinggi galeri yang terlihat */
+                overflow: hidden;
+                /* Menyembunyikan gambar yang berada di luar area */
+                position: relative;
+                transition: max-height 0.3s ease-in-out;
+                /* Animasi saat membuka galeri */
             }
 
+            /* Item gambar dalam galeri */
             .lima-gallery-item {
+                position: relative;
                 margin-bottom: 16px;
             }
 
-            .lima-gallery-see-more {
-                margin-top: 20px;
-                padding-top: 20px;
+            /* Menghapus blur pada gambar */
+            .lima-gallery-item .lima-gallery-media img {
+                display: block;
+                width: 100%;
+                height: auto;
             }
+
+            /* Overlay untuk bagian bawah gambar */
+            .lima-gallery-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 50%;
+                /* Menutupi bagian bawah gambar */
+                background: rgba(0, 0, 0, 0.5);
+                /* Efek bayangan transparan */
+                z-index: 5;
+            }
+
+            /* Tombol See More */
+            .lima-gallery-see-more {
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                z-index: 10;
+                background: rgba(255, 255, 255, 0.7);
+                padding: 12px 24px;
+                border-radius: 6px;
+                text-align: center;
+            }
+
+            .lima-gallery-see-more button {
+                font-size: 16px;
+                background-color: rgba(255, 42, 38, 0.9);
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
 
             #limaSeeMoreBtn {
                 font-size: 14px;
@@ -484,16 +536,20 @@
             const items = document.querySelectorAll(".lima-gallery-item");
             const seeMoreBtn = document.getElementById("limaSeeMoreBtn");
             const galleryGrid = document.getElementById("limaGalleryGrid");
+            let expanded = false;
 
+            // Fungsi untuk menyaring galeri berdasarkan sportId
             function filterGallery(sportId) {
                 items.forEach(item => {
                     item.style.display = (item.dataset.sport == sportId) ? 'block' : 'none';
                 });
             }
 
+            // Menyaring berdasarkan sport pertama
             const firstSport = tabs[0]?.dataset.sport;
             if (firstSport) filterGallery(firstSport);
 
+            // Event listener untuk setiap tab
             tabs.forEach(tab => {
                 tab.addEventListener("click", () => {
                     tabs.forEach(t => t.classList.remove("active"));
@@ -502,15 +558,19 @@
                 });
             });
 
-            // Expand / collapse
-            let expanded = false;
-            seeMoreBtn.addEventListener("click", () => {
+            // Fungsi untuk menambah atau mengurangi galeri saat tombol "See More" diklik
+            function toggleGalleryExpansion() {
                 expanded = !expanded;
-                galleryGrid.style.maxHeight = expanded ? 'none' : '1000px';
-                seeMoreBtn.innerHTML = expanded ? 'See less <i class="fa-solid fa-chevron-up"></i>' : 'See more <i class="fa-solid fa-chevron-down"></i>';
-            });
+                galleryGrid.style.maxHeight = expanded ? 'none' : '250px'; // Buka galeri atau tutup dengan animasi
+                seeMoreBtn.innerHTML = expanded ?
+                    'See less <i class="fa-solid fa-chevron-up"></i>' :
+                    'See more <i class="fa-solid fa-chevron-down"></i>';
+            }
 
-            // Modal
+            // Event listener untuk tombol "See More"
+            seeMoreBtn.addEventListener("click", toggleGalleryExpansion);
+
+            // Modal untuk gambar
             const modal = document.getElementById("limaImageModal");
             const modalImg = document.getElementById("limaModalImage");
             const closeBtn = document.getElementById("limaModalClose");
@@ -522,17 +582,18 @@
                 });
             });
 
+            // Menutup modal
             closeBtn.onclick = function() {
                 modal.style.display = "none";
                 modalImg.src = "";
-            }
+            };
 
             window.onclick = function(e) {
                 if (e.target == modal) {
                     modal.style.display = "none";
                     modalImg.src = "";
                 }
-            }
+            };
         });
     </script>
 @endsection

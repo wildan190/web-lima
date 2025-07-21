@@ -511,9 +511,8 @@
             }
 
             .news-card img {
-                height: 160px;
                 width: 100%;
-                height: 160px;
+                height: 100%;
                 object-fit: cover;
                 transition: transform 0.3s ease;
             }
