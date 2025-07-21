@@ -237,7 +237,7 @@
         <div class="footer-top">
             <div class="footer-left">
                 <div class="logo">
-                    <img src="{{ asset('assets/img/lima-white.png') }}" alt="LIMA Logo" class="footer-logo">
+                    <a href="{{ route('home')}}"><img src="{{ asset('assets/img/lima-white.png') }}" alt="LIMA Logo" class="footer-logo"></a>
                 </div>
                 <div class="footer-address">
                     PT. BINA MAHASISWA INDONESIA<br>
