@@ -492,6 +492,19 @@
                 grid-template-columns: repeat(4, 1fr);
                 /* 4 kolom untuk tablet */
             }
+
+            .coverage-card {
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                padding: 16px 10px;
+                width: 100%;
+                max-width: 140px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transition: all 0.3s ease;
+            }
         }
 
         @media (max-width: 768px) {

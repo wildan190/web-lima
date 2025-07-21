@@ -126,9 +126,7 @@ class HomeController extends Controller
             ->latest()
             ->take(3)
             ->get();
-
-        // dd($relatedNews);
-
+            
         return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest', 'relatedNews'));
     }
 }
