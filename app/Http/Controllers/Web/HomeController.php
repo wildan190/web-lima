@@ -97,7 +97,7 @@ class HomeController extends Controller
 
         $categories = $request->input('categories', []);
 
-        if (!empty($categories) && !in_array('all', $categories)) {
+        if (! empty($categories) && ! in_array('all', $categories)) {
             $query->whereIn('category', $categories);
         }
 

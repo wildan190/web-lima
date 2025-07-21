@@ -35,7 +35,7 @@
                     <td>{{ $gallery->description }}</td>
                     <td>
                         <div class="action-buttons">
-                            <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="btn btn-edit">Edit</a>
+                            {{-- <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="btn btn-edit">Edit</a> --}}
                             <form action="{{ route('admin.galleries.destroy', $gallery->id) }}" method="POST"
                                   onsubmit="return confirm('Are you sure?')">
                                 @csrf
