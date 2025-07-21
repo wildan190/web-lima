@@ -26,7 +26,7 @@
     <script>
         function typeText(element, text, speed = 50) {
             let index = 0;
-            element.textContent = "";
+            element.textContent = ""; // Clear previous text
             const typing = () => {
                 if (index < text.length) {
                     element.textContent += text.charAt(index);
@@ -47,10 +47,40 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', activateTypingOnVisibleSlide);
+        // Aktivasi typing saat halaman dimuat pertama kali
+        window.addEventListener('DOMContentLoaded', () => {
+            activateTypingOnVisibleSlide();
+            setInterval(() => {
+                activateTypingOnVisibleSlide();
+            }, 5000); // Update setiap 5 detik untuk periksa slide baru
+        });
 
-        setInterval(() => {
+        // Logika untuk mengganti slide aktif dan menambahkan efek typing
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('click', () => {
+                const index = dot.getAttribute('data-index');
+                const allSlides = document.querySelectorAll('.hero-slide');
+                const allDots = document.querySelectorAll('.dot');
+
+                // Menyembunyikan semua slide
+                allSlides.forEach((slide, idx) => {
+                    slide.style.display = (idx == index) ? 'block' : 'none';
+                });
+
+                // Menonaktifkan semua dot
+                allDots.forEach(d => {
+                    d.classList.remove('active');
+                });
+
+                // Menandai dot yang aktif
+                dot.classList.add('active');
+
+                // Memulai efek typing pada slide yang aktif
+                setTimeout(() => {
                     activateTypingOnVisibleSlide();
+                }, 1000); // Delay 1 detik setelah slide berubah untuk efek typing
+            });
+        });
     </script>
 
 
