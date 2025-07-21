@@ -554,6 +554,46 @@
                 display: none;
             }
         }
+        @media (max-width: 1280px) {
+    .news-grid {
+        grid-template-columns: repeat(3, 1fr); /* Ubah menjadi 3 kolom */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .news-wrapper {
+        padding: 24px 3rem; /* Mengurangi padding untuk perangkat yang lebih kecil */
+    }
+}
+@media (max-width: 1280px) {
+    .news-wrapper {
+        padding: 24px 3rem; /* Mengurangi padding untuk perangkat yang lebih kecil */
+    }
+}
+
+@media (max-width: 768px) {
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr); /* Menetapkan dua kolom per baris */
+        gap: 16px; /* Mengurangi jarak antar item grid */
+    }
+}
+
+@media (max-width: 768px) {
+    .news-wrapper {
+        padding: 24px 1rem; /* Mengurangi padding */
+    }
+
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+        gap: 16px;
+    }
+
+    .news-card {
+        width: 100%;
+    }
+}
+
     </style>
 
     <script>
