@@ -248,12 +248,12 @@
                 <ul>
                     <li><strong>Who Are We</strong></li>
                     <li><a href="{{ route('about') }}">About Us</a></li>
-                    <li><a href="#">Vision and Mission</a></li>
+                    <li><a href="{{ route('about') }}">Vision and Mission</a></li>
                 </ul>
                 <ul>
                     <li><strong>Info</strong></li>
                     <li><a href="{{ route('news') }}">Newsroom</a></li>
-                    <li><a href="#">Press Release</a></li>
+                    <li><a href="{{ route('news') }}">Press Release</a></li>
                 </ul>
                 <ul>
                     <li><strong>Find Us</strong></li>

@@ -205,7 +205,10 @@
                 </p>
             </div>
             <div class="contact-map">
-                <iframe src="https://www.google.com/maps?q=-6.2075874,106.8190741&z=17&output=embed" allowfullscreen>
+                <!-- <iframe src="https://www.google.com/maps?q=-6.2075874,106.8190741&z=17&output=embed" allowfullscreen> -->
+
+                <!-- coba yang di bawah ini mas lebih akurat -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d774772.1020493754!2d105.66515038076105!3d-6.209504499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f50002a44927%3A0x65e6c28c04721e28!2sLIMA%20(Liga%20Mahasiswa)!5e1!3m2!1sid!2sid!4v1753242056782!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="yes" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
         </div>
