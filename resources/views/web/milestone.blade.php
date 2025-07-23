@@ -538,7 +538,7 @@
             <div class="news-left">
                 <h2>Latest <strong>News</strong></h2>
                 <p>Here is some breaking news especially for you.</p>
-                <a href="#" class="btn-see-more">See More</a>
+                <a href="{{ route('news') }}" class="btn-see-more">See More</a>
             </div>
             <div class="news-right">
                 @foreach ($newsLatest as $news)
