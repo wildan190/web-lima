@@ -39,7 +39,7 @@
             <label for="category" class="form-label">Category</label>
             <select name="category" id="category">
                 <option value="Basketball" {{ old('category') == 'Basketball' ? 'selected' : '' }}>Basketball</option>
-                <option value="Futsall" {{ old('category') == 'Futsall' ? 'selected' : '' }}>Futsall</option>
+                <option value="Futsal" {{ old('category') == 'Futsal' ? 'selected' : '' }}>Futsal/option>
                 <option value="Badminton" {{ old('category') == 'Badminton' ? 'selected' : '' }}>Badminton</option>
                 <option value="Golf" {{ old('category') == 'Golf' ? 'selected' : '' }}>Golf</option>
                 <option value="Swimming" {{ old('category') == 'Swimming' ? 'selected' : '' }}>Swimming</option>
