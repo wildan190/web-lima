@@ -192,8 +192,8 @@
                     <span>English</span> <!-- Default Language -->
                 </div>
                 <div class="dropdown-content">
-                    <a href="#">🇬🇧 English</a>
-                    <a href="#">🇮🇩 Indonesia</a>
+                    <a href="#">English</a>
+                    <a href="#">Indonesia</a>
                 </div>
             </div>
 
@@ -220,8 +220,8 @@
             <i class="fa-solid fa-globe"></i>
             <span>English</span> <!-- Default Language -->
             <div class="dropdown-content">
-                <a href="#">🇬🇧 English</a>
-                <a href="#">🇮🇩 Indonesia</a>
+                <a href="#">English</a>
+                <a href="#">Indonesia</a>
             </div>
         </div>
     </aside>
@@ -268,8 +268,8 @@
                 <i class="fa-solid fa-globe"></i>
                 <span>English</span> <!-- Default Language -->
                 <div class="dropdown-content">
-                    <a href="#">🇬🇧 English</a>
-                    <a href="#">🇮🇩 Indonesia</a>
+                    <a href="#">English</a>
+                    <a href="#">Indonesia</a>
                 </div>
             </div>
 
