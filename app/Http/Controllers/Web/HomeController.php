@@ -108,7 +108,7 @@ class HomeController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
-        $news = $query->paginate(6)->appends($request->all());
+        $news = $query->paginate(8)->appends($request->all());
 
         return view('web.news', compact('pressRelease', 'webProfile', 'WebContact', 'news', 'newsBanner', 'sports', 'gallery'));
     }
