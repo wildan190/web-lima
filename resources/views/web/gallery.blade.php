@@ -211,6 +211,21 @@
             padding: 0 9rem;
         }
 
+        .modal-content-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lima-gallery-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
         .lima-gallery-header {
             background: url('{{ asset('assets/img/banner.jpg') }}') center/cover no-repeat;
             height: 300px;
@@ -322,14 +337,16 @@
             display: none;
             position: fixed;
             z-index: 9999;
-            padding-top: 60px;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
             background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
 
         .lima-gallery-modal-content {
             margin: auto;
