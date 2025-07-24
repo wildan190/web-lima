@@ -126,83 +126,6 @@
         }
     </style>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const modal = document.getElementById("limaImageModal");
-            const modalImg = document.getElementById("limaModalImage");
-            const closeBtn = document.getElementById("limaModalClose");
-
-            const images = document.querySelectorAll(".lima-gallery-modal-trigger");
-            let currentImageIndex = -1;
-
-            // Function to open the modal with an image
-            function openModal(index) {
-                currentImageIndex = index;
-                modal.style.display = "block";
-                modalImg.src = images[currentImageIndex].dataset.full;
-            }
-
-            // Event listener for all images in gallery
-            images.forEach((img, index) => {
-                img.addEventListener("click", () => openModal(index));
-            });
-
-            // Close the modal
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-                modalImg.src = "";
-            }
-
-            // Close the modal if clicked outside of the image
-            window.onclick = function(e) {
-                if (e.target == modal) {
-                    modal.style.display = "none";
-                    modalImg.src = "";
-                }
-            }
-
-            // Navigate to the previous image
-            const prevBtn = document.getElementById("prevBtn");
-            prevBtn.addEventListener("click", () => {
-                if (currentImageIndex > 0) {
-                    openModal(currentImageIndex - 1);
-                }
-            });
-
-            // Navigate to the next image
-            const nextBtn = document.getElementById("nextBtn");
-            nextBtn.addEventListener("click", () => {
-                if (currentImageIndex < images.length - 1) {
-                    openModal(currentImageIndex + 1);
-                }
-            });
-        });
-    </script>
-
-    <section class="latest-news">
-        <div class="container">
-            <div class="news-left">
-                <h2>Latest <strong>News</strong></h2>
-                <p>Here is some breaking news especially for you.</p>
-                <a href="{{ route('news') }}" class="btn-see-more">See More</a>
-            </div>
-            <div class="news-right">
-                @foreach ($newsLatest as $news)
-                    <div class="news-card">
-                        <div class="news-img">
-                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
-                            <div class="overlay">
-                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
     <!-- Styles -->
     <style>
         .lima-gallery-container {
@@ -342,7 +265,6 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
             justify-content: center;
             align-items: center;
         }
@@ -546,27 +468,35 @@
         }
     </style>
 
-    <!-- Scripts -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const tabs = document.querySelectorAll(".lima-gallery-tab");
             const items = document.querySelectorAll(".lima-gallery-item");
             const seeMoreBtn = document.getElementById("limaSeeMoreBtn");
             const galleryGrid = document.getElementById("limaGalleryGrid");
-            let expanded = false;
 
-            // Fungsi untuk menyaring galeri berdasarkan sportId
-            function filterGallery(sportId) {
-                items.forEach(item => {
-                    item.style.display = (item.dataset.sport == sportId) ? 'block' : 'none';
-                });
+            let expanded = false;
+            let originalMaxHeight = getComputedStyle(galleryGrid).maxHeight;
+
+            function updateGalleryHeight() {
+                galleryGrid.style.maxHeight = expanded ? 'none' : originalMaxHeight;
+                seeMoreBtn.innerHTML = expanded ?
+                    'See less <i class="fa-solid fa-chevron-up"></i>' :
+                    'See more <i class="fa-solid fa-chevron-down"></i>';
             }
 
-            // Menyaring berdasarkan sport pertama
-            const firstSport = tabs[0]?.dataset.sport;
-            if (firstSport) filterGallery(firstSport);
+            function filterGallery(sportId) {
+                items.forEach(item => {
+                    item.style.display = (item.dataset.sport === sportId) ? 'block' : 'none';
+                });
+                expanded = false;
+                updateGalleryHeight();
+            }
 
-            // Event listener untuk setiap tab
+            if (tabs.length > 0) {
+                filterGallery(tabs[0].dataset.sport);
+            }
+
             tabs.forEach(tab => {
                 tab.addEventListener("click", () => {
                     tabs.forEach(t => t.classList.remove("active"));
@@ -575,42 +505,77 @@
                 });
             });
 
-            // Fungsi untuk menambah atau mengurangi galeri saat tombol "See More" diklik
-            function toggleGalleryExpansion() {
+            seeMoreBtn.addEventListener("click", () => {
                 expanded = !expanded;
-                galleryGrid.style.maxHeight = expanded ? 'none' : '250px'; // Buka galeri atau tutup dengan animasi
-                seeMoreBtn.innerHTML = expanded ?
-                    'See less <i class="fa-solid fa-chevron-up"></i>' :
-                    'See more <i class="fa-solid fa-chevron-down"></i>';
-            }
+                updateGalleryHeight();
+            });
 
-            // Event listener untuk tombol "See More"
-            seeMoreBtn.addEventListener("click", toggleGalleryExpansion);
-
-            // Modal untuk gambar
+            // Modal Logic (unchanged)
             const modal = document.getElementById("limaImageModal");
             const modalImg = document.getElementById("limaModalImage");
             const closeBtn = document.getElementById("limaModalClose");
+            const imageTriggers = document.querySelectorAll(".lima-gallery-modal-trigger");
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
 
-            document.querySelectorAll(".lima-gallery-modal-trigger").forEach(img => {
-                img.addEventListener("click", () => {
-                    modal.style.display = "block";
-                    modalImg.src = img.dataset.full;
-                });
-            });
+            let currentIndex = -1;
 
-            // Menutup modal
-            closeBtn.onclick = function() {
+            function openModal(index) {
+                if (index < 0 || index >= imageTriggers.length) return;
+                currentIndex = index;
+                modal.style.display = "flex";
+                modalImg.src = imageTriggers[currentIndex].dataset.full;
+            }
+
+            function closeModal() {
                 modal.style.display = "none";
                 modalImg.src = "";
-            };
+                currentIndex = -1;
+            }
 
-            window.onclick = function(e) {
-                if (e.target == modal) {
-                    modal.style.display = "none";
-                    modalImg.src = "";
+            imageTriggers.forEach((img, index) => {
+                img.addEventListener("click", () => openModal(index));
+            });
+
+            closeBtn.addEventListener("click", closeModal);
+
+            window.addEventListener("click", function(e) {
+                if (e.target === modal) closeModal();
+            });
+
+            prevBtn.addEventListener("click", () => {
+                if (currentIndex > 0) openModal(currentIndex - 1);
+            });
+
+            nextBtn.addEventListener("click", () => {
+                if (currentIndex >= 0 && currentIndex < imageTriggers.length - 1) {
+                    openModal(currentIndex + 1);
                 }
-            };
+            });
         });
     </script>
+
+    <section class="latest-news">
+        <div class="container">
+            <div class="news-left">
+                <h2>Latest <strong>News</strong></h2>
+                <p>Here is some breaking news especially for you.</p>
+                <a href="{{ route('news') }}" class="btn-see-more">See More</a>
+            </div>
+            <div class="news-right">
+                @foreach ($newsLatest as $news)
+                    <div class="news-card">
+                        <div class="news-img">
+                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                            <div class="overlay">
+                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 @endsection
