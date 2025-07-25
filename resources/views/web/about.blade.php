@@ -300,7 +300,7 @@
                 <p>{{ $webProfile->history ?? '-' }}</p>
             </div>
             <div class="about-right">
-                <iframe src="https://www.youtube.com/embed/{{ $webProfile->youtube ?? '' }}" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/I7xuL62ljUA" allowfullscreen></iframe>
             </div>
         </div>
 

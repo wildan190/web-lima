@@ -179,7 +179,7 @@
                     <li><a href="{{ route('gallery') }}"
                             class="{{ $currentRoute === 'gallery' ? 'active' : '' }}">Gallery</a></li>
                     <li><a href="{{ route('news') }}"
-                            class="{{ $currentRoute === 'news' ? 'active' : '' }}">Newsroom</a></li>
+                            class="{{ $currentRoute === 'news' ? 'active' : '' }}">News</a></li>
                     <li><a href="{{ route('contact') }}"
                             class="{{ $currentRoute === 'contact' ? 'active' : '' }}">Contact</a></li>
                 </ul>
@@ -211,7 +211,7 @@
             <li><a href="{{ route('about') }}">About Us</a></li>
             <li><a href="{{ route('milestones') }}">Milestone</a></li>
             <li><a href="{{ route('gallery') }}">Gallery</a></li>
-            <li><a href="{{ route('news') }}">Newsroom</a></li>
+            <li><a href="{{ route('news') }}">News</a></li>
             <li><a href="{{ route('contact') }}">Contact</a></li>
         </ul>
 
@@ -252,7 +252,7 @@
                 </ul>
                 <ul>
                     <li><strong>Info</strong></li>
-                    <li><a href="{{ route('news') }}">Newsroom</a></li>
+                    <li><a href="{{ route('news') }}">News</a></li>
                     <li><a href="{{ route('news') }}">Press Release</a></li>
                 </ul>
                 <ul>
