@@ -23,7 +23,7 @@
                         title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to X">
-                        <<i class="fa-brands fa-x-twitter"></i>
+                        <i class="fa-brands fa-x-twitter"></i>
                     </a>
                     <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to WhatsApp"><i class="fab fa-whatsapp"></i></a>
