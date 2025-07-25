@@ -198,10 +198,9 @@
                 <p>{{ $WebContact->address ?? 'n/a' }}</p>
                 <p>
                     <strong>E-mail :</strong>
-                    <a
-                        href="mailto:{{ $WebContact->email ?? 'none@email.com' }}">{{ $WebContact->email ?? 'none@email.com' }}</a><br>
+                    <<a href="mailto:{{ $WebContact->email ?? 'none@email.com' }}" target="_blank">{{ $WebContact->email ?? 'none@email.com' }}</a><br>
                     <strong>Office :</strong>
-                    <a href="tel:{{ $WebContact->phone ?? 'n/a' }}">{{ $WebContact->phone ?? 'n/a' }}</a>
+                    <a href="tel:{{ $WebContact->phone ?? 'n/a' }}" target="_blank">{{ $WebContact->phone ?? 'n/a' }}</a>
                 </p>
             </div>
             <div class="contact-map">

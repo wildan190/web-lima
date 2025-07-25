@@ -3,5 +3,5 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <p>Selamat datang di halaman dashboard admin.</p>
+    <p>Selamat datang di halaman dashboard, Admin!</p>
 @endsection
