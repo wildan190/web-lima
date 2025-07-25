@@ -628,7 +628,7 @@
 
                 <div class="press-row press-featured">
                     {{-- First Large Item --}}
-                    <a href="{{ route('news.detail', $item->slug) }}" class="press-card press-large">
+                    <a href="{{ route('news.detail', $first->slug) }}" class="press-card press-large">
                         <img src="{{ $first->picture_upload }}" alt="{{ $first->title }}">
                         <div class="press-content">
                             <div class="press-meta">
@@ -642,7 +642,7 @@
 
                     {{-- Second Item --}}
                     @if ($second)
-                        <a href="{{ route('news.detail', $item->slug) }}" class="press-card">
+                        <a href="{{ route('news.detail', $second->slug) }}" class="press-card">
                             <img src="{{ asset($second->picture_upload) }}" alt="{{ $second->title }}">
                             <div class="press-content">
                                 <div class="press-meta">
