@@ -22,7 +22,9 @@
                     <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://twitter.com/intent/tweet?url={{ urlencode(Request::fullUrl()) }}" target="_blank"
-                        title="Share to Twitter"><i class="fab fa-twitter"></i></a>
+                        title="Share to X">
+                        <<i class="fa-brands fa-x-twitter"></i>
+                    </a>
                     <a href="https://wa.me/?text={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     <a href="#" onclick="copyLink()" title="Copy Link"><i class="fas fa-link"></i></a>
@@ -49,7 +51,7 @@
                         </a>
                     </div>
                 @empty
-                    <p>No related news available.</p> {{-- Pesan jika tidak ada berita terkait --}}
+                    <p>No related news available.</p>
                 @endforelse
             </div>
         </div>
