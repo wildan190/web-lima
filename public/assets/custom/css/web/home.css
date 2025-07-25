@@ -403,7 +403,7 @@ justify-items: center;
 background: #fff;
 border-radius: 12px;
 box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-width: 110px; /* sedikit lebih besar */
+width: 110px;
 height: 110px;
 padding: 12px;
 display: flex;
@@ -418,11 +418,11 @@ object-fit: contain;
 }
 
 @media (max-width: 768px) {
-  .logo-box {
-    width: 70px;
-    height: 70px;
-    padding: 6px;
-  }
+.logo-box {
+width: 70px;
+height: 70px;
+padding: 6px;
+}
 }
 
 .logo-grid .logo-box:nth-child(7) {
@@ -451,17 +451,17 @@ line-height: 1.6;
 }
 
 .about-text .btn {
-  padding: 10px 24px;
-  border-radius: 24px;
-  background: linear-gradient(to right, #e53935, #4e0e0e);
-  color: #fff;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
+padding: 10px 24px;
+border-radius: 24px;
+background: linear-gradient(to right, #e53935, #4e0e0e);
+color: #fff;
+font-weight: 600;
+transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .about-text .btn:hover {
-  background: linear-gradient(to right, rgba(229, 57, 53, 0.8), rgba(78, 14, 14, 0.8)); /* Gradien dengan transparansi */
-  transform: scale(1.1);
+background: linear-gradient(to right, rgba(229, 57, 53, 0.8), rgba(78, 14, 14, 0.8)); /* Gradien dengan transparansi */
+transform: scale(1.1);
 }
 
 /* === Latest News === */
@@ -496,17 +496,17 @@ margin-bottom: 20px;
 }
 
 .btn-see-more {
-  padding: 10px 24px;
-  border-radius: 24px;
-  background: linear-gradient(to right, #e53935, #4e0e0e);
-  color: #fff;
-  font-weight: 600;
-  transition: background 0.3s ease, transform 0.2s ease;
+padding: 10px 24px;
+border-radius: 24px;
+background: linear-gradient(to right, #e53935, #4e0e0e);
+color: #fff;
+font-weight: 600;
+transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .btn-see-more:hover {
-  background: linear-gradient(to right, rgba(229, 57, 53, 0.8), rgba(78, 14, 14, 0.8)); /* Gradien dengan transparansi */
-  transform: scale(1.1);
+background: linear-gradient(to right, rgba(229, 57, 53, 0.8), rgba(78, 14, 14, 0.8)); /* Gradien dengan transparansi */
+transform: scale(1.1);
 }
 
 .news-right {
