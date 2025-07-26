@@ -326,8 +326,9 @@
                 margin-bottom: 40px;
                 border-bottom: 1px solid #ddd;
                 padding-bottom: 10px;
-                padding-left: 50px;
                 scrollbar-width: none;
+                padding-left: 0;
+                /* ⛔️ Hapus padding kiri yang memotong */
             }
 
             .lima-gallery-tabs::-webkit-scrollbar {
@@ -345,13 +346,19 @@
                 white-space: nowrap;
                 flex: 0 0 auto;
                 transition: color 0.3s;
+                margin-left: 10px;
+                /* ✅ Tambahkan margin kiri jika ingin jarak antar tab */
+            }
+
+            .lima-gallery-tab:first-child {
+                margin-left: 0;
+                /* Hindari tab pertama terlalu jauh ke kanan */
             }
 
             .lima-gallery-tab.active {
                 color: #E02A26;
                 border-bottom: 2px solid #E02A26;
             }
-
 
             /* Gallery Grid */
             .lima-gallery-grid {
