@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="EN">
 
 <head>
     <meta charset="UTF-8">
@@ -44,13 +44,13 @@
     <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia">
     <meta name="twitter:description"
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}"
+    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
     
+    <!--android add to home screen-->
+
     <meta name="application-name" content="LIMA" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#E02A26" />
-
-    <!-- android add to home screen -->
     <link rel="manifest" href="assets/js/data/manifest.json" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/homescreen/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/homescreen/favicon-32x32.png" />
