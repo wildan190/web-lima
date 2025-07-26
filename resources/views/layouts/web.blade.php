@@ -37,7 +37,7 @@
     <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia">
     <meta property="og:description"
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta property="og:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
+    <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -45,7 +45,7 @@
     <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia">
     <meta name="twitter:description"
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}">
     
     <!--android add to home screen-->
 
