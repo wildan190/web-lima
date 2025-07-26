@@ -665,7 +665,7 @@
         .milestone-timeline {
             display: flex;
             justify-content: space-between;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
             border-top: 2px solid #ddd;
             padding-top: 20px;
@@ -765,7 +765,7 @@
             .milestone-timeline {
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 10px;
+                gap: 8px;
                 margin-top: 30px;
                 padding-top: 16px;
                 border-top: 1px solid #ddd;
