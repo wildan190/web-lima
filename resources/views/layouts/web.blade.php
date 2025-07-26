@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'LIMA')</title>
-    <link rel="icon" type="image/x-icon" href="{{ assets('img/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="LIMA - Liga Mahasiswa Indonesia">
