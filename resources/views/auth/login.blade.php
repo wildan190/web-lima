@@ -24,9 +24,9 @@
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Enter password" required>
 
-            <div class="forgot">
+            <!-- <div class="forgot">
                 <a href="#">Forgot Password?</a>
-            </div>
+            </div> -->
 
             <button type="submit">Log In</button>
         </form>
