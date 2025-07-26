@@ -581,6 +581,23 @@
         });
     </script>
 
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const tabsContainer = document.querySelector(".lima-gallery-tabs");
+        const activeTab = tabsContainer.querySelector(".lima-gallery-tab.active");
+
+        if (activeTab) {
+            // Scroll agar tab aktif berada di sisi kiri
+            const offsetLeft = activeTab.offsetLeft;
+            tabsContainer.scrollTo({
+                left: offsetLeft - 16, // bisa disesuaikan jaraknya dari kiri
+                behavior: "smooth"
+            });
+        }
+    });
+</script>
+
+
     <section class="latest-news">
         <div class="container">
             <div class="news-left">
