@@ -183,6 +183,11 @@
 
         .related-item {
             width: 30%;
+            overflow: hidden;
+        }
+
+        .related-item:hover .related-image {
+            transform: scale(1.1);
         }
 
         .related-image {
@@ -190,13 +195,20 @@
             height: 180px;
             object-fit: cover;
             border-radius: 8px;
+            transition: all .3s ease;
         }
+
+        .related-item:hover .related-title {
+            color: #cc2b2b;
+        }
+
 
         .related-title {
             font-size: 16px;
             font-weight: 500;
             color: var(--text-dark);
             margin-top: 12px;
+            transition: all .3s ease;
         }
 
         .news-related {
