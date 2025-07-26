@@ -310,7 +310,6 @@
                 padding: 0 2rem;
                 position: relative;
                 overflow: hidden;
-                /* Menjaga agar gambar terpotong */
             }
 
             .lima-gallery-title {
@@ -319,27 +318,49 @@
             }
 
             .lima-gallery-tabs {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
-                font-size: 14px;
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 10px;
+                margin-bottom: 40px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+                padding-left: 50px;
+                scrollbar-width: none;
+            }
+
+            .lima-gallery-tabs::-webkit-scrollbar {
+                display: none;
             }
 
             .lima-gallery-tab {
-                padding: 8px 12px;
+                background: none;
+                border: none;
+                font-weight: 600;
+                color: #333;
+                cursor: pointer;
+                padding: 10px 16px;
+                font-size: 15px;
+                white-space: nowrap;
+                flex: 0 0 auto;
+                transition: color 0.3s;
             }
+
+            .lima-gallery-tab.active {
+                color: #E02A26;
+                border-bottom: 2px solid #E02A26;
+            }
+
 
             /* Gallery Grid */
             .lima-gallery-grid {
                 column-count: 2;
                 column-gap: 12px;
                 max-height: 250px;
-                /* Membatasi tinggi galeri yang terlihat */
                 overflow: hidden;
-                /* Menyembunyikan gambar yang berada di luar area */
                 position: relative;
                 transition: max-height 0.3s ease-in-out;
-                /* Animasi saat membuka galeri */
             }
 
             /* Item gambar dalam galeri */
@@ -362,9 +383,7 @@
                 left: 0;
                 width: 100%;
                 height: 50%;
-                /* Menutupi bagian bawah gambar */
                 background: rgba(0, 0, 0, 0.5);
-                /* Efek bayangan transparan */
                 z-index: 5;
             }
 
