@@ -45,10 +45,12 @@
             <div class="news-related-items">
                 @forelse ($relatedNews as $item)
                     <div class="related-item">
-                        <a href="{{ route('news.detail', $item->slug) }}">
-                            <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
-                            <p class="related-title">{{ $item->title }}</p>
-                        </a>
+                        <div class="related-box">
+                            <a href="{{ route('news.detail', $item->slug) }}">
+                                <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
+                                <p class="related-title">{{ $item->title }}</p>
+                            </a>
+                        </div>
                     </div>
                 @empty
                     <p>No related news available.</p>
@@ -181,9 +183,12 @@
             flex-wrap: wrap;
         }
 
+        .related-box {
+            overflow: hidden;
+        }
+
         .related-item {
             width: 30%;
-            overflow: hidden;
         }
 
         .related-item:hover .related-image {

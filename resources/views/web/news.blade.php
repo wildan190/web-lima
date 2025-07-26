@@ -719,10 +719,16 @@
             transition: 0.2s ease-in-out;
         }
 
+
         .press-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
+
+        .press-card:hover .press-title-red {
+            color: #B30202;
+        }
+
 
         .press-card img {
             width: 100%;
@@ -752,12 +758,7 @@
             color: #000;
             font-weight: bold;
             margin-bottom: 8px;
-            transition: color 0.3s ease;
-        }
-
-        /* Title Hover Effect */
-        .press-title-red:hover {
-            color: #B30202;
+            transition: all 0.3s ease;
         }
 
 
