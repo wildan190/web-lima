@@ -3,9 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="1200" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,minimal-ui" />
+
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
     <title>@yield('title', 'LIMA')</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}">
 
     <!-- Primary Meta Tags -->
     <meta name="title" content="LIMA - Liga Mahasiswa Indonesia">
@@ -14,8 +20,15 @@
     <meta name="keywords"
         content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia">
     <meta name="author" content="LIMA Indonesia">
-    <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
+
+    <!--user agent crawler-->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="googlebot-news" content="index, follow" />
+    <meta name="msnbot" content="index, follow" />
+    <meta name="webcrawlers" content="index, follow" />
+    <meta name="spiders" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -31,7 +44,39 @@
     <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia">
     <meta name="twitter:description"
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}">
+    <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}"
+    
+
+    <!--android add to home screen-->
+    <link rel="manifest" href="assets/js/data/manifest.json" />
+    <meta name="application-name" content="Figma Land" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#E02A26" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/homescreen/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/homescreen/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/homescreen/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="144x144" href="assets/img/homescreen/android-icon-144x144.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/homescreen/android-icon-192x192.png" />
+
+    <!--windows microsoft-->
+    <meta name="msapplication-TileColor" content="#E02A26" />
+    <meta name="msapplication-TileImage" content="assets/img/homescreen/ms-icon-144x144.png" />
+
+    <!--apple add to home screen-->
+    <meta name="apple-mobile-web-app-title" content="Figma Land" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#E02A26" />
+    <link rel="apple-touch-icon" href="assets/img/homescreen/apple-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/img/homescreen/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/img/homescreen/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/img/homescreen/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/homescreen/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/img/homescreen/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/img/homescreen/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/img/homescreen/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/img/homescreen/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/homescreen/apple-icon-180x180.png" />
+    <link rel="apple-touch-startup-image" href="assets/img/homescreen/apple-icon.png" />
 
     <!-- Schema.org Markup -->
     <script type="application/ld+json">
