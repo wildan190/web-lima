@@ -11,7 +11,7 @@ class HeroController extends Controller
 {
     protected function uploadToGCS($file): string
     {
-        $filename = 'hero/hero_'.time().'.'.$file->getClientOriginalExtension();
+        $filename = 'hero/hero_' . time() . '.' . $file->getClientOriginalExtension();
 
         $storage = new StorageClient([
             'projectId' => config('filesystems.disks.gcs.project_id'),
@@ -20,12 +20,9 @@ class HeroController extends Controller
 
         $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
 
-        $bucket->upload(
-            file_get_contents($file->getRealPath()),
-            ['name' => $filename]
-        );
+        $bucket->upload(file_get_contents($file->getRealPath()), ['name' => $filename]);
 
-        return 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+        return 'https://storage.googleapis.com/' . config('filesystems.disks.gcs.bucket') . '/' . $filename;
     }
 
     public function index()
@@ -75,9 +72,30 @@ class HeroController extends Controller
 
     public function destroy(Hero $hero)
     {
-        // NOTE: GCS doesn't support delete via URL directly.
-        // Optional: Parse the object name and use GCS SDK to delete it.
+        // Hapus file dari GCS jika ada
+        if ($hero->picture_upload) {
+            $fileUrl = $hero->picture_upload;
 
+            // Ambil nama objek dari URL
+            $parsedUrl = parse_url($fileUrl, PHP_URL_PATH); // contoh: /bucket-name/hero/hero_123456.jpg
+            $objectName = ltrim(str_replace('/' . config('filesystems.disks.gcs.bucket') . '/', '', $parsedUrl), '/');
+
+            if ($objectName) {
+                $storage = new \Google\Cloud\Storage\StorageClient([
+                    'projectId' => config('filesystems.disks.gcs.project_id'),
+                    'keyFilePath' => config('filesystems.disks.gcs.key_file'),
+                ]);
+
+                $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
+                $object = $bucket->object($objectName);
+
+                if ($object->exists()) {
+                    $object->delete();
+                }
+            }
+        }
+
+        // Hapus data dari database
         $hero->delete();
 
         return redirect()->route('admin.hero.index')->with('success', 'Hero deleted successfully.');
