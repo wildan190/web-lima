@@ -198,7 +198,7 @@
                 <p>{{ $WebContact->address ?? 'n/a' }}</p>
                 <p>
                     <strong>E-mail :</strong>
-                    <<a href="mailto:{{ $WebContact->email ?? 'none@email.com' }}" target="_blank">
+                    <a href="mailto:{{ $WebContact->email ?? 'none@email.com' }}" target="_blank">
                         {{ $WebContact->email ?? 'none@email.com' }}</a><br>
                         <strong>Office :</strong>
                         <a href="tel:{{ $WebContact->phone ?? 'n/a' }}"
