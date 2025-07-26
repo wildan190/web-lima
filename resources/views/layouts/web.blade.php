@@ -6,9 +6,7 @@
     <meta http-equiv="refresh" content="1200" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no,minimal-ui" />
-
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title', 'LIMA')</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}">
