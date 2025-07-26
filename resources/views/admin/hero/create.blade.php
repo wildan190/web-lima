@@ -12,7 +12,7 @@
         </div>
 
         <div class="form-group">
-            <label for="title" class="form-label">Title <span class="required"></span></label>
+            <label for="title" class="form-label">Title</label>
             <input type="text" placeholder="Titile" name="title" class="form-control" id="title" value="{{ old('title') }}" required class="form-control">
         </div>
 
