@@ -15,7 +15,7 @@ class HeroRequest extends FormRequest
     {
         return [
             'picture_upload' => 'nullable|image|max:2048',
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string|max:500',
         ];
     }

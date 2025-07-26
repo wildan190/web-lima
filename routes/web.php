@@ -151,4 +151,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('hero/store', [HeroController::class, 'store'])->name('hero.store');
     Route::get('hero/{hero}/edit', [HeroController::class, 'edit'])->name('hero.edit');
     Route::post('hero/{hero}/update', [HeroController::class, 'update'])->name('hero.update');
+    Route::delete('hero/{hero}', [HeroController::class, 'destroy'])->name('hero.destroy');
 });
