@@ -20,6 +20,7 @@
     <meta name="keywords"
         content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia">
     <meta name="author" content="LIMA Indonesia">
+    <meta name="copyright" content="LIMA - Liga Mahasiswa. All Rights Reserved" />
     <link rel="canonical" href="{{ url()->current() }}">
 
     <!--user agent crawler-->
