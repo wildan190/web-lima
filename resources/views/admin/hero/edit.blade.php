@@ -15,7 +15,7 @@
         <input type="file" name="picture_upload" id="picture_upload">
 
         <label for="title">Title</label>
-        <input type="text" name="title" id="title" value="{{ old('title', $hero->title) }}" required>
+        <input type="text" name="title" id="title" value="{{ old('title', $hero->title) }}">
 
         <label for="subtitle">Subtitle</label>
         <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $hero->subtitle) }}">
