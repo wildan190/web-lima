@@ -46,12 +46,12 @@
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
     <meta name="twitter:image" content="{{ asset('assets/img/seo/cover.jpg') }}"
     
-
-    <!--android add to home screen-->
-    <link rel="manifest" href="assets/js/data/manifest.json" />
-    <meta name="application-name" content="Figma Land" />
+    <meta name="application-name" content="LIMA" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#E02A26" />
+
+    <!-- android add to home screen -->
+    <link rel="manifest" href="assets/js/data/manifest.json" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/homescreen/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/homescreen/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="assets/img/homescreen/favicon-96x96.png" />
@@ -63,7 +63,7 @@
     <meta name="msapplication-TileImage" content="assets/img/homescreen/ms-icon-144x144.png" />
 
     <!--apple add to home screen-->
-    <meta name="apple-mobile-web-app-title" content="Figma Land" />
+    <meta name="apple-mobile-web-app-title" content="LIMA" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#E02A26" />
     <link rel="apple-touch-icon" href="assets/img/homescreen/apple-icon.png" />
