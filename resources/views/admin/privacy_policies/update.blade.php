@@ -9,7 +9,6 @@
 
 @section('content')
 <div class="web-profile-container">
-    <h3>Update Privacy Policy</h3>
 
     <form id="privacy-policy-form" method="POST" action="{{ route('admin.privacy-policies.update') }}">
         @csrf
@@ -19,6 +18,7 @@
 
         <div id="editor-container" style="height: 300px;"></div>
 
+        <br />
         <button type="submit" class="btn btn-submit">Save</button>
     </form>
 </div>
