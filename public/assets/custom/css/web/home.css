@@ -516,6 +516,58 @@ display: flex;
 gap: 24px;
 overflow-x: auto;
 padding-bottom: 8px;
+position: relative;
+}
+
+
+.news-scroll-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 16px;
+}
+
+.news-card {
+    flex: 0 0 auto;
+    width: 300px; /* or whatever */
+}
+
+.news-chevron {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #e53935, #4e0e0e);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.85;
+    transition: background 0.3s ease, transform 0.2s ease;
+    pointer-events: auto;
+}
+
+.news-chevron:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.chevron-left {
+    left: 0;
+}
+
+.chevron-right {
+    right: 0;
+}
+
+.news-scroll-wrapper .news-right {
+    padding: 0 48px 8px 48px; /* Space for chevrons */
 }
 
 /* === Fixed-height news card === */

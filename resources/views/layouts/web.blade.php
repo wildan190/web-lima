@@ -39,22 +39,27 @@
 
     <!-- open graph twitter/x -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="{{ url()->current() }}"/>
+    <meta name="twitter:url" content="{{ url()->current() }}" />
     <meta name="twitter:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
     <meta name="twitter:description"
         content="{{ isset($news->content) ? Str::limit(strip_tags($news->content), 150) : 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.' }}" />
     <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
-    
+
     <!--android add to home screen-->
     <meta name="application-name" content="LIMA" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#E02A26" />
     <link rel="manifest" href="{{ asset('assets/js/data/manifest.json') }}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/img/homescreen/favicon-16x16.png') }}" />
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('assets/img/homescreen/favicon-32x32.png') }}" />
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('assets/img/homescreen/favicon-96x96.png') }}" />
-    <link rel="icon" type="image/png" sizes="144x144" href="{{ asset ('assets/img/homescreen/android-icon-144x144.png') }}"/>
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/img/homescreen/android-icon-192x192.png') }}" />
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ asset('assets/img/homescreen/favicon-16x16.png') }}" />
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ asset('assets/img/homescreen/favicon-32x32.png') }}" />
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="{{ asset('assets/img/homescreen/favicon-96x96.png') }}" />
+    <link rel="icon" type="image/png" sizes="144x144"
+        href="{{ asset('assets/img/homescreen/android-icon-144x144.png') }}" />
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ asset('assets/img/homescreen/android-icon-192x192.png') }}" />
 
     <!--windows microsoft-->
     <meta name="msapplication-TileColor" content="#E02A26" />
@@ -64,17 +69,22 @@
     <meta name="apple-mobile-web-app-title" content="LIMA" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#E02A26" />
-    
+
     <link rel="apple-touch-icon" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/homescreen/apple-icon-57x57.png') }}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/homescreen/apple-icon-60x60.png') }}" />
     <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('assets/img/homescreen/apple-icon-72x72.png') }}" />
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets/img/homescreen/apple-icon-76x76.png') }}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('assets/img/homescreen/apple-icon-114x114.png') }}" />
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('assets/img/homescreen/apple-icon-120x120.png') }}" />
-    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/img/homescreen/apple-icon-144x144.png') }}" />
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('assets/img/homescreen/apple-icon-152x152.png') }}" />
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/homescreen/apple-icon-180x180.png') }}" />
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="{{ asset('assets/img/homescreen/apple-icon-114x114.png') }}" />
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="{{ asset('assets/img/homescreen/apple-icon-120x120.png') }}" />
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="{{ asset('assets/img/homescreen/apple-icon-144x144.png') }}" />
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="{{ asset('assets/img/homescreen/apple-icon-152x152.png') }}" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ asset('assets/img/homescreen/apple-icon-180x180.png') }}" />
     <link rel="apple-touch-startup-image" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
 
     <!-- schema.org markup -->
@@ -214,7 +224,8 @@
 
             <nav class="nav-links" id="navLinks">
                 <ul>
-                    <li><a href="{{ route('home') }}" class="{{ $currentRoute === 'home' ? 'active' : '' }}">Home</a>
+                    <li><a href="{{ route('home') }}"
+                            class="{{ $currentRoute === 'home' ? 'active' : '' }}">Home</a>
                     </li>
                     <li><a href="{{ route('about') }}" class="{{ $currentRoute === 'about' ? 'active' : '' }}">About
                             Us</a></li>
@@ -281,7 +292,8 @@
         <div class="footer-top">
             <div class="footer-left">
                 <div class="logo">
-                    <a href="{{ route('home')}}"><img src="{{ asset('assets/img/lima-white.png') }}" alt="LIMA Logo" class="footer-logo"></a>
+                    <a href="{{ route('home') }}"><img src="{{ asset('assets/img/lima-white.png') }}"
+                            alt="LIMA Logo" class="footer-logo"></a>
                 </div>
                 <div class="footer-address">
                     PT. BINA MAHASISWA INDONESIA<br>
@@ -378,5 +390,25 @@
         }
     });
 </script>
+
+<script>
+    function scrollNews(direction) {
+        const container = document.getElementById('newsScroll');
+        const scrollAmount = 300; // or any value you want
+
+        if (direction === 'left') {
+            container.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        } else {
+            container.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    }
+</script>
+
 
 </html>

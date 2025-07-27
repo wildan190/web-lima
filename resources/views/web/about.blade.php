@@ -326,20 +326,37 @@
                 <p>Here is some breaking news especially for you.</p>
                 <a href="{{ route('news') }}" class="btn-see-more">See More</a>
             </div>
+
             <div class="news-right">
-                @foreach ($newsLatest as $news)
-                    <div class="news-card">
-                        <div class="news-img">
-                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
-                            <div class="overlay">
-                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
-                            </div>
+                <!-- Chevron Left -->
+                <button class="news-chevron chevron-left" onclick="scrollNews('left')">
+                    <span>&#10094;</span>
+                </button>
+
+                <!-- Scrollable area -->
+                <div class="news-scroll-wrapper" id="newsScroll">
+                    @foreach ($newsLatest as $news)
+                        <div class="news-card">
+                            <a href="{{ route('news.detail', $news->slug) }}">
+                                <div class="news-img">
+                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                    <div class="overlay">
+                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                        <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                        <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+
+                <!-- Chevron Right -->
+                <button class="news-chevron chevron-right" onclick="scrollNews('right')">
+                    <span>&#10095;</span>
+                </button>
             </div>
+
         </div>
     </section>
 @endsection
