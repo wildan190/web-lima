@@ -232,12 +232,28 @@
             height: auto;
             display: block;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: all 0.4s ease;
+            opacity: .9;
         }
 
         .lima-gallery-item img:hover {
-            transform: scale(1.03);
+            -webkit-transform: scale(1.05) translateY(-8px);
+            -moz-transform: scale(1.05) translateY(-8px);
+            -ms-transform: scale(1.05) translateY(-8px);
+            -o-transform: scale(1.05) translateY(-8px);
+            transform: scale(1.05) translateY(-8px);
+            opacity: 1;
         }
+
+        @media (max-width: 768px) {
+        .lima-gallery-item img:hover {
+            -webkit-transform: none;
+            -moz-transform: none;
+            -ms-transform: none;
+            -o-transform: none;
+            transform: none;
+         }
+    }
 
         .lima-gallery-see-more {
             text-align: center;
