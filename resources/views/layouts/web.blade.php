@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="EN">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta http-equiv="refresh" content="1200" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,7 +11,7 @@
     <title>@yield('title', 'LIMA')</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}" />
 
-    <!-- Primary Meta Tags -->
+    <!-- primary meta tags -->
     <meta name="title" content="LIMA - Liga Mahasiswa Indonesia" />
     <meta name="description"
         content="LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa." />
@@ -21,7 +21,7 @@
     <meta name="copyright" content="LIMA - Liga Mahasiswa. All Rights Reserved" />
     <link rel="canonical" href="{{ url()->current() }}" />
 
-    <!--user agent crawler-->
+    <!-- user agent crawler -->
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
     <meta name="googlebot-news" content="index, follow" />
@@ -29,7 +29,7 @@
     <meta name="webcrawlers" content="index, follow" />
     <meta name="spiders" content="index, follow" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- open graph facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia" />
@@ -37,7 +37,7 @@
         content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional." />
     <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}" />
 
-    <!-- Twitter -->
+    <!-- open graph twitter/x -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ url()->current() }}"/>
     <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia" />
@@ -46,7 +46,6 @@
     <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
     
     <!--android add to home screen-->
-
     <meta name="application-name" content="LIMA" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#E02A26" />
@@ -77,7 +76,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/img/homescreen/apple-icon-180x180.png' }}" />
     <link rel="apple-touch-startup-image" href="{{ asset('assets/img/homescreen/apple-icon.png' }}" />
 
-    <!-- Schema.org Markup -->
+    <!-- schema.org markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -94,7 +93,7 @@
     }
     </script>
 
-    <!-- Stylesheets & Fonts -->
+    <!-- stylesheets & fonts -->
     <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
