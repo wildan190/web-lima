@@ -322,6 +322,10 @@
             transform: scale(1.1);
         }
 
+        .lima-inum-card:hover .lima-inum-text {
+            transform: translateY(-4px);
+        }
+
         /* Overlay layer */
         .lima-inum-overlay {
             position: absolute;
@@ -354,6 +358,7 @@
             text-align: left;
             color: #fff;
             line-height: 1.3;
+            transition : all .3s ease;
         }
 
         .lima-inum-text span {
