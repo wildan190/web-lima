@@ -320,31 +320,31 @@
             <div class="socials">
                 @if (!empty($WebContact->facebook))
                     <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
-                        <img src="{{ asset('assets/img/sosmed/fb.svg') }}" alt="Facebook"
+                        <img class="socials__icon" src="{{ asset('assets/img/sosmed/fb.svg') }}" alt="Facebook"
                             style="width:24px; height:24px;" />
                     </a>
                 @endif
                 @if (!empty($WebContact->instagram))
                     <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener">
-                        <img src="{{ asset('assets/img/sosmed/ig.svg') }}" alt="Instagram"
+                        <img class="socials__icon" src="{{ asset('assets/img/sosmed/ig.svg') }}" alt="Instagram"
                             style="width:24px; height:24px;" />
                     </a>
                 @endif
                 @if (!empty($WebContact->twitter))
                     <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener">
-                        <img src="{{ asset('assets/img/sosmed/x.svg') }}" alt="X Twitter"
+                        <img class="socials__icon" src="{{ asset('assets/img/sosmed/x.svg') }}" alt="X Twitter"
                             style="width:24px; height:24px;" />
                     </a>
                 @endif
                 @if (!empty($WebContact->youtube))
                     <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener">
-                        <img src="{{ asset('assets/img/sosmed/youtube.svg') }}" alt="YouTube"
+                        <img class="socials__icon" src="{{ asset('assets/img/sosmed/youtube.svg') }}" alt="YouTube"
                             style="width:24px; height:24px;" />
                     </a>
                 @endif
                 @if (!empty($WebContact->tiktok))
                     <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">
-                        <img src="{{ asset('assets/img/sosmed/tiktok.svg') }}" alt="TikTok"
+                        <img class="socials__icon" src="{{ asset('assets/img/sosmed/tiktok.svg') }}" alt="TikTok"
                             style="width:24px; height:24px;" />
                     </a>
                 @endif

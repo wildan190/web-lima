@@ -679,11 +679,19 @@ align-items: center;
 color: #000;
 font-size: 1.25rem;
 margin: 0 0.5rem;
-transition: color 0.3s ease;
+transition: all 0.3s ease;
 }
 
 .socials a:hover {
 color: #b30000;
+}
+
+.socials__icon {
+    transition: all .3s ease;
+}
+
+.socials a:hover .socials__icon {
+transform: scale(1.1);
 }
 
 .footer-bottom {
