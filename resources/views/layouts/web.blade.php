@@ -2,24 +2,24 @@
 <html lang="EN">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="1200" />
     <meta http-equiv="X-UA-Compatible" content="IE=9" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>@yield('title', 'LIMA')</title>
-    <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}" />
 
     <!-- Primary Meta Tags -->
-    <meta name="title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta name="title" content="LIMA - Liga Mahasiswa Indonesia" />
     <meta name="description"
-        content="LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.">
+        content="LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa." />
     <meta name="keywords"
-        content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia">
-    <meta name="author" content="LIMA Indonesia">
+        content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia" />
+    <meta name="author" content="LIMA Indonesia" />
     <meta name="copyright" content="LIMA - Liga Mahasiswa. All Rights Reserved" />
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="{{ url()->current() }}" />
 
     <!--user agent crawler-->
     <meta name="robots" content="index, follow" />
@@ -30,20 +30,20 @@
     <meta name="spiders" content="index, follow" />
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia" />
     <meta property="og:description"
-        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}">
+        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional." />
+    <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}" />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ url()->current() }}">
-    <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{ url()->current() }}"/>
+    <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia" />
     <meta name="twitter:description"
-        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional.">
-    <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}">
+        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional." />
+    <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
     
     <!--android add to home screen-->
 
@@ -95,10 +95,10 @@
     </script>
 
     <!-- Stylesheets & Fonts -->
-    <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
 <body>
