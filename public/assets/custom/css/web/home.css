@@ -706,14 +706,24 @@ font-size: 0.875rem;
 /* === Responsive === */
 @media (max-width: 768px) {
 .navbar .container {
-justify-content: space-between;
-padding: 0.75rem 1rem;
-}
+    justify-content: space-between;
+    padding: 0.1rem 0.45rem; /* lebih kecil dari sebelumnya */
+  }
 
-.logo {
-flex: 0 0 auto;
-font-size: 1.4rem;
-}
+  .logo {
+    flex: 0 0 auto;
+    font-size: 1.1rem; /* diperkecil */
+    max-height: 40px;  /* jika logo berupa gambar */
+  }
+
+  .navbar {
+    height: auto; /* pastikan tinggi tidak fixed */
+  }
+
+  .navbar img.logo {
+    height: 10px; /* jika logo adalah gambar, bisa diatur langsung */
+    width: auto;
+  }
 
 .nav-links,
 .navbar-language {
