@@ -42,7 +42,7 @@
     <meta name="twitter:url" content="{{ url()->current() }}"/>
     <meta name="twitter:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
     <meta name="twitter:description"
-        content="{{ Str::limit(strip_tags($news->content), 150) }}" />
+        content="{{ isset($news->content) ? Str::limit(strip_tags($news->content), 150) : 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.' }}" />
     <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
     
     <!--android add to home screen-->
