@@ -14,5 +14,7 @@ class WebContact extends Model
         'facebook',
         'linkedin',
         'youtube',
+        'twitter',
+        'tiktok',
     ];
 }
