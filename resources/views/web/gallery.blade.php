@@ -181,31 +181,48 @@
             margin-bottom: 40px;
         }
 
-        .lima-gallery-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
+.lima-gallery-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 40px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE & Edge */
+    justify-content: flex-start; /* Default (mobile) */
+}
 
-        .lima-gallery-tab {
-            background: none;
-            border: none;
-            font-weight: 600;
-            color: #333;
-            cursor: pointer;
-            padding: 10px 16px;
-            font-size: 15px;
-            transition: color 0.3s;
-        }
+.lima-gallery-tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
 
-        .lima-gallery-tab.active {
-            color: #E02A26;
-            border-bottom: 2px solid #E02A26;
-        }
+@media (min-width: 768px) {
+    .lima-gallery-tabs {
+        justify-content: center; /* Center di desktop */
+        overflow-x: visible;     /* Tidak perlu scroll di desktop */
+    }
+}
+
+.lima-gallery-tab {
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    padding: 10px 16px;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.lima-gallery-tab.active {
+    color: #E02A26;
+    border-bottom: 2px solid #E02A26;
+}
+
 
         .lima-gallery-grid {
             column-count: 4;
