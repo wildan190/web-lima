@@ -330,7 +330,7 @@
         .news-card-overlay .read-more {
             font-size: 13px;
             color: white;
-            text-decoration: underline;
+            position: absolute;
         }
 
         .pagination-wrapper {
