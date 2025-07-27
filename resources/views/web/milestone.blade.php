@@ -184,6 +184,10 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
+        .sport-card:hover .sport-name {
+            color: #E02A26;
+        }
+
         .sport-card-inner {
             text-align: center;
             display: flex;
@@ -213,6 +217,7 @@
             color: #333;
             margin: 0;
             word-wrap: break-word;
+            transition: all .3s ease;
         }
 
         @media (max-width: 992px) {
