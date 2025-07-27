@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'LIMA - Gallery')
+
 @section('content')
     <!-- Hero Banner -->
     <section class="privacy-banner"

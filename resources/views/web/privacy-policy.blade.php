@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Privacy Policy Use of Cookie')
+@section('title', 'LIMA - Privacy Policy')
 
 @section('content')
 
@@ -27,6 +27,7 @@
     </section>
 
     <style>
+        
         /* BANNER SECTION */
         .privacy-banner {
             position: relative;

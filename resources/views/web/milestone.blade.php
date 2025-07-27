@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Milestone')
+@section('title', 'LIMA - Milestone')
 
 @section('content')
     <section class="milestone-banner"
