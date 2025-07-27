@@ -40,7 +40,7 @@
     <!-- open graph twitter/x -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ url()->current() }}"/>
-    <meta name="twitter:title" content="{{ $news->title }}" />
+    <meta name="twitter:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
     <meta name="twitter:description"
         content="{{ Str::limit(strip_tags($news->content), 150) }}" />
     <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
