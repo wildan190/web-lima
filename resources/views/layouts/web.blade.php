@@ -32,7 +32,7 @@
     <!-- open graph facebook -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $news->title }}" />
+    <meta property="og:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
     <meta property="og:description"
         content="{{ Str::limit(strip_tags($news->content), 150) }}" />
     <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}" />
