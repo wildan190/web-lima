@@ -181,47 +181,53 @@
             margin-bottom: 40px;
         }
 
-.lima-gallery-tabs {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 12px;
-    padding: 10px 16px;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 40px;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE & Edge */
-    justify-content: flex-start; /* Default (mobile) */
-}
+        .lima-gallery-tabs {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 12px;
+            padding: 10px 16px;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 40px;
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE & Edge */
+            justify-content: flex-start;
+            /* Default (mobile) */
+        }
 
-.lima-gallery-tabs::-webkit-scrollbar {
-    display: none; /* Chrome, Safari */
-}
+        .lima-gallery-tabs::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari */
+        }
 
-@media (min-width: 768px) {
-    .lima-gallery-tabs {
-        justify-content: center; /* Center di desktop */
-        overflow-x: visible;     /* Tidak perlu scroll di desktop */
-    }
-}
+        @media (min-width: 768px) {
+            .lima-gallery-tabs {
+                justify-content: center;
+                /* Center di desktop */
+                overflow-x: visible;
+                /* Tidak perlu scroll di desktop */
+            }
+        }
 
-.lima-gallery-tab {
-    white-space: nowrap;
-    flex-shrink: 0;
-    background: none;
-    border: none;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-    padding: 10px 16px;
-    font-size: 15px;
-    transition: color 0.3s;
-}
+        .lima-gallery-tab {
+            white-space: nowrap;
+            flex-shrink: 0;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            padding: 10px 16px;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
 
-.lima-gallery-tab.active {
-    color: #E02A26;
-    border-bottom: 2px solid #E02A26;
-}
+        .lima-gallery-tab.active {
+            color: #E02A26;
+            border-bottom: 2px solid #E02A26;
+        }
 
 
         .lima-gallery-grid {
@@ -265,14 +271,14 @@
         }
 
         @media (max-width: 768px) {
-        .lima-gallery-item img:hover {
-            -webkit-transform: none;
-            -moz-transform: none;
-            -ms-transform: none;
-            -o-transform: none;
-            transform: none;
-         }
-    }
+            .lima-gallery-item img:hover {
+                -webkit-transform: none;
+                -moz-transform: none;
+                -ms-transform: none;
+                -o-transform: none;
+                transform: none;
+            }
+        }
 
         .lima-gallery-see-more {
             text-align: center;
@@ -617,21 +623,20 @@
     </script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const tabsContainer = document.querySelector(".lima-gallery-tabs");
-        const activeTab = tabsContainer.querySelector(".lima-gallery-tab.active");
+        document.addEventListener("DOMContentLoaded", function() {
+            const tabsContainer = document.querySelector(".lima-gallery-tabs");
+            const activeTab = tabsContainer.querySelector(".lima-gallery-tab.active");
 
-        if (activeTab) {
-            // Scroll agar tab aktif berada di sisi kiri
-            const offsetLeft = activeTab.offsetLeft;
-            tabsContainer.scrollTo({
-                left: offsetLeft - 16, // bisa disesuaikan jaraknya dari kiri
-                behavior: "smooth"
-            });
-        }
-    });
-</script>
-
+            if (activeTab) {
+                // Scroll agar tab aktif berada di sisi kiri
+                const offsetLeft = activeTab.offsetLeft;
+                tabsContainer.scrollTo({
+                    left: offsetLeft - 16, // bisa disesuaikan jaraknya dari kiri
+                    behavior: "smooth"
+                });
+            }
+        });
+    </script>
 
     <section class="latest-news">
         <div class="container">
@@ -640,20 +645,37 @@
                 <p>Here is some breaking news especially for you.</p>
                 <a href="{{ route('news') }}" class="btn-see-more">See More</a>
             </div>
+
             <div class="news-right">
-                @foreach ($newsLatest as $news)
-                    <div class="news-card">
-                        <div class="news-img">
-                            <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
-                            <div class="overlay">
-                                <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
-                                <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
-                            </div>
+                <!-- Chevron Left -->
+                <button class="news-chevron chevron-left" onclick="scrollNews('left')">
+                    <span>&#10094;</span>
+                </button>
+
+                <!-- Scrollable area -->
+                <div class="news-scroll-wrapper" id="newsScroll">
+                    @foreach ($newsLatest as $news)
+                        <div class="news-card">
+                            <a href="{{ route('news.detail', $news->slug) }}">
+                                <div class="news-img">
+                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                    <div class="overlay">
+                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                        <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
+                                        <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+
+                <!-- Chevron Right -->
+                <button class="news-chevron chevron-right" onclick="scrollNews('right')">
+                    <span>&#10095;</span>
+                </button>
             </div>
+
         </div>
     </section>
 @endsection
