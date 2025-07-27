@@ -191,6 +191,8 @@
 
         .related-item {
             width: 30%;
+            background-color: #fff;
+            border-radius: 8px;
         }
 
         .related-item:hover .related-image {
