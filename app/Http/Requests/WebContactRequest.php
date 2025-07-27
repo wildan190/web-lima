@@ -18,6 +18,7 @@ class WebContactRequest extends FormRequest
             'youtube' => 'nullable|url',
             'twitter' => 'nullable|url',
             'tiktok' => 'nullable|url',
+            'map' => 'nullable|url',
         ];
     }
 

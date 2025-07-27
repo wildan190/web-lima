@@ -23,7 +23,8 @@
             'linkedin' => 'LinkedIn URL',
             'youtube' => 'YouTube URL',
             'twitter' => 'Twitter URL',
-            'tiktok' => 'TikTok URL'
+            'tiktok' => 'TikTok URL',
+            'map' => 'Map URL',
         ] as $name => $label)
             <div class="mb-3">
                 <label for="{{ $name }}" class="form-label">{{ $label }}</label>
