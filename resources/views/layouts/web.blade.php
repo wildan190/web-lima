@@ -30,19 +30,19 @@
     <meta name="spiders" content="index, follow" />
 
     <!-- open graph facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="LIMA - Liga Mahasiswa Indonesia" />
+    <meta property="og:title" content="{{ $news->title }}" />
     <meta property="og:description"
-        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional." />
+        content="{{ Str::limit(strip_tags($news->content), 150) }}" />
     <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}" />
 
     <!-- open graph twitter/x -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ url()->current() }}"/>
-    <meta name="twitter:title" content="LIMA - Liga Mahasiswa Indonesia" />
+    <meta name="twitter:title" content="{{ $news->title }}" />
     <meta name="twitter:description"
-        content="Kompetisi olahraga terbesar antar mahasiswa di Indonesia. LIMA memajukan bakat muda melalui kompetisi profesional." />
+        content="{{ Str::limit(strip_tags($news->content), 150) }}" />
     <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
     
     <!--android add to home screen-->
