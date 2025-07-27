@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'About Us')
+@section('title', 'LIMA - About Us')
 
 @section('content')
     <style>

@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('title', 'LIMA - Page Not Found')
+
 @section('content')
 <style>
     .error-404-section {
@@ -50,6 +52,6 @@
 
 <section class="error-404-section">
     <img src="{{ asset('assets/img/error/404.png') }}" alt="404 Not Found">
-    <a href="{{ url('/') }}" class="btn-back-home">← Back to Home</a>
+    <a href="{{ url('/') }}" class="btn-back-home">Back to Homepage</a>
 </section>
 @endsection

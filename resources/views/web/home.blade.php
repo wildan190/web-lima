@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Home')
+@section('title', 'LIMA - Home')
 
 @section('content')
     <section class="hero">

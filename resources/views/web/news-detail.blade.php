@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
+@section('title', 'LIMA - News Detail')
+
 @section('content')
+
     <div id="scrollProgress"></div>
 
     <section class="news-container">

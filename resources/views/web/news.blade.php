@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'News')
+@section('title', 'LIMA - News')
 
 @section('content')
 
