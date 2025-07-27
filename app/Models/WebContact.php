@@ -16,5 +16,6 @@ class WebContact extends Model
         'youtube',
         'twitter',
         'tiktok',
+        'map',
     ];
 }
