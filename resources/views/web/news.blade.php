@@ -129,7 +129,7 @@
                 </div>
 
                 <!-- News Cards -->
-                <div class="news-grid">
+                <div class="nw-grid">
                     @foreach ($news as $item)
                         <div class="news-card">
                             <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}">
@@ -263,7 +263,7 @@
             font-weight: bold;
         }
 
-        .news-grid {
+        .nw-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 24px;
@@ -299,12 +299,12 @@
             color: white;
             background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
             padding: 16px;
-            /* Memberikan ruang di sekitar teks */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             height: 100%;
-            /* Pastikan overlay menutupi seluruh card */
+            box-sizing: border-box;
+            z-index: 1;
         }
 
         .news-card-overlay .date {
@@ -318,20 +318,22 @@
             margin-top: 6px;
             margin-bottom: 6px;
             line-height: 1.3;
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            /* Membatasi teks sampai 2 baris */
             -webkit-box-orient: vertical;
         }
 
         .news-card-overlay .read-more {
             font-size: 13px;
             color: white;
-            position: absolute;
+            margin-top: 8px;
+            text-decoration: underline;
+            position: relative;
+            z-index: 2;
         }
+
 
         .pagination-wrapper {
             margin-top: 40px;
@@ -488,7 +490,7 @@
                 padding-left: 0;
             }
 
-            .news-grid {
+            .nw-grid {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 16px;
@@ -556,7 +558,7 @@
         }
 
         @media (max-width: 1280px) {
-            .news-grid {
+            .nw-grid {
                 grid-template-columns: repeat(3, 1fr);
                 /* Ubah menjadi 3 kolom */
                 gap: 20px;
@@ -578,7 +580,7 @@
         }
 
         @media (max-width: 768px) {
-            .news-grid {
+            .nw-grid {
                 grid-template-columns: repeat(2, 1fr);
                 /* Menetapkan dua kolom per baris */
                 gap: 16px;
@@ -592,7 +594,7 @@
                 /* Mengurangi padding */
             }
 
-            .news-grid {
+            .nw-grid {
                 grid-template-columns: repeat(2, 1fr);
                 /* 2 kolom */
                 gap: 16px;
