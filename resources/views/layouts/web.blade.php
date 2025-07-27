@@ -64,6 +64,7 @@
     <meta name="apple-mobile-web-app-title" content="LIMA" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="#E02A26" />
+    
     <link rel="apple-touch-icon" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
     <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('assets/img/homescreen/apple-icon-57x57.png') }}" />
     <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('assets/img/homescreen/apple-icon-60x60.png') }}" />
