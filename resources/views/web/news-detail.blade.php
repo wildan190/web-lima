@@ -147,11 +147,12 @@
 
         .news-meta-icons a {
             color: var(--text-dark);
-            transition: color 0.3s;
+            transition: all 0.3s ease;
         }
 
         .news-meta-icons a:hover {
             color: var(--primary-color);
+            transform: scale(1.75);
         }
 
         .news-image {
