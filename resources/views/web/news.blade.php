@@ -727,7 +727,7 @@
         }
 
         .press-card:hover .press-title-red {
-            color: #B30202;
+            color: #E02A26;
         }
 
 
