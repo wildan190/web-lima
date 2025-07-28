@@ -120,8 +120,10 @@
                     </div>
                     <div class="sort-options">
                         <span>Sort:</span>
-                        <a href="#" class="active">Newest</a> |
-                        <a href="#">Oldest</a>
+                        <a href="{{ route('news', ['sort' => 'newest'] + request()->except('sort')) }}"
+                            class="{{ request('sort') == 'newest' ? 'active' : '' }}">Newest</a> |
+                        <a href="{{ route('news', ['sort' => 'oldest'] + request()->except('sort')) }}"
+                            class="{{ request('sort') == 'oldest' ? 'active' : '' }}">Oldest</a>
                     </div>
                 </div>
 
@@ -141,6 +143,7 @@
                 </div>
 
             </div>
+
 
             <!-- Pagination -->
             <div class="pagination-wrapper">
