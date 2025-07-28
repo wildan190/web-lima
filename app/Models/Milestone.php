@@ -12,7 +12,6 @@ class Milestone extends Model
     protected $fillable = [
         'year',
         'sport_id',
-        'location',
         'description',
         'picture_upload',
     ];

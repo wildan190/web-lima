@@ -102,9 +102,6 @@
                                     <small>LIMA Milestone in</small>
                                     <h3>{{ $item->year }}</h3>
                                     <p>{{ $item->description }}</p>
-                                    @if ($item->location)
-                                        <p><strong>Location:</strong> {{ $item->location }}</p>
-                                    @endif
                                 </div>
                             </div>
                         </div>
