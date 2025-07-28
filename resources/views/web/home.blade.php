@@ -141,12 +141,12 @@
 
             <div class="news-right">
                 <!-- Chevron Left -->
-                <!-- <button class="news-chevron chevron-left" onclick="scrollNews('left')">
+                <button class="news-chevron chevron-left" onclick="scrollNews('left')">
                     <span>&#10094;</span>
-                </button> -->
+                </button>
 
                 <!-- Scrollable area -->
-                <div class="news-scroll-wrapper">
+                <div class="news-scroll-wrapper" id="newsScroll">
                     @foreach ($newsLatest as $news)
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
@@ -164,9 +164,9 @@
                 </div>
 
                 <!-- Chevron Right -->
-                <!-- <button class="news-chevron chevron-right" onclick="scrollNews('right')">
+                <button class="news-chevron chevron-right" onclick="scrollNews('right')">
                     <span>&#10095;</span>
-                </button> -->
+                </button>
             </div>
 
         </div>
