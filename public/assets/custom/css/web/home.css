@@ -750,8 +750,8 @@ transition: all 0.3s ease;
 color: #e02a26;
 }
 
-.socials a:hover .socials__icon{
-    transform: scale(1.75);
+.socials a:hover i {
+    transform: scale(1.1);
 }
 
 

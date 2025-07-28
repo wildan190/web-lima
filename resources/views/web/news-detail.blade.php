@@ -152,7 +152,7 @@
 
         .news-meta-icons a:hover {
             color: var(--primary-color);
-            transform: scale(1.75);
+            transform: scale(1.2);
         }
 
         .news-image {
