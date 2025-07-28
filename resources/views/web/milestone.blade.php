@@ -624,11 +624,12 @@
             cursor: pointer;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .milestone-arrow:hover {
             background: linear-gradient(135deg, #d42d26, #ff5733);
+            transform: scale(1.1);
         }
 
         .milestone-arrow .chevron {
