@@ -197,10 +197,6 @@
             border-radius: 8px;
         }
 
-        .related-item:hover .related-image {
-            transform: scale(1.65);
-        }
-
         .related-image {
             width: 100%;
             height: 180px;

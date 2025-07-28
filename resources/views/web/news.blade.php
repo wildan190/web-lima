@@ -329,7 +329,6 @@
             font-size: 13px;
             color: white;
             margin-top: 8px;
-            text-decoration: underline;
             position: relative;
             z-index: 2;
         }
