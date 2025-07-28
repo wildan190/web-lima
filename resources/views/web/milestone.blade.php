@@ -551,9 +551,9 @@
     <section class="latest-news">
         <div class="container">
             <div class="news-left">
-                <h2>Latest <strong>News</strong></h2>
-                <p>Here is some breaking news especially for you.</p>
-                <a href="{{ route('news') }}" class="btn-see-more">See More</a>
+                <h2>{{ __('messages.latest_news') }}</h2>
+                <p>{{ __('messages.breaking_news') }}</p>
+                <a href="{{ route('news') }}" class="btn-see-more">{{ __('messages.see_more') }}</a>
             </div>
 
             <div class="news-right">
@@ -570,9 +570,11 @@
                                 <div class="news-img">
                                     <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                                     <div class="overlay">
-                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; News</p>
+                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp;
+                                            {{ __('messages.news') }}</p>
                                         <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
-                                        <a href="{{ route('news.detail', $news->slug) }}"><span>Read →</span></a>
+                                        <a
+                                            href="{{ route('news.detail', $news->slug) }}"><span>{{ __('messages.read') }}</span></a>
                                     </div>
                                 </div>
                             </a>
@@ -585,7 +587,6 @@
                     <span>&#10095;</span>
                 </button>
             </div>
-
         </div>
     </section>
 
@@ -915,6 +916,5 @@
             document.querySelector(`.milestone-year[onclick="goToYear(${year})"]`)?.classList.add('active');
         }
     </script>
-
 
 @endsection
