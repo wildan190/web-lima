@@ -234,6 +234,11 @@
             color: #0b57d0;
             text-decoration: underline;
             font-weight: 500;
+            transition: all .3s ease;
+        }
+
+        .related-title a:hover {
+            color: #E02A26;
         }
 
         .related-tags {
