@@ -442,7 +442,7 @@ margin-bottom: 16px;
 }
 
 .about-text h2 span {
-color: #cc2b2b;
+color: #E02A26;
 }
 
 .about-text p {
@@ -660,7 +660,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .footer-top {
-background: linear-gradient(to top, #000, #b30000);
+background: linear-gradient(to top, #000, #e02a26);
 color: white;
 padding: 3rem 9rem;
 display: flex;
@@ -747,7 +747,7 @@ transition: all 0.3s ease;
 }
 
 .socials a:hover {
-color: #b30000;
+color: #e02a26;
 }
 
 .socials a:hover .socials__icon{

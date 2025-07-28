@@ -798,9 +798,9 @@
         }
 
         .press-pagination .page-item.active span {
-            background-color: #B30202;
+            background-color: #E02A26;
             color: white;
-            border-color: #B30202;
+            border-color: #E02A26;
         }
 
         .press-pagination .page-item.disabled span {

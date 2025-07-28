@@ -207,7 +207,7 @@
         }
 
         .related-item:hover .related-title {
-            color: #cc2b2b;
+            color: #E02A26;
         }
 
 
