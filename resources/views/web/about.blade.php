@@ -338,8 +338,9 @@
                     @foreach ($newsLatest as $news)
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
-                                <div class="news-img">
-                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                <div class="news-img" style="height: 200px; overflow: hidden; position: relative;">
+                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}"
+                                        style="width: 100%; height: 100%; object-fit: cover;">
                                     <div class="overlay">
                                         <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp;
                                             {{ __('messages.news') }}</p>
@@ -360,4 +361,5 @@
             </div>
         </div>
     </section>
+
 @endsection
