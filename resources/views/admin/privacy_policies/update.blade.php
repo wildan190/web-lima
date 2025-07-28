@@ -8,20 +8,20 @@
 @endpush
 
 @section('content')
-<div class="web-profile-container">
+    <div class="web-profile-container">
 
-    <form id="privacy-policy-form" method="POST" action="{{ route('admin.privacy-policies.update') }}">
-        @csrf
-        @method('PUT')
+        <form id="privacy-policy-form" method="POST" action="{{ route('admin.privacy-policies.update') }}">
+            @csrf
+            @method('PUT')
 
-        <input type="hidden" name="content" id="content">
+            <input type="hidden" name="content" id="content">
 
-        <div id="editor-container" style="height: 300px;"></div>
+            <div id="editor-container" style="height: 300px;"></div>
 
-        <br />
-        <button type="submit" class="btn btn-submit">Save</button>
-    </form>
-</div>
+            <br />
+            <button type="submit" class="btn btn-submit">Save</button>
+        </form>
+    </div>
 @endsection
 
 @push('scripts')
@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const quill = new Quill('#editor-container', {
                 theme: 'snow',
                 placeholder: 'Write your privacy policy here...'
@@ -38,7 +38,7 @@
             const initialContent = `{!! addslashes(old('content', $privacyPolicy->content ?? '')) !!}`;
             quill.root.innerHTML = initialContent;
 
-            document.getElementById('privacy-policy-form').addEventListener('submit', function (e) {
+            document.getElementById('privacy-policy-form').addEventListener('submit', function(e) {
                 const contentInput = document.getElementById('content');
                 contentInput.value = quill.root.innerHTML;
 
@@ -54,7 +54,7 @@
             });
         });
 
-        @if(session('success'))
+        @if (session('success'))
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
@@ -63,7 +63,7 @@
             });
         @endif
 
-        @if($errors->any())
+        @if ($errors->any())
             Swal.fire({
                 icon: 'error',
                 title: 'Validation Error',

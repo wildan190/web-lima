@@ -11,7 +11,8 @@
     <div class="news-container">
         <h3>Edit News</h3>
 
-        <form method="POST" action="{{ route('admin.news.update', $news->id) }}" class="news-form" enctype="multipart/form-data" id="news-form">
+        <form method="POST" action="{{ route('admin.news.update', $news->id) }}" class="news-form"
+            enctype="multipart/form-data" id="news-form">
             @csrf
             @method('PUT')
 
@@ -48,7 +49,8 @@
 
             <label for="picture_upload">Picture</label>
             <div style="margin-bottom: 10px;">
-                <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="Current Image" id="existing-image" style="max-width: 200px; border: 1px solid #ccc;">
+                <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="Current Image" id="existing-image"
+                    style="max-width: 200px; border: 1px solid #ccc;">
             </div>
             <input type="file" name="picture_upload" id="picture_upload">
             <img id="preview-image" style="max-width: 200px; display: none; margin-top: 10px; border: 1px solid #ccc;" />
@@ -76,97 +78,97 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Quill
-        const quill = new Quill('#editor-container', {
-            theme: 'snow',
-            placeholder: 'Edit your news content here...'
-        });
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quill
+            const quill = new Quill('#editor-container', {
+                theme: 'snow',
+                placeholder: 'Edit your news content here...'
+            });
 
-        const initialContent = `{!! str_replace(['\\', "'", '"'], ['\\\\', "\\'", '\\"'], old('content', $news->content)) !!}`;
-        quill.root.innerHTML = initialContent;
+            const initialContent = `{!! str_replace(['\\', "'", '"'], ['\\\\', "\\'", '\\"'], old('content', $news->content)) !!}`;
+            quill.root.innerHTML = initialContent;
 
-        const form = document.getElementById('news-form');
-        const contentInput = document.getElementById('content');
+            const form = document.getElementById('news-form');
+            const contentInput = document.getElementById('content');
 
-        form.addEventListener('submit', function (e) {
-            const html = quill.root.innerHTML;
-            const plainText = quill.getText().trim();
+            form.addEventListener('submit', function(e) {
+                const html = quill.root.innerHTML;
+                const plainText = quill.getText().trim();
 
-            if (plainText.length === 0 || html === '<p><br></p>') {
-                e.preventDefault();
+                if (plainText.length === 0 || html === '<p><br></p>') {
+                    e.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Validation Error',
+                        text: 'Content field is required.',
+                        confirmButtonColor: '#d33'
+                    });
+                    return;
+                }
+
+                contentInput.value = html;
+            });
+
+            // Live preview for image
+            const imageInput = document.getElementById('picture_upload');
+            const previewImage = document.getElementById('preview-image');
+            const existingImage = document.getElementById('existing-image');
+
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        previewImage.src = event.target.result;
+                        previewImage.style.display = 'block';
+                        existingImage.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Auto slug generator
+            const titleInput = document.getElementById('title');
+            const slugInput = document.getElementById('slug');
+
+            titleInput.addEventListener('input', function() {
+                if (!slugInput.dataset.touched) {
+                    slugInput.value = generateSlug(this.value);
+                }
+            });
+
+            slugInput.addEventListener('input', function() {
+                this.dataset.touched = true;
+            });
+
+            function generateSlug(str) {
+                return str.toLowerCase().trim()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/[\s_-]+/g, '-')
+                    .replace(/^-+|-+$/g, '');
+            }
+
+            @if (session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}',
+                    confirmButtonColor: '#3085d6'
+                });
+            @endif
+
+            @if ($errors->any())
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    text: 'Content field is required.',
+                    html: `{!! implode('<br>', $errors->all()) !!}`,
                     confirmButtonColor: '#d33'
                 });
-                return;
-            }
-
-            contentInput.value = html;
+            @endif
         });
-
-        // Live preview for image
-        const imageInput = document.getElementById('picture_upload');
-        const previewImage = document.getElementById('preview-image');
-        const existingImage = document.getElementById('existing-image');
-
-        imageInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (event) {
-                    previewImage.src = event.target.result;
-                    previewImage.style.display = 'block';
-                    existingImage.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Auto slug generator
-        const titleInput = document.getElementById('title');
-        const slugInput = document.getElementById('slug');
-
-        titleInput.addEventListener('input', function () {
-            if (!slugInput.dataset.touched) {
-                slugInput.value = generateSlug(this.value);
-            }
-        });
-
-        slugInput.addEventListener('input', function () {
-            this.dataset.touched = true;
-        });
-
-        function generateSlug(str) {
-            return str.toLowerCase().trim()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, '');
-        }
-
-        @if(session('success'))
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-                confirmButtonColor: '#3085d6'
-            });
-        @endif
-
-        @if($errors->any())
-            Swal.fire({
-                icon: 'error',
-                title: 'Validation Error',
-                html: `{!! implode('<br>', $errors->all()) !!}`,
-                confirmButtonColor: '#d33'
-            });
-        @endif
-    });
-</script>
+    </script>
 @endpush
