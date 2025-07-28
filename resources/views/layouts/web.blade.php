@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 
 <head>
     <meta charset="utf-8" />
@@ -214,158 +214,151 @@
         }
     </style>
 
-    <header class="navbar">
-        <div class="container">
-            <div class="logo" style="margin-right: auto;">
+<header class="navbar">
+    <div class="container">
+        <div class="logo" style="margin-right: auto;">
+            <a href="{{ route('home') }}">
+                <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
+            </a>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <ul>
+                <li><a href="{{ route('home') }}" class="{{ $currentRoute === 'home' ? 'active' : '' }}">{{ __('messages.home') }}</a></li>
+                <li><a href="{{ route('about') }}" class="{{ $currentRoute === 'about' ? 'active' : '' }}">{{ __('messages.about_us') }}</a></li>
+                <li><a href="{{ route('milestones') }}" class="{{ $currentRoute === 'milestones' ? 'active' : '' }}">{{ __('messages.milestone') }}</a></li>
+                <li><a href="{{ route('gallery') }}" class="{{ $currentRoute === 'gallery' ? 'active' : '' }}">{{ __('messages.gallery') }}</a></li>
+                <li><a href="{{ route('news') }}" class="{{ $currentRoute === 'news' ? 'active' : '' }}">{{ __('messages.news') }}</a></li>
+                <li><a href="{{ route('contact') }}" class="{{ $currentRoute === 'contact' ? 'active' : '' }}">{{ __('messages.contact') }}</a></li>
+            </ul>
+        </nav>
+
+        <!-- Language Dropdown in Navbar -->
+        <div class="dropdown navbar-language" id="navbarLanguage">
+            <div class="dropdown-label">
+                <i class="fa-solid fa-globe"></i>
+                <span>{{ strtoupper(app()->getLocale()) }}</span>
+            </div>
+            <div class="dropdown-content">
+                <a href="{{ route('change.language', 'en') }}">English</a>
+                <a href="{{ route('change.language', 'id') }}">Indonesia</a>
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">&#9776;</button>
+    </div>
+</header>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+    <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
+    <ul>
+        <li><a href="{{ route('home') }}">{{ __('messages.home') }}</a></li>
+        <li><a href="{{ route('about') }}">{{ __('messages.about_us') }}</a></li>
+        <li><a href="{{ route('milestones') }}">{{ __('messages.milestone') }}</a></li>
+        <li><a href="{{ route('gallery') }}">{{ __('messages.gallery') }}</a></li>
+        <li><a href="{{ route('news') }}">{{ __('messages.news') }}</a></li>
+        <li><a href="{{ route('contact') }}">{{ __('messages.contact') }}</a></li>
+    </ul>
+
+    <!-- Language Dropdown in Sidebar -->
+    <div class="language-select">
+        <i class="fa-solid fa-globe"></i>
+        <span>{{ strtoupper(app()->getLocale()) }}</span>
+        <div class="dropdown-content">
+            <a href="{{ route('change.language', 'en') }}">English</a>
+            <a href="{{ route('change.language', 'id') }}">Indonesia</a>
+        </div>
+    </div>
+</aside>
+
+<!-- Overlay -->
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<main>
+    @yield('content')
+</main>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-left">
+            <div class="logo">
                 <a href="{{ route('home') }}">
-                    <img src="{{ asset('assets/img/limalogo.png') }}" alt="LIMA Logo" class="nav-logo">
+                    <img src="{{ asset('assets/img/lima-white.png') }}" alt="LIMA Logo" class="footer-logo">
                 </a>
             </div>
-
-            <nav class="nav-links" id="navLinks">
-                <ul>
-                    <li><a href="{{ route('home') }}"
-                            class="{{ $currentRoute === 'home' ? 'active' : '' }}">Home</a>
-                    </li>
-                    <li><a href="{{ route('about') }}" class="{{ $currentRoute === 'about' ? 'active' : '' }}">About
-                            Us</a></li>
-                    <li><a href="{{ route('milestones') }}"
-                            class="{{ $currentRoute === 'milestones' ? 'active' : '' }}">Milestone</a></li>
-                    <li><a href="{{ route('gallery') }}"
-                            class="{{ $currentRoute === 'gallery' ? 'active' : '' }}">Gallery</a></li>
-                    <li><a href="{{ route('news') }}"
-                            class="{{ $currentRoute === 'news' ? 'active' : '' }}">News</a></li>
-                    <li><a href="{{ route('contact') }}"
-                            class="{{ $currentRoute === 'contact' ? 'active' : '' }}">Contact</a></li>
-                </ul>
-            </nav>
-
-            <!-- Language Dropdown in Navbar -->
-            <div class="dropdown navbar-language" id="navbarLanguage">
-                <div class="dropdown-label">
-                    <i class="fa-solid fa-globe"></i>
-                    <span>English</span> <!-- Default Language -->
-                </div>
-                <div class="dropdown-content">
-                    <a href="#">English</a>
-                    <a href="#">Indonesia</a>
-                </div>
+            <div class="footer-address">
+                PT. BINA MAHASISWA INDONESIA<br>
+                <p>{{ $WebContact->address ?? 'Alamat belum tersedia.' }}</p>
             </div>
-
-            <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
-                &#9776;
-            </button>
         </div>
-    </header>
+        <div class="footer-nav">
+            <ul>
+                <li><strong>{{ __('messages.who_are_we') }}</strong></li>
+                <li><a href="{{ route('about') }}">{{ __('messages.about_us') }}</a></li>
+                <li><a href="{{ route('about') }}">{{ __('messages.vision_mission') }}</a></li>
+            </ul>
+            <ul>
+                <li><strong>{{ __('messages.info') }}</strong></li>
+                <li><a href="{{ route('news') }}">{{ __('messages.news') }}</a></li>
+                <li><a href="{{ route('news') }}">{{ __('messages.press_release') }}</a></li>
+            </ul>
+            <ul>
+                <li><strong>{{ __('messages.find_us') }}</strong></li>
+                <li><a href="{{ route('contact') }}">{{ __('messages.contact') }}</a></li>
+            </ul>
+        </div>
+    </div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-        <button class="close-sidebar" id="closeSidebar" aria-label="Close sidebar">&times;</button>
-        <ul>
-            <li><a href="{{ route('home') }}">Home</a></li>
-            <li><a href="{{ route('about') }}">About Us</a></li>
-            <li><a href="{{ route('milestones') }}">Milestone</a></li>
-            <li><a href="{{ route('gallery') }}">Gallery</a></li>
-            <li><a href="{{ route('news') }}">News</a></li>
-            <li><a href="{{ route('contact') }}">Contact</a></li>
-        </ul>
-
-        <!-- Language Dropdown in Sidebar -->
+    <div class="footer-middle">
+        <!-- Language Dropdown in Footer -->
         <div class="language-select">
             <i class="fa-solid fa-globe"></i>
-            <span>English</span> <!-- Default Language -->
+            <span>{{ strtoupper(app()->getLocale()) }}</span>
             <div class="dropdown-content">
-                <a href="#">English</a>
-                <a href="#">Indonesia</a>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Overlay -->
-    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
-    <main>
-        @yield('content')
-    </main>
-
-    <footer>
-        <div class="footer-top">
-            <div class="footer-left">
-                <div class="logo">
-                    <a href="{{ route('home') }}"><img src="{{ asset('assets/img/lima-white.png') }}"
-                            alt="LIMA Logo" class="footer-logo"></a>
-                </div>
-                <div class="footer-address">
-                    PT. BINA MAHASISWA INDONESIA<br>
-                    <p>{{ $WebContact->address ?? 'Alamat belum tersedia.' }}</p>
-                </div>
-            </div>
-            <div class="footer-nav">
-                <ul>
-                    <li><strong>Who Are We</strong></li>
-                    <li><a href="{{ route('about') }}">About Us</a></li>
-                    <li><a href="{{ route('about') }}">Vision and Mission</a></li>
-                </ul>
-                <ul>
-                    <li><strong>Info</strong></li>
-                    <li><a href="{{ route('news') }}">News</a></li>
-                    <li><a href="{{ route('news') }}">Press Release</a></li>
-                </ul>
-                <ul>
-                    <li><strong>Find Us</strong></li>
-                    <li><a href="{{ route('contact') }}">Contact</a></li>
-                </ul>
+                <a href="{{ route('change.language', 'en') }}">English</a>
+                <a href="{{ route('change.language', 'id') }}">Indonesia</a>
             </div>
         </div>
 
-        <div class="footer-middle">
-            <!-- Language Dropdown in Footer -->
-            <div class="language-select">
-                <i class="fa-solid fa-globe"></i>
-                <span>English</span> <!-- Default Language -->
-                <div class="dropdown-content">
-                    <a href="#">English</a>
-                    <a href="#">Indonesia</a>
-                </div>
-            </div>
-
-            <div class="socials">
-                @if (!empty($WebContact->facebook))
-                    <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
-                        <i class="fab fa-facebook-f" style="font-size:24px;"></i>
-                    </a>
-                @endif
-                @if (!empty($WebContact->instagram))
-                    <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener">
-                        <i class="fab fa-instagram" style="font-size:24px;"></i>
-                    </a>
-                @endif
-                @if (!empty($WebContact->twitter))
-                    <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener">
-                        <i class="fab fa-x-twitter" style="font-size:24px;"></i>
-                    </a>
-                @endif
-                @if (!empty($WebContact->youtube))
-                    <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener">
-                        <i class="fab fa-youtube" style="font-size:24px;"></i>
-                    </a>
-                @endif
-                @if (!empty($WebContact->tiktok))
-                    <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">
-                        <i class="fab fa-tiktok" style="font-size:24px;"></i>
-                    </a>
-                @endif
-            </div>
+        <div class="socials">
+            @if (!empty($WebContact->facebook))
+                <a href="{{ $WebContact->facebook }}" aria-label="Facebook" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook-f" style="font-size:24px;"></i>
+                </a>
+            @endif
+            @if (!empty($WebContact->instagram))
+                <a href="{{ $WebContact->instagram }}" aria-label="Instagram" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram" style="font-size:24px;"></i>
+                </a>
+            @endif
+            @if (!empty($WebContact->twitter))
+                <a href="{{ $WebContact->twitter }}" aria-label="X Twitter" target="_blank" rel="noopener">
+                    <i class="fab fa-x-twitter" style="font-size:24px;"></i>
+                </a>
+            @endif
+            @if (!empty($WebContact->youtube))
+                <a href="{{ $WebContact->youtube }}" aria-label="YouTube" target="_blank" rel="noopener">
+                    <i class="fab fa-youtube" style="font-size:24px;"></i>
+                </a>
+            @endif
+            @if (!empty($WebContact->tiktok))
+                <a href="{{ $WebContact->tiktok }}" aria-label="TikTok" target="_blank" rel="noopener">
+                    <i class="fab fa-tiktok" style="font-size:24px;"></i>
+                </a>
+            @endif
         </div>
+    </div>
 
-        <div class="footer-bottom">
-            <div class="privacy-policy"><a href="{{ route('privacy.policy') }}">Privacy Policy</a></div>
-            <div class="copyright">© 2025 Liga Mahasiswa, Inc.</div>
-        </div>
-    </footer>
+    <div class="footer-bottom">
+        <div class="privacy-policy"><a href="{{ route('privacy.policy') }}">{{ __('messages.privacy_policy') }}</a></div>
+        <div class="copyright">© 2025 Liga Mahasiswa, Inc.</div>
+    </div>
+</footer>
 
 </body>
 
+<!-- Sidebar JS -->
 <script>
     const menuToggle = document.getElementById('menuToggle');
     const sidebar = document.getElementById('sidebar');
@@ -389,21 +382,13 @@
 <script>
     function scrollNews(direction) {
         const container = document.getElementById('newsScroll');
-        const scrollAmount = 300; // or any value you want
+        const scrollAmount = 300;
 
-        if (direction === 'left') {
-            container.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        } else {
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
+        container.scrollBy({
+            left: direction === 'left' ? -scrollAmount : scrollAmount,
+            behavior: 'smooth'
+        });
     }
 </script>
-
 
 </html>

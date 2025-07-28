@@ -153,3 +153,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::post('hero/{hero}/update', [HeroController::class, 'update'])->name('hero.update');
     Route::delete('hero/{hero}', [HeroController::class, 'destroy'])->name('hero.destroy');
 });
+
+Route::get('language/{lang}', function ($lang) {
+    if (in_array($lang, ['en', 'id'])) {
+        session(['locale' => $lang]);
+    }
+    return back();
+})->name('change.language');
+
