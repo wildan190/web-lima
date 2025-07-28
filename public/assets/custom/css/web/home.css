@@ -685,6 +685,13 @@ font-size: 0.9rem;
 line-height: 1.5;
 }
 
+@media (max-width: 768px) {
+.footer-address {
+        margin-top: 16px;
+    }
+}
+
+
 .footer-nav {
 display: flex;
 gap: 3rem;
@@ -728,6 +735,10 @@ gap: 0.5rem;
 align-items: center;
 }
 
+.language-select i {
+font-size: 24px;
+}
+
 .socials a {
 color: #000;
 font-size: 1.25rem;
@@ -738,6 +749,11 @@ transition: all 0.3s ease;
 .socials a:hover {
 color: #b30000;
 }
+
+.socials a:hover .socials__icon{
+    transform: scale(1.75);
+}
+
 
 .socials__icon {
 transition: all .3s ease;

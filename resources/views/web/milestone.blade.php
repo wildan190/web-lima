@@ -452,6 +452,10 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
+        .coverage-card:hover .coverage-name {
+            color: #E02A26;
+        }
+
         .coverage-logo img {
             width: 64px;
             height: 64px;
@@ -464,6 +468,7 @@
             font-weight: 700;
             color: #333;
             text-align: center;
+            transition: all .3s ease;
         }
 
         .hidden {

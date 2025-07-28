@@ -198,7 +198,7 @@
         }
 
         .related-item:hover .related-image {
-            transform: scale(1.1);
+            transform: scale(1.65);
         }
 
         .related-image {
