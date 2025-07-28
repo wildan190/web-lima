@@ -80,9 +80,7 @@
                             </li>
                         @endforeach
                     </ul>
-
                 </form>
-
             </aside>
 
             <!-- Mobile Horizontal Scroll Categories -->
@@ -113,7 +111,6 @@
                 </form>
             </div>
 
-
             <!-- Main Content -->
             <div class="news-main">
                 <!-- Filter + Sort Row -->
@@ -134,8 +131,8 @@
                         <div class="news-card">
                             <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}">
                             <div class="news-card-overlay">
-                                <span class="date">{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }} • News
-                                    Category</span>
+                                <span class="date">{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }} •
+                                    {{ $item->category ?? 'Uncategorized' }}</span>
                                 <h3 class="title">{{ $item->title }}</h3>
                                 <a href="{{ route('news.detail', $item->slug) }}" class="read-more">Read →</a>
                             </div>
@@ -144,6 +141,7 @@
                 </div>
 
             </div>
+
             <!-- Pagination -->
             <div class="pagination-wrapper">
                 {{ $news->appends(request()->query())->links('vendor.pagination.custom') }}

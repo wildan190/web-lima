@@ -86,21 +86,27 @@ class HomeController extends Controller
 
     public function news(Request $request)
     {
+        // Get the necessary data for the view
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
         $newsBanner = NewsBanner::first();
-        $sports = Sport::all();
+        $sports = Sport::all(); // Get the list of sports categories
         $gallery = Gallery::all();
+
+        // Pagination setup for press releases (not used in the main news query)
         $pressRelease = News::paginate(15, ['*'], 'press_page');
 
+        // Prepare the base query for filtering
         $query = News::query();
 
+        // Handle category filtering
         $categories = $request->input('categories', []);
-
-        if (! empty($categories) && ! in_array('all', $categories)) {
+        if (!empty($categories) && !in_array('all', $categories)) {
+            // Filter by category (assuming 'category' is a column in the 'news' table)
             $query->whereIn('category', $categories);
         }
 
+        // Handle sorting
         $sort = $request->input('sort', 'newest');
         if ($sort === 'oldest') {
             $query->orderBy('created_at', 'asc');
@@ -108,8 +114,10 @@ class HomeController extends Controller
             $query->orderBy('created_at', 'desc');
         }
 
+        // Execute the query with pagination
         $news = $query->paginate(8)->appends($request->all());
 
+        // Return the view with necessary data
         return view('web.news', compact('pressRelease', 'webProfile', 'WebContact', 'news', 'newsBanner', 'sports', 'gallery'));
     }
 
@@ -122,10 +130,7 @@ class HomeController extends Controller
 
         $newsLatest = News::orderBy('created_at', 'desc')->take(5)->get();
 
-        $relatedNews = News::where('category', $news->category)
-            ->latest()
-            ->take(3)
-            ->get();
+        $relatedNews = News::where('category', $news->category)->latest()->take(3)->get();
 
         return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest', 'relatedNews'));
     }
