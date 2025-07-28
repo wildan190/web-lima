@@ -1,0 +1,12 @@
+[90m= [39m[34;4mApp\Models\WebProfile[39;24m {#5951
+    [34mid[39m: [35m1[39m,
+    [34mweb_name[39m: "[32mLIMA[39m",
+    [34mlogo[39m: [36mnull[39m,
+    [34mabout[39m: "[32m{"en": "Since 2012, we have grown into the leading force behind collegiate sports in Indonesia — driving\r\nthe growth of student competitions nationwide."}[39m",
+    [34mvision[39m: "[32m{"en": "To become the leading platform for student sports competitions and entertainment — shaping campus culture across Indonesia."}[39m",
+    [34mmission[39m: "[32m{"en": "To build a healthy and sustainable business ecosystem.\r\nTo continuously innovate student programs across sports, education, and entertainment.\r\nTo provide a platform for talented and driven university students to grow and thrive."}[39m",
+    [34mhistory[39m: "[32m{"en": "Founded on May 15, 2012, LIMA is a purpose-driven company committed to empowering Indonesia’s university students through an integrated platform built on sports, entertainment, and education. As a leading force in campus life, LIMA bridges academic and non-academic experiences, fostering talent development, creativity, and productivity. We are dedicated to shaping a future generation that is dynamic, impactful, and ready to lead."}[39m",
+    [34mcreated_at[39m: "[32m2025-07-17 15:44:29[39m",
+    [34mupdated_at[39m: "[32m2025-07-17 15:44:29[39m",
+  }
+
