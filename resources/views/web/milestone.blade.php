@@ -77,7 +77,7 @@
             <div class="about-text">
                 <h2>About <span>LIMA</span></h2>
                 <p>{{ $webProfile->about ?? 'Deskripsi belum tersedia.' }}</p>
-                <a href="#" class="btn">Learn More</a>
+                <a href="{{ route('about') }}" class="btn">{{ __('messages.learn_more') }}</a>
             </div>
         </div>
     </section>
