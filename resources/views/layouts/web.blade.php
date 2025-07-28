@@ -328,43 +328,6 @@
         });
     </script>
 
-    <style>
-        .language-select {
-            margin-top: 20px;
-            padding: 12px;
-            background-color: #373737ff;
-            border-radius: 8px;
-        }
-
-        .language-select .dropdown-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .language-select .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .language-select .dropdown-content a {
-            color: black;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .language-select .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
-    </style>
-
-
     <!-- Overlay -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
