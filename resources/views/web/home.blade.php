@@ -9,8 +9,11 @@
                 style="background: url('{{ $slide->picture_upload }}') center/cover no-repeat; {{ $index === 0 ? '' : 'display: none;' }}">
                 <div class="hero-overlay">
                     <div class="hero-text">
-                        <h1>{{ $slide->title }}</h1>
-                        <p class="subtitle-typing" data-subtitle="{{ $slide->subtitle }}"></p>
+                        <h1>{{ $slide->getTranslation('title', app()->getLocale()) ?? $slide->getTranslation('title', 'id') }}
+                        </h1>
+                        <p class="subtitle-typing"
+                            data-subtitle="{{ $slide->getTranslation('subtitle', app()->getLocale()) ?? $slide->getTranslation('subtitle', 'id') }}">
+                        </p>
                     </div>
                 </div>
             </div>
