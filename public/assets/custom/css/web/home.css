@@ -522,8 +522,8 @@ position: relative;
 
 .news-scroll-wrapper {
     display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
+    /* overflow-x: auto; */
+    /* scroll-behavior: smooth; */
     gap: 16px;
 }
 
@@ -532,7 +532,7 @@ position: relative;
     width: 300px; /* or whatever */
 }
 
-.news-chevron {
+/* .news-chevron {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -551,24 +551,24 @@ position: relative;
     opacity: 0.85;
     transition: background 0.3s ease, transform 0.2s ease;
     pointer-events: auto;
-}
+} */
 
-.news-chevron:hover {
+/* .news-chevron:hover {
     opacity: 1;
     transform: translateY(-50%) scale(1.1);
-}
+} */
 
-.chevron-left {
+/* .chevron-left {
     left: 0;
 }
 
 .chevron-right {
     right: 0;
-}
+} */
 
-.news-scroll-wrapper .news-right {
-    padding: 0 48px 8px 48px; /* Space for chevrons */
-}
+/* .news-scroll-wrapper .news-right {
+    padding: 0 48px 8px 48px;
+} */
 
 /* === Fixed-height news card === */
 .news-card {
