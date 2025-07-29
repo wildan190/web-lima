@@ -93,7 +93,7 @@
             top: 0;
             left: 0;
             height: 4px;
-            background: var(--primary-color);
+            background: #E02A26;
             width: 0%;
             z-index: 9999;
         }
