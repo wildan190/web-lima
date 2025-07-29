@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Gallery')
+@section('title', 'Gallery - LIMA')
 
 @section('content')
     <!-- Hero Banner -->

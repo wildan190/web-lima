@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Home')
+@section('title', 'LIMA - Liga Mahasiswa')
 
 @section('content')
     <section class="hero">
