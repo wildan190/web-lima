@@ -257,10 +257,15 @@
             text-decoration: none;
             color: gray;
             margin: 0 4px;
+            transition: all .3s ease;
+        }
+
+        .sort-options a:hover {
+            color : #E02A26;
         }
 
         .sort-options a.active {
-            color: black;
+            color: #E02A26;
             font-weight: bold;
         }
 
