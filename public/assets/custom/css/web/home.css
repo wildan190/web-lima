@@ -424,6 +424,12 @@ transition: all .3s ease;
 }
 
 @media (max-width: 768px) {
+    .logo-box:hover .logo-box img  {
+        transform: none;
+    }
+}
+
+@media (max-width: 768px) {
 .logo-box {
 width: 70px;
 height: 70px;

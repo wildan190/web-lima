@@ -125,7 +125,8 @@
             </div>
 
             <div class="about-text">
-                <h2>{{ __('messages.about_lima') }}</h2>
+                <h2>About <span>LIMA</span></h2>
+                <!-- <h2>{{ __('messages.about_lima') }}</h2> -->
                 <p>{{ $webProfile->getTranslation('about', app()->getLocale()) ?? ($webProfile->getTranslation('about', 'en') ?? 'Description not available.') }}
                 </p>
                 <a href="{{ route('about') }}" class="btn">{{ __('messages.learn_more') }}</a>

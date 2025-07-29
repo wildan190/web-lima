@@ -74,6 +74,12 @@
             min-width: 300px;
         }
 
+        @media (max-width: 480px) {
+            .about-left p {
+                font-size: 14px;
+            }
+        }
+
         .about-right iframe {
             width: 100%;
             height: 300px;

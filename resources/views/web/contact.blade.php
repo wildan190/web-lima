@@ -22,6 +22,12 @@
             background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
         }
 
+        @media (max-width: 768px) {
+            .privacy-banner {
+                height: 240px;
+            }
+        }
+
         .privacy-banner-overlay {
             position: absolute;
             top: 0;

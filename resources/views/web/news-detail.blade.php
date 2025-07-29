@@ -146,12 +146,12 @@
         }
 
         .news-meta-icons a {
-            color: var(--text-dark);
+            color: #4a4a4a;
             transition: all 0.3s ease;
         }
 
         .news-meta-icons a:hover {
-            color: var(--primary-color);
+            color: #E02A26;
             transform: scale(1.2);
         }
 

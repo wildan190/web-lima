@@ -60,6 +60,16 @@
                 height: 240px;
             }
         }
+        @media (max-width: 480px) {
+
+            .milestone-banner-text h1 {
+                font-size: 20px;
+            }
+            
+            .milestone-banner-text p {
+                font-size: 12px;
+            }
+        }
     </style>
 
     <section class="about">
