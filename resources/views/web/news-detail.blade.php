@@ -83,7 +83,7 @@
 
     <style>
         :root {
-            --primary-color: #B30202;
+            --primary-color: #E02A26;
             --text-dark: #222;
             --text-muted: #777;
         }
@@ -93,7 +93,7 @@
             top: 0;
             left: 0;
             height: 4px;
-            background: #E02A26;
+            background: var(--primary-color);
             width: 0%;
             z-index: 9999;
         }
