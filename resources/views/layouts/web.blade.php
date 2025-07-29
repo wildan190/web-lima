@@ -251,7 +251,7 @@
                 </div>
                 <div class="dropdown-content">
                     <a href="{{ route('change.language', 'en') }}">English</a>
-                    <a href="{{ route('change.language', 'id') }}">Indonesia</a>
+                    <a href="{{ route('change.language', 'id') }}">Indonesian</a>
                 </div>
             </div>
 
