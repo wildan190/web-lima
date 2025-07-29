@@ -416,6 +416,11 @@ align-items: center;
 max-width: 100%;
 max-height: 100%;
 object-fit: contain;
+transition: all .3s ease;
+}
+
+.logo-box:hover .logo-box img {
+    transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
