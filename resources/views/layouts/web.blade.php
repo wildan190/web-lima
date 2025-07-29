@@ -448,4 +448,7 @@
     }
 </script>
 
+<script src="https://unpkg.com/scrollreveal" type="text/javascript"></script>
+<script src="{{ asset('js/scrollreveal-custom.js') }}"></script>
+
 </html>
