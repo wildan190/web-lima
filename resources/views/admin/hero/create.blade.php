@@ -13,16 +13,18 @@
 
         <div class="form-group">
             <label for="title" class="form-label">Title</label>
-            <input type="text" placeholder="Titile" name="title" class="form-control" id="title" value="{{ old('title') }}" class="form-control">
+            <input type="text" placeholder="Titile" name="title" class="form-control" id="title"
+                value="{{ old('title') }}" class="form-control">
         </div>
 
         <div class="form-group">
             <label for="subtitle" class="form-label">Subtitle</label>
-            <input type="text" placeholder="Subtitile" name="subtitle" class="form-control" id="subtitle" value="{{ old('subtitle') }}" class="form-control">
+            <input type="text" placeholder="Subtitile" name="subtitle" class="form-control" id="subtitle"
+                value="{{ old('subtitle') }}" class="form-control">
         </div>
-<div class="mt-3">
-        <button type="submit" class="btn btn-primary">Save</button>
-</div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
     </form>
 
 
