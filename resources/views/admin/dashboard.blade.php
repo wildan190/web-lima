@@ -33,7 +33,6 @@
         </div>
     </div>
 
-
     <div class="card mt-4">
         <div class="card-body">
             <h5>Visitors in Last 7 Days</h5>

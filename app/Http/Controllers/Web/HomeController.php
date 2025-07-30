@@ -24,7 +24,6 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
-        // Simpan data visitor
         Visitor::create([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
@@ -123,7 +122,7 @@ class HomeController extends Controller
 
     public function newsDetail(Request $request, $slug)
     {
-        // Simpan data visitor
+
         Visitor::create([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),

@@ -15,7 +15,6 @@ class DashboardController extends Controller
         $totalVisitors = Visitor::count();
         $todayVisitors = Visitor::whereDate('created_at', now()->toDateString())->count();
 
-        // Ambil data 7 hari terakhir
         $dailyVisitors = [];
         foreach (range(6, 0) as $i) {
             $date = Carbon::today()->subDays($i)->toDateString();
@@ -26,7 +25,6 @@ class DashboardController extends Controller
             ];
         }
 
-        // Statistik berdasarkan slug berita (top 7)
         $visitorBySlug = Visitor::select('news_slug', DB::raw('count(*) as total'))->whereNotNull('news_slug')->groupBy('news_slug')->orderByDesc('total')->limit(7)->get();
 
         return view('admin.dashboard', compact('totalVisitors', 'todayVisitors', 'dailyVisitors', 'visitorBySlug'));
