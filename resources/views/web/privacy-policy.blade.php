@@ -16,7 +16,6 @@
     {{-- SECTION: Content --}}
     <section class="privacy-policy-section">
         <div class="container">
-            <h2 class="privacy-title">Privacy Policy Use of Cookie</h2>
 
             @if ($policy && $policy->content)
                 <div class="privacy-content">{!! $policy->content !!}</div>
