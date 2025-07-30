@@ -17,17 +17,25 @@ use App\Models\Sport;
 use App\Models\UniversityCoverage;
 use App\Models\WebContact;
 use App\Models\WebProfile;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        // Simpan data visitor
+        Visitor::create([
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'url' => $request->fullUrl(),
+        ]);
+
+        // Data yang sudah ada
         $webProfile = WebProfile::first();
         $sports = Sport::all();
         $WebContact = WebContact::first();
         $heroSlide = Hero::all();
-
         $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
         return view('web.home', compact('webProfile', 'sports', 'WebContact', 'newsLatest', 'heroSlide'));
