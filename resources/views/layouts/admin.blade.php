@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin Panel - PT. BINA MAHASISWA INDONESIA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('assets/custom/css/admin.css') }}">
@@ -18,18 +19,26 @@
         @include('layouts.components.sidebar')
 
         <div class="admin-content">
-            <div class="admin-header">
-                <button class="menu-toggle" id="menu-toggle">&#9776;</button>
-                <h2>@yield('title', 'Dashboard')</h2>
-            </div>
+            <!-- Fixed Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-fixed">
+                <div class="container-fluid d-flex align-items-center">
+                    <button class="btn btn-outline-dark me-3" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <span
+                        class="navbar-brand mb-0 h1 mx-auto flex-grow-1 text-center text-lg-start">@yield('title', 'LIMA')</span>
+                </div>
+            </nav>
 
-            <div class="admin-body">
+            <div class="admin-body" style="padding-top: 70px;">
                 @yield('content')
                 @stack('scripts')
             </div>
+
         </div>
     </div>
 </body>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const toggle = document.getElementById('menu-toggle');
