@@ -123,13 +123,19 @@ class HomeController extends Controller
 
     public function newsDetail(Request $request, $slug)
     {
+        // Simpan data visitor
+        Visitor::create([
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+            'url' => $request->fullUrl(),
+            'news_slug' => $slug,
+        ]);
+
         $webProfile = WebProfile::first();
         $WebContact = WebContact::first();
 
         $news = News::where('slug', $slug)->firstOrFail();
-
         $newsLatest = News::orderBy('created_at', 'desc')->take(5)->get();
-
         $relatedNews = News::where('category', $news->category)->latest()->take(3)->get();
 
         return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest', 'relatedNews'));
