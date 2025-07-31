@@ -126,7 +126,13 @@
 
             <div class="about-text">
                 <h2>{{ __('messages.about_lima') }}</h2>
-                <p>{{ $webProfile->getTranslation('about', app()->getLocale()) ?? ($webProfile->getTranslation('about', 'en') ?? 'Description not available.') }}
+                @if ($webProfile && $webProfile->getTranslation('about', app()->getLocale()))
+                    <p>{{ $webProfile->getTranslation('about', app()->getLocale()) }}</p>
+                @elseif ($webProfile && $webProfile->getTranslation('about', 'en'))
+                    <p>{{ $webProfile->getTranslation('about', 'en') }}</p>
+                @else
+                    <p>Description not available.</p>
+                @endif
                 </p>
                 <a href="{{ route('about') }}" class="btn">{{ __('messages.learn_more') }}</a>
             </div>
