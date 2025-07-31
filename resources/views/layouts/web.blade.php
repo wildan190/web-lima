@@ -331,6 +331,25 @@
     <!-- Overlay -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
+    @if (!request()->cookie('cookie_accepted'))
+        <div id="cookieConsentBar">
+            <div class="cookie-container">
+                <p>
+                    {{ __('messages.cookie_notice', [
+                        'policy' => '<a href="' . route('privacy.policy') . '" class="cookie-policy-link" target="_blank">' . __('messages.privacy_policy') . '</a>'
+                    ]) }}
+                </p>
+                <button id="cookieAcceptBtn">{{ __('messages.accept_cookie') }}</button>
+            </div>
+        </div>
+        <script>
+            document.getElementById('cookieAcceptBtn').addEventListener('click', function () {
+                document.getElementById('cookieConsentBar').style.display = 'none';
+                document.cookie = "cookie_accepted=1; path=/; max-age=" + (60 * 60 * 24 * 365);
+            });
+        </script>
+    @endif
+
     <main>
         @yield('content')
     </main>
