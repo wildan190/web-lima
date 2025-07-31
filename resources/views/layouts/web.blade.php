@@ -251,7 +251,7 @@
                 </div>
                 <div class="dropdown-content">
                     <a href="{{ route('change.language', 'en') }}">English</a>
-                    <a href="{{ route('change.language', 'id') }}">Indonesia</a>
+                    <a href="{{ route('change.language', 'id') }}">Indonesian</a>
                 </div>
             </div>
 
@@ -447,5 +447,8 @@
         });
     }
 </script>
+
+<script src="https://unpkg.com/scrollreveal" type="text/javascript"></script>
+<script src="{{ asset('js/scrollreveal-custom.js') }}"></script>
 
 </html>

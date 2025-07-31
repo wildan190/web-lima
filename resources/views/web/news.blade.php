@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - News')
+@section('title', 'News - LIMA')
 
 @section('content')
 
@@ -257,10 +257,15 @@
             text-decoration: none;
             color: gray;
             margin: 0 4px;
+            transition: all .3s ease;
+        }
+
+        .sort-options a:hover {
+            color : #E02A26;
         }
 
         .sort-options a.active {
-            color: black;
+            color: #E02A26;
             font-weight: bold;
         }
 
@@ -330,7 +335,6 @@
             font-size: 13px;
             color: white;
             margin-top: 8px;
-            text-decoration: underline;
             position: relative;
             z-index: 2;
         }
@@ -729,7 +733,7 @@
         }
 
         .press-card:hover .press-title-red {
-            color: #B30202;
+            color: #E02A26;
         }
 
 
@@ -800,9 +804,9 @@
         }
 
         .press-pagination .page-item.active span {
-            background-color: #B30202;
+            background-color: #E02A26;
             color: white;
-            border-color: #B30202;
+            border-color: #E02A26;
         }
 
         .press-pagination .page-item.disabled span {
@@ -1103,11 +1107,11 @@
         }
 
         .lima-gallery-item img:hover {
-            -webkit-transform: scale(1.05) translateY(-8px);
-            -moz-transform: scale(1.05) translateY(-8px);
-            -ms-transform: scale(1.05) translateY(-8px);
-            -o-transform: scale(1.05) translateY(-8px);
-            transform: scale(1.05) translateY(-8px);
+            -webkit-transform: scale(1.1) translateY(-4px);
+            -moz-transform: scale(1.1) translateY(-4px);
+            -ms-transform: scale(1.1) translateY(-4px);
+            -o-transform: scale(1.1) translateY(-4px);
+            transform: scale(1.1) translateY(-4px);
             opacity: 1;
         }
 

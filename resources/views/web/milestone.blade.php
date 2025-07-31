@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Milestone')
+@section('title', 'Milestone - LIMA')
 
 @section('content')
     <section class="milestone-banner"
@@ -58,6 +58,16 @@
 
             .milestone-banner {
                 height: 240px;
+            }
+        }
+        @media (max-width: 480px) {
+
+            .milestone-banner-text h1 {
+                font-size: 20px;
+            }
+            
+            .milestone-banner-text p {
+                font-size: 12px;
             }
         }
     </style>
@@ -449,6 +459,10 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
 
+        .coverage-card:hover .coverage-name {
+            color: #E02A26;
+        }
+
         .coverage-logo img {
             width: 64px;
             height: 64px;
@@ -461,6 +475,7 @@
             font-weight: 700;
             color: #333;
             text-align: center;
+            transition: all .3s ease;
         }
 
         .hidden {
@@ -617,11 +632,12 @@
             cursor: pointer;
             flex-shrink: 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .milestone-arrow:hover {
             background: linear-gradient(135deg, #d42d26, #ff5733);
+            transform: scale(1.1);
         }
 
         .milestone-arrow .chevron {
@@ -663,7 +679,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            cursor: pointer;
         }
 
         .milestone-content {

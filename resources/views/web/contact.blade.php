@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Contact')
+@section('title', 'Contact - LIMA')
 
 @section('content')
     <style>
@@ -20,6 +20,12 @@
             position: relative;
             height: 320px;
             background: url('{{ asset('assets/img/hero.png') }}') center center / cover no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-banner {
+                height: 240px;
+            }
         }
 
         .privacy-banner-overlay {
@@ -193,8 +199,8 @@
     <section class="contact-section">
         <div class="contact-container">
             <div class="contact-info">
-                <h2 style="color: #d62828; display: inline;">LIMA</h2>
-                <h2 style="display: inline; margin-left: 4px;">Office</h2>
+                <h2 style="color: #e02a26; display: inline;">LIMA</h2>
+                <h2 style="display: inline; margin-left: 2px;">Office</h2>
                 <p>{{ $WebContact->address ?? 'n/a' }}</p>
                 <p>
                     <strong>E-mail :</strong>

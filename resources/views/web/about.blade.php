@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - About Us')
+@section('title', 'About Us - LIMA')
 
 @section('content')
     <style>
@@ -72,6 +72,12 @@
         .about-right {
             flex: 1;
             min-width: 300px;
+        }
+
+        @media (max-width: 480px) {
+            .about-left p {
+                font-size: 14px;
+            }
         }
 
         .about-right iframe {

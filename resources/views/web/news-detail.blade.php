@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - News Detail')
+@section('title', 'News Detail - LIMA')
 
 @section('content')
 
@@ -83,7 +83,7 @@
 
     <style>
         :root {
-            --primary-color: #B30202;
+            --primary-color: #E02A26;
             --text-dark: #222;
             --text-muted: #777;
         }
@@ -93,7 +93,7 @@
             top: 0;
             left: 0;
             height: 4px;
-            background: var(--primary-color);
+            background: #E02A26;
             width: 0%;
             z-index: 9999;
         }
@@ -146,12 +146,13 @@
         }
 
         .news-meta-icons a {
-            color: var(--text-dark);
-            transition: color 0.3s;
+            color: #4a4a4a;
+            transition: all 0.3s ease;
         }
 
         .news-meta-icons a:hover {
-            color: var(--primary-color);
+            color: #E02A26;
+            transform: scale(1.2);
         }
 
         .news-image {
@@ -197,10 +198,6 @@
             border-radius: 8px;
         }
 
-        .related-item:hover .related-image {
-            transform: scale(1.1);
-        }
-
         .related-image {
             width: 100%;
             height: 180px;
@@ -210,7 +207,7 @@
         }
 
         .related-item:hover .related-title {
-            color: #cc2b2b;
+            color: #E02A26;
         }
 
 
@@ -237,6 +234,11 @@
             color: #0b57d0;
             text-decoration: underline;
             font-weight: 500;
+            transition: all .3s ease;
+        }
+
+        .related-title a:hover {
+            color: #E02A26;
         }
 
         .related-tags {

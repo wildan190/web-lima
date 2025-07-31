@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Home')
+@section('title', 'LIMA - Liga Mahasiswa')
 
 @section('content')
     <section class="hero">
@@ -133,6 +133,9 @@
                 @else
                     <p>Description not available.</p>
                 @endif
+                <h2>About <span>LIMA</span></h2>
+                <!-- <h2>{{ __('messages.about_lima') }}</h2> -->
+
                 </p>
                 <a href="{{ route('about') }}" class="btn">{{ __('messages.learn_more') }}</a>
             </div>

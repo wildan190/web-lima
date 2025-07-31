@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Gallery')
+@section('title', 'Gallery - LIMA')
 
 @section('content')
     <!-- Hero Banner -->
@@ -262,11 +262,11 @@
         }
 
         .lima-gallery-item img:hover {
-            -webkit-transform: scale(1.05) translateY(-8px);
-            -moz-transform: scale(1.05) translateY(-8px);
-            -ms-transform: scale(1.05) translateY(-8px);
-            -o-transform: scale(1.05) translateY(-8px);
-            transform: scale(1.05) translateY(-8px);
+            -webkit-transform: scale(1.05) translateY(-4px);
+            -moz-transform: scale(1.05) translateY(-4px);
+            -ms-transform: scale(1.05) translateY(-4px);
+            -o-transform: scale(1.05) translateY(-4px);
+            transform: scale(1.05) translateY(-4px);
             opacity: 1;
         }
 
