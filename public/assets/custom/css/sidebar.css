@@ -81,6 +81,34 @@
     padding-left: 10px;
 }
 
+/* Shift navbar right so it doesn't overlap the sidebar */
+.navbar-fixed {
+    margin-left: 250px;
+    z-index: 1000; /* pastikan tetap di atas konten tapi tidak menutupi sidebar */
+    width: calc(100% - 250px);
+}
+
+/* Optional: adjust for mobile sidebar toggle */
+@media (max-width: 768px) {
+    .navbar-fixed {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+/* Sembunyikan toggle di desktop */
+#menu-toggle {
+    display: none;
+}
+
+/* Tampilkan toggle hanya di mobile */
+@media (max-width: 768px) {
+    #menu-toggle {
+        display: inline-block;
+    }
+}
+
+
 /* RESPONSIVE SIDEBAR */
 @media (max-width: 768px) {
     .sidebar {

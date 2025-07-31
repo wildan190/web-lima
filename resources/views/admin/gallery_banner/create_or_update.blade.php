@@ -19,8 +19,8 @@
                     <div class="card-body">
                         @if (!empty($galleryBanner?->upload_picture))
                             <div class="text-center mb-3">
-                                <img src="{{ $galleryBanner->upload_picture }}" alt="Current Image" class="img-fluid rounded"
-                                    style="width: 100%; height: 200px; object-fit: cover;">
+                                <img src="{{ $galleryBanner->upload_picture }}" alt="Current Image"
+                                    class="img-fluid rounded" style="width: 100%; height: 200px; object-fit: cover;">
                                 <p><small>Current Image from GCS</small></p>
                             </div>
                         @else

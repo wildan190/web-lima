@@ -7,14 +7,13 @@
 @endpush
 
 @section('content')
-<div class="web-profile-container">
-    <h3>University Coverage List</h3>
 
     <a href="{{ route('admin.university-coverages.create') }}" class="btn">+ Add New University</a>
 
     <table class="table">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Name</th>
                 <th>Logo</th>
                 <th style="width: 150px;">Actions</th>
@@ -23,6 +22,7 @@
         <tbody>
             @forelse ($coverages as $item)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->name }}</td>
                     <td>
                         @if ($item->logo)
@@ -34,7 +34,8 @@
                     <td>
                         <a href="{{ route('admin.university-coverages.edit', $item->id) }}" class="btn btn-edit">Edit</a>
 
-                        <form action="{{ route('admin.university-coverages.destroy', $item->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?')">
+                        <form action="{{ route('admin.university-coverages.destroy', $item->id) }}" method="POST"
+                            style="display:inline;" onsubmit="return confirm('Are you sure?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-delete" type="submit">Delete</button>
@@ -48,5 +49,4 @@
             @endforelse
         </tbody>
     </table>
-</div>
 @endsection

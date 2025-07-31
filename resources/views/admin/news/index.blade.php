@@ -7,8 +7,6 @@
 @endpush
 
 @section('content')
-<div class="news-container">
-    <h3>News List</h3>
 
     <a href="{{ route('admin.news.create') }}" class="btn btn-create">+ Add New News</a>
 
@@ -42,7 +40,8 @@
                     <td>
                         <div class="action-buttons">
                             <a href="{{ route('admin.news.edit', $item->id) }}" class="btn btn-edit">Edit</a>
-                            <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                            <form action="{{ route('admin.news.destroy', $item->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-delete">Delete</button>
@@ -53,5 +52,5 @@
             @endforeach
         </tbody>
     </table>
-</div>
+    </div>
 @endsection

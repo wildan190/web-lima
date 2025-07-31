@@ -7,14 +7,13 @@
 @endpush
 
 @section('content')
-<div class="gallery-container">
-    <h3>Gallery List</h3>
 
     <a href="{{ route('admin.galleries.create') }}" class="btn btn-create">+ Add New Gallery</a>
 
     <table class="gallery-table">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Image</th>
                 <th>Sport</th>
                 <th>Description</th>
@@ -24,6 +23,7 @@
         <tbody>
             @forelse ($galleries as $gallery)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>
                         @if (!empty($gallery->picture_upload))
                             <img src="{{ $gallery->picture_upload }}" alt="Gallery Image">
@@ -37,7 +37,7 @@
                         <div class="action-buttons">
                             {{-- <a href="{{ route('admin.galleries.edit', $gallery->id) }}" class="btn btn-edit">Edit</a> --}}
                             <form action="{{ route('admin.galleries.destroy', $gallery->id) }}" method="POST"
-                                  onsubmit="return confirm('Are you sure?')">
+                                onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-delete">Delete</button>
@@ -52,5 +52,4 @@
             @endforelse
         </tbody>
     </table>
-</div>
 @endsection

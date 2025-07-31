@@ -7,14 +7,13 @@
 @endpush
 
 @section('content')
-<div class="milestone-container">
-    <h3>Milestone List</h3>
 
     <a href="{{ route('admin.milestones.create') }}" class="btn btn-create">+ Add New Milestone</a>
 
     <table class="milestone-table">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Year</th>
                 <th>Sport</th>
                 <th>Location</th>
@@ -26,6 +25,7 @@
         <tbody>
             @forelse ($milestones as $milestone)
                 <tr>
+                    <td>{{ $loop->iteration }}</td>
                     <td>{{ $milestone->year }}</td>
                     <td>{{ $milestone->sport->name ?? '-' }}</td>
                     <td>{{ $milestone->location }}</td>
@@ -40,7 +40,8 @@
                     <td>
                         <div class="action-buttons">
                             <a href="{{ route('admin.milestones.edit', $milestone->id) }}" class="btn btn-edit">Edit</a>
-                            <form action="{{ route('admin.milestones.destroy', $milestone->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                            <form action="{{ route('admin.milestones.destroy', $milestone->id) }}" method="POST"
+                                onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-delete">Delete</button>
@@ -55,5 +56,4 @@
             @endforelse
         </tbody>
     </table>
-</div>
 @endsection
