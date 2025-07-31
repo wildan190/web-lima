@@ -125,7 +125,7 @@
             </div>
 
             <div class="about-text">
-                <h2>{{ __('messages.about_lima') }}</h2>
+                <h2>About <span>LIMA</span></h2>
                 @if ($webProfile && $webProfile->getTranslation('about', app()->getLocale()))
                     <p>{{ $webProfile->getTranslation('about', app()->getLocale()) }}</p>
                 @elseif ($webProfile && $webProfile->getTranslation('about', 'en'))
