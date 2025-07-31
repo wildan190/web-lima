@@ -19,4 +19,7 @@ return [
     'info' => 'Informasi',
     'find_us' => 'Temukan Kami',
     'privacy_policy' => 'Kebijakan Privasi',
+    // Tambahan untuk cookie consent
+    'cookie_notice' => 'Kami menggunakan Cookie di situs ini agar dapat melayani Anda lebih baik. Kunjungi halaman :policy untuk mempelajari lebih lanjut. Dengan mengklik tombol "Lanjutkan", Anda menyetujui penggunaan Cookie di situs ini.',
+    'accept_cookie' => 'Lanjutkan',
 ];

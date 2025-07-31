@@ -68,7 +68,7 @@ flex-shrink: 0;
 
 @media (max-width: 768px) {
 #cookieConsentBar {
-margin-top: 20px;
+margin-top: 6px;
 }
 .cookie-container {
 padding: 12px 16px;
