@@ -16,9 +16,9 @@ services:
       - webnet
     command: >
       sh -c "php artisan config:clear &&
-             php artisan migrate --force &&
+             php artisan migrate --force || true &&
              php-fpm"
-
+    
   web:
     image: nginx:stable-alpine
     container_name: web-lima-nginx
