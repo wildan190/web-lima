@@ -38,7 +38,7 @@ services:
     container_name: web-lima-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD:
+      MYSQL_ROOT_PASSWORD: MyS3cur3P@ss
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: web_lima
     ports:
