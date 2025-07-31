@@ -331,29 +331,43 @@
     <!-- Overlay -->
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-    @if (!request()->cookie('cookie_accepted'))
-        <div id="cookieConsentBar">
-            <div class="cookie-container">
-                <p>
-                    {!! __('messages.cookie_notice', [
-                        'policy' =>
-                            '<a href="' .
-                            route('privacy.policy') .
-                            '" class="cookie-policy-link" target="_blank">' .
-                            __('messages.privacy_policy') .
-                            '</a>',
-                    ]) !!}
-                </p>
-                <button id="cookieAcceptBtn">{{ __('messages.accept_cookie') }}</button>
-            </div>
+    <div id="cookieConsentBar">
+        <div class="cookie-container">
+            <p>
+                {!! __('messages.cookie_notice', [
+                    'policy' =>
+                        '<a href="' .
+                        route('privacy.policy') .
+                        '" class="cookie-policy-link" target="_blank">' .
+                        __('messages.privacy_policy') .
+                        '</a>',
+                ]) !!}
+            </p>
+            <button id="cookieAcceptBtn">{{ __('messages.accept_cookie') }}</button>
         </div>
-        <script>
-            document.getElementById('cookieAcceptBtn').addEventListener('click', function() {
+    </div>
+
+    <script>
+        (function() {
+
+            function getCookie(name) {
+                const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+                return match ? match.pop() : '';
+            }
+
+            if (getCookie('cookie_accepted') === '1') {
                 document.getElementById('cookieConsentBar').style.display = 'none';
-                document.cookie = "cookie_accepted=1; path=/; max-age=" + (60 * 60 * 24 * 365);
+                return;
+            }
+
+            document.getElementById('cookieAcceptBtn').addEventListener('click', function() {
+                const maxAge = 60 * 60 * 24 * 365;
+                document.cookie = "cookie_accepted=1; path=/; max-age=" + maxAge + "; samesite=lax";
+                document.getElementById('cookieConsentBar').style.display = 'none';
             });
-        </script>
-    @endif
+        })();
+    </script>
+
 
     <main>
         @yield('content')
