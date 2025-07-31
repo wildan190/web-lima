@@ -133,7 +133,7 @@
                 @else
                     <p>Description not available.</p>
                 @endif
-                <h2>About <span>LIMA</span></h2>
+                {{-- <h2>About <span>LIMA</span></h2> --}}
                 <!-- <h2>{{ __('messages.about_lima') }}</h2> -->
 
                 </p>
