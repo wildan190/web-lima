@@ -689,6 +689,12 @@ max-height: 2.6em;
 font-size: 13px;
 }
 
+@media (max-width: 480px) {
+    .overlay p {
+        font-size: 10px;
+    }
+}
+
 .overlay h4 {
 font-size: 15px;
 font-weight: 600;
