@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'LIMA - Privacy Policy')
+@section('title', 'Privacy Policy - LIMA')
 
 @section('content')
 

@@ -221,7 +221,12 @@
             cursor: pointer;
             padding: 10px 16px;
             font-size: 15px;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+        }
+
+        .lima-gallery-tab:hover {
+            color: #E02A26;
+            
         }
 
         .lima-gallery-tab.active {
@@ -287,6 +292,7 @@
             background: linear-gradient(to bottom, transparent, white 80%);
         }
 
+
         #limaSeeMoreBtn {
             background: none;
             border: none;
@@ -294,6 +300,7 @@
             font-size: 15px;
             color: #000;
             cursor: pointer;
+            transition: all .3s ease;
         }
 
         /* Modal */

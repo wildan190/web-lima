@@ -728,6 +728,17 @@ margin-bottom: 0.5rem;
 .footer-nav a {
 color: white;
 font-size: 0.9rem;
+transition: all .3s ease;
+}
+
+.footer-nav a:hover {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+.footer-nav a:hover {
+    transform: none;
+    }
 }
 
 .footer-middle {

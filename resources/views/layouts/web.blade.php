@@ -168,10 +168,12 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
+            transition: all .3s ease;
         }
 
         .dropdown-content a:hover {
             background-color: #f1f1f1;
+            color: #E02A26;
         }
 
         /* Icon Styling */
