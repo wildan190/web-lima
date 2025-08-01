@@ -715,6 +715,13 @@
             color: #888;
             position: relative;
             cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        
+        .milestone-year:hover {
+            color: #e02a26;
+            transform: scale(1.1);
         }
 
         .milestone-year.active {
