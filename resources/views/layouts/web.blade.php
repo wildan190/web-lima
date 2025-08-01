@@ -291,17 +291,17 @@
 
     <script>
         $(document).ready(function() {
-            // Mencegah klik di link untuk reload halaman
+            // Language change AJAX
             $(document).on('click', '.change-language', function(e) {
-                e.preventDefault(); // Mencegah refresh halaman
+                e.preventDefault();
                 var lang = $(this).data('lang');
                 var url = '{{ route('change.language', ':lang') }}'.replace(':lang', lang);
 
                 $.ajax({
                     url: url,
                     type: 'GET',
-                    success: function(response) {
-                        location.reload(); // Reload setelah bahasa berhasil diganti
+                    success: function() {
+                        location.reload();
                     },
                     error: function() {
                         alert('Error changing language. Please try again.');
@@ -309,21 +309,38 @@
                 });
             });
 
-            // Menangani toggle dropdown saat klik
-            $('.dropdown-label').on('click', function() {
-                $(this).next('.dropdown-content').toggle(); // Tampilkan atau sembunyikan dropdown
+            // Dropdown toggle
+            $('.dropdown-label').on('click', function(e) {
+                e.stopPropagation();
+                $(this).next('.dropdown-content').toggle();
             });
 
-            // Menghentikan event propagate jika ada klik di dalam dropdown
+            // Prevent dropdown close on inside click
             $(document).on('click', '.dropdown-content', function(e) {
-                e.stopPropagation(); // Mencegah klik menutup dropdown jika klik pada elemen dalam dropdown
+                e.stopPropagation();
             });
 
-            // Menutup dropdown jika klik di luar dropdown
-            $(document).on('click', function(e) {
-                if (!$(e.target).closest('.dropdown').length) {
-                    $('.dropdown-content').hide(); // Sembunyikan dropdown jika klik di luar
-                }
+            // Hide dropdown on outside click
+            $(document).on('click', function() {
+                $('.dropdown-content').hide();
+            });
+
+            // Cookie Consent Bar logic
+            function getCookie(name) {
+                const match = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+                return match ? match.pop() : '';
+            }
+
+            if (getCookie('cookie_accepted') === '1') {
+                $('#cookieConsentBar').hide();
+            } else {
+                $('#cookieConsentBar').show();
+            }
+
+            $('#cookieAcceptBtn').on('click', function() {
+                const maxAge = 60 * 60 * 24 * 365;
+                document.cookie = "cookie_accepted=1; path=/; max-age=" + maxAge + "; samesite=lax";
+                $('#cookieConsentBar').hide();
             });
         });
     </script>
