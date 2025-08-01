@@ -58,6 +58,23 @@
             margin: 0;
         }
 
+        @media (max-width: 480px) {
+            .privacy-banner-text h1 {
+                font-size: 20px;
+            }
+
+            .press-content p {
+                font-size: 11px;
+            }
+
+            .press-meta {
+                font-size: 10px;
+            }
+
+        }
+
+        
+
         /* CONTENT SECTION */
         .privacy-policy-section {
             padding: 60px 0;
