@@ -63,14 +63,6 @@
                 font-size: 20px;
             }
 
-            .press-content p {
-                font-size: 11px;
-            }
-
-            .press-meta {
-                font-size: 10px;
-            }
-
         }
 
         
@@ -103,6 +95,11 @@
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 0 12px rgba(0, 0, 0, 0.04);
+        }
+        @media (max-width: 480px) {
+            .privacy-content {
+                font-size: 14px;
+            }
         }
 
         .privacy-content h2,

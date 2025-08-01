@@ -701,6 +701,13 @@
             margin: 5px 0;
         }
 
+        @media (max-width: 480px) {
+        .milestone-content p {
+            font-size: 14px;
+        }
+        }
+
+
         .milestone-timeline {
             display: flex;
             justify-content: space-between;
