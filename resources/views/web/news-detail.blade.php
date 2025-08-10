@@ -48,11 +48,11 @@
             <div class="news-related-items">
                 @forelse ($relatedNews as $item)
                     <div class="related-item">
-                        <div class=""related-box__img>
+                        <div class="related-box__img">
                             <a href="{{ route('news.detail', $item->slug) }}">
-                            <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
+                                <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
                         </div>
-                            <p class="related-title">{{ $item->title }}</p>
+                        <p class="related-title">{{ $item->title }}</p>
                         </a>
                     </div>
                 @empty
@@ -217,6 +217,13 @@
             color: var(--text-dark);
             margin-top: 12px;
             transition: all .3s ease;
+
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* Maksimal 2 baris */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .news-related {
