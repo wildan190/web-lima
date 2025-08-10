@@ -112,7 +112,12 @@
                                 <div class="milestone-content">
                                     <small>{{ __('messages.milestone') }} {{ $item->year }}</small>
                                     <h3>{{ $item->year }}</h3>
-                                    <p>{{ __('messages.milestone_texts')[$index] ?? $item->description }}</p>
+
+                                    @if (app()->getLocale() === 'id')
+                                        <p>{{ __('messages.milestone_texts')[$index] ?? $item->description }}</p>
+                                    @else
+                                        <p>{{ $item->description }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -132,7 +137,6 @@
             </div>
         </div>
     </section>
-
 
     <section class="sports-section">
         <div class="sports-container">
