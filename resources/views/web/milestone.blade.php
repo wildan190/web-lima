@@ -60,12 +60,13 @@
                 height: 240px;
             }
         }
+
         @media (max-width: 480px) {
 
             .milestone-banner-text h1 {
                 font-size: 20px;
             }
-            
+
             .milestone-banner-text p {
                 font-size: 12px;
             }
@@ -577,8 +578,9 @@
                                 <div class="news-img">
                                     <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                                     <div class="overlay">
-                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp;
-                                            {{ __('messages.news') }}</p>
+                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; {{ $news->category }}
+                                        </p>
+
                                         <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
                                         <a
                                             href="{{ route('news.detail', $news->slug) }}"><span>{{ __('messages.read') }}</span></a>
