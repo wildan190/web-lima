@@ -7,12 +7,14 @@
     "require": {
         "php": "^8.1",
         "google/cloud-storage": "^1.48",
-        "guzzlehttp/guzzle": "^7.2",
+        "google/cloud-translate": "^2.0",
+        "guzzlehttp/guzzle": "^7.9",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "league/flysystem-google-cloud-storage": "^3.0",
-        "spatie/laravel-translatable": "^6.11"
+        "spatie/laravel-translatable": "^6.11",
+        "stichoza/google-translate-php": "^5.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

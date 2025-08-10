@@ -95,7 +95,7 @@
 
     <section class="milestone-section">
         <div class="container">
-            <h2 class="milestone-title">Milestone</h2>
+            <h2 class="milestone-title">{{ __('messages.milestone') }}</h2>
 
             <div class="milestone-slider-wrapper">
                 <button class="milestone-arrow prev" onclick="scrollMilestone(-1)">
@@ -103,16 +103,16 @@
                 </button>
 
                 <div class="milestone-cards" id="milestoneCards">
-                    @foreach ($milestones as $item)
+                    @foreach ($milestones as $index => $item)
                         <div class="milestone-card" data-year="{{ $item->year }}">
                             <div class="milestone-card-inner">
                                 <div class="milestone-img">
                                     <img src="{{ $item->picture_upload }}" alt="Milestone Image">
                                 </div>
                                 <div class="milestone-content">
-                                    <small>LIMA Milestone in</small>
+                                    <small>{{ __('messages.milestone') }} {{ $item->year }}</small>
                                     <h3>{{ $item->year }}</h3>
-                                    <p>{{ $item->description }}</p>
+                                    <p>{{ __('messages.milestone_texts')[$index] ?? $item->description }}</p>
                                 </div>
                             </div>
                         </div>
@@ -132,6 +132,7 @@
             </div>
         </div>
     </section>
+
 
     <section class="sports-section">
         <div class="sports-container">
