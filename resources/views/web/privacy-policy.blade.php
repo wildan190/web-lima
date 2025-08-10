@@ -17,16 +17,20 @@
     <section class="privacy-policy-section">
         <div class="container">
 
-            @if ($policy && $policy->content)
-                <div class="privacy-content">{!! $policy->content !!}</div>
+            @if (app()->getLocale() === 'id')
+                <div class="privacy-content">{!! __('messages.privacy_content') !!}</div>
             @else
-                <p class="empty-message">Privacy policy content is not available at the moment.</p>
+                @if ($policy && $policy->content)
+                    <div class="privacy-content">{!! $policy->content !!}</div>
+                @else
+                    <p class="empty-message">Privacy policy content is not available at the moment.</p>
+                @endif
             @endif
+
         </div>
     </section>
 
     <style>
-        
         /* BANNER SECTION */
         .privacy-banner {
             position: relative;
