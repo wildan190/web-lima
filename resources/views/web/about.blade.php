@@ -306,7 +306,7 @@
                 <p>{{ $webProfile->history ?? '-' }}</p>
             </div>
             <div class="about-right">
-                <iframe src="{{ $WebContact->youtube ?? '-'}}" allowfullscreen></iframe>
+                <iframe src="{{ $WebContact->youtube ?? '-' }}" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -348,8 +348,8 @@
                                     <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}"
                                         style="width: 100%; height: 100%; object-fit: cover;">
                                     <div class="overlay">
-                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp;
-                                            {{ __('messages.news') }}</p>
+                                        <p>{{ $news->created_at->format('d M Y') }} &nbsp;•&nbsp; {{ $news->category }}
+                                        </p>
                                         <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
                                         <a
                                             href="{{ route('news.detail', $news->slug) }}"><span>{{ __('messages.read') }}</span></a>
