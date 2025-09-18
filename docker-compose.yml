@@ -34,6 +34,7 @@ services:
       - /etc/letsencrypt/live/ligamahasiswa.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem:ro
       - /etc/letsencrypt/live/ligamahasiswa.com/privkey.pem:/etc/nginx/ssl/privkey.pem:ro
       - /var/www/certbot:/var/www/certbot
+      - ./storage/app:/var/www/html/storage/app
     depends_on:
       - app
     networks:
