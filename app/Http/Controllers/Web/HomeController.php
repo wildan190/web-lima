@@ -19,9 +19,24 @@ use App\Models\WebContact;
 use App\Models\WebProfile;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
+    protected $webProfile;
+    protected $webContact;
+    protected $sports;
+    protected $newsLatest;
+
+    public function __construct()
+    {
+        // Cache common data for 10 minutes
+        $this->webProfile = Cache::remember('webProfile', 600, fn() => WebProfile::first());
+        $this->webContact = Cache::remember('webContact', 600, fn() => WebContact::first());
+        $this->sports = Cache::remember('sports', 600, fn() => Sport::all());
+        $this->newsLatest = Cache::remember('newsLatest', 600, fn() => News::orderBy('created_at', 'desc')->take(5)->get());
+    }
+
     public function index(Request $request)
     {
         Visitor::create([
@@ -30,99 +45,109 @@ class HomeController extends Controller
             'url' => $request->fullUrl(),
         ]);
 
-        // Data yang sudah ada
-        $webProfile = WebProfile::first();
-        $sports = Sport::all();
-        $WebContact = WebContact::first();
         $heroSlide = Hero::all();
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('web.home', compact('webProfile', 'sports', 'WebContact', 'newsLatest', 'heroSlide'));
+        return view('web.home', [
+            'webProfile' => $this->webProfile,
+            'sports' => $this->sports,
+            'WebContact' => $this->webContact,
+            'newsLatest' => $this->newsLatest,
+            'heroSlide' => $heroSlide,
+        ]);
     }
 
     public function privacyPolicy(Request $request)
     {
-        $policy = PrivacyPolicy::first();
+        $policy = Cache::remember('privacyPolicy', 600, fn() => PrivacyPolicy::first());
 
         return view('web.privacy-policy', compact('policy'));
     }
 
     public function about(Request $request)
     {
-        $webProfile = WebProfile::first();
-        $WebContact = WebContact::first();
-        $aboutBanner = AboutBanner::first();
+        $aboutBanner = Cache::remember('aboutBanner', 600, fn() => AboutBanner::first());
 
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
-
-        return view('web.about', compact('webProfile', 'WebContact', 'newsLatest', 'aboutBanner'));
+        return view('web.about', [
+            'webProfile' => $this->webProfile,
+            'WebContact' => $this->webContact,
+            'newsLatest' => $this->newsLatest,
+            'aboutBanner' => $aboutBanner,
+        ]);
     }
 
     public function contact(Request $request)
     {
-        $WebContact = WebContact::first();
-        $contactBanner = ContactBanner::first();
+        $contactBanner = Cache::remember('contactBanner', 600, fn() => ContactBanner::first());
 
-        return view('web.contact', compact('WebContact', 'contactBanner'));
+        return view('web.contact', [
+            'WebContact' => $this->webContact,
+            'contactBanner' => $contactBanner,
+        ]);
     }
 
     public function gallery(Request $request)
     {
-        $webProfile = WebProfile::first();
-        $WebContact = WebContact::first();
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
-        $gallery = Gallery::all();
-        $sports = Sport::all();
-        $galleryBanner = GalleryBanner::first();
+        $gallery = Cache::remember('gallery', 600, fn() => Gallery::all());
+        $galleryBanner = Cache::remember('galleryBanner', 600, fn() => GalleryBanner::first());
 
-        return view('web.gallery', compact('webProfile', 'galleryBanner', 'WebContact', 'newsLatest', 'gallery', 'sports'));
+        return view('web.gallery', [
+            'webProfile' => $this->webProfile,
+            'WebContact' => $this->webContact,
+            'newsLatest' => $this->newsLatest,
+            'gallery' => $gallery,
+            'sports' => $this->sports,
+            'galleryBanner' => $galleryBanner,
+        ]);
     }
 
     public function milestones(Request $request)
     {
-        $webProfile = WebProfile::first();
-        $WebContact = WebContact::first();
-        $sports = Sport::all();
-        $universities = UniversityCoverage::all();
-        $milestones = Milestone::all();
-        $milestoneBanner = MilestioneBanner::first();
-        $newsLatest = \App\Models\News::orderBy('created_at', 'desc')->take(5)->get();
+        $universities = Cache::remember('universities', 600, fn() => UniversityCoverage::all());
+        $milestones = Cache::remember('milestones', 600, fn() => Milestone::all());
+        $milestoneBanner = Cache::remember('milestoneBanner', 600, fn() => MilestioneBanner::first());
 
-        return view('web.milestone', compact('webProfile', 'WebContact', 'newsLatest', 'sports', 'universities', 'milestones', 'milestoneBanner'));
+        return view('web.milestone', [
+            'webProfile' => $this->webProfile,
+            'WebContact' => $this->webContact,
+            'newsLatest' => $this->newsLatest,
+            'sports' => $this->sports,
+            'universities' => $universities,
+            'milestones' => $milestones,
+            'milestoneBanner' => $milestoneBanner,
+        ]);
     }
 
     public function news(Request $request)
     {
-        $webProfile = WebProfile::first();
-        $WebContact = WebContact::first();
-        $newsBanner = NewsBanner::first();
-        $sports = Sport::all();
-        $gallery = Gallery::all();
+        $newsBanner = Cache::remember('newsBanner', 600, fn() => NewsBanner::first());
+        $gallery = Cache::remember('gallery', 600, fn() => Gallery::all());
 
         $pressRelease = News::paginate(15, ['*'], 'press_page');
 
         $query = News::query();
-
         $categories = $request->input('categories', []);
         if (!empty($categories) && !in_array('all', $categories)) {
             $query->whereIn('category', $categories);
         }
 
         $sort = $request->input('sort', 'newest');
-        if ($sort === 'oldest') {
-            $query->orderBy('created_at', 'asc');
-        } else {
-            $query->orderBy('created_at', 'desc');
-        }
+        $query->orderBy('created_at', $sort === 'oldest' ? 'asc' : 'desc');
 
         $news = $query->paginate(8)->appends($request->all());
 
-        return view('web.news', compact('pressRelease', 'webProfile', 'WebContact', 'news', 'newsBanner', 'sports', 'gallery'));
+        return view('web.news', [
+            'pressRelease' => $pressRelease,
+            'webProfile' => $this->webProfile,
+            'WebContact' => $this->webContact,
+            'news' => $news,
+            'newsBanner' => $newsBanner,
+            'sports' => $this->sports,
+            'gallery' => $gallery,
+        ]);
     }
 
     public function newsDetail(Request $request, $slug)
     {
-
         Visitor::create([
             'ip_address' => $request->ip(),
             'user_agent' => $request->userAgent(),
@@ -130,13 +155,15 @@ class HomeController extends Controller
             'news_slug' => $slug,
         ]);
 
-        $webProfile = WebProfile::first();
-        $WebContact = WebContact::first();
-
         $news = News::where('slug', $slug)->firstOrFail();
-        $newsLatest = News::orderBy('created_at', 'desc')->take(5)->get();
         $relatedNews = News::where('category', $news->category)->latest()->take(3)->get();
 
-        return view('web.news-detail', compact('webProfile', 'WebContact', 'news', 'newsLatest', 'relatedNews'));
+        return view('web.news-detail', [
+            'webProfile' => $this->webProfile,
+            'WebContact' => $this->webContact,
+            'news' => $news,
+            'newsLatest' => $this->newsLatest,
+            'relatedNews' => $relatedNews,
+        ]);
     }
 }
