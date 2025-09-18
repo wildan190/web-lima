@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\UniversityCoverageController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Web\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,15 +29,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [\App\Http\Controllers\Web\HomeController::class, 'index'])->name('home');
-Route::get('/privacy-policy', [\App\Http\Controllers\Web\HomeController::class, 'privacyPolicy'])->name('privacy.policy');
-Route::get('/contact', [\App\Http\Controllers\Web\HomeController::class, 'contact'])->name('contact');
-Route::get('/about', [\App\Http\Controllers\Web\HomeController::class, 'about'])->name('about');
-Route::get('/gallery', [\App\Http\Controllers\Web\HomeController::class, 'gallery'])->name('gallery');
-Route::get('/milestones', [\App\Http\Controllers\Web\HomeController::class, 'milestones'])->name('milestones');
-Route::get('/news', [\App\Http\Controllers\Web\HomeController::class, 'news'])->name('news');
-Route::get('/news/{slug}', [\App\Http\Controllers\Web\HomeController::class, 'newsDetail'])->name('news.detail');
+Route::middleware('throttle:60,1')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy.policy');
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('/about', [HomeController::class, 'about'])->name('about');
+    Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+    Route::get('/milestones', [HomeController::class, 'milestones'])->name('milestones');
+    Route::get('/news', [HomeController::class, 'news'])->name('news');
+    Route::get('/news/{slug}', [HomeController::class, 'newsDetail'])->name('news.detail');
+});
 
 Route::post('/accept-cookies', function (Request $request) {
     return response('OK')->cookie('cookie_consent', 'accepted', 60 * 24 * 365); // 1 year
