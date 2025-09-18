@@ -36,12 +36,11 @@ services:
       - webnet
 
   db:
-    image: mysql:8.0
+    image: mariadb:10.6
     container_name: web-lima-mysql
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: MyS3cur3P@ss
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: web_lima
     ports:
       - "3306:3306"
