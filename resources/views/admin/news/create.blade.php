@@ -68,6 +68,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="date" class="form-label">Date</label>
+                    <input type="date" name="date" class="form-control" id="date" value="{{ old('date') }}">
+                </div>
+
+                <div class="mb-3">
                     <label for="tag" class="form-label">Tag</label>
                     <input type="text" name="tag" class="form-control" id="tag" value="{{ old('tag') }}"
                         placeholder="Tag">

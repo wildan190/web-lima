@@ -133,7 +133,7 @@
                         <div class="news-card">
                             <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}">
                             <div class="news-card-overlay">
-                                <span class="date">{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }} •
+                                <span class="date">{{ \Carbon\Carbon::parse($item->date)->format('j M Y') }} •
                                     {{ $item->category ?? 'Uncategorized' }}</span>
                                 <h3 class="title">{{ $item->title }}</h3>
                                 <a href="{{ route('news.detail', $item->slug) }}" class="read-more">Read →</a>
@@ -640,7 +640,7 @@
                         <div class="press-content">
                             <div class="press-meta">
                                 <span>Oleh Admin</span>
-                                <span>{{ \Carbon\Carbon::parse($first->created_at)->format('j M Y') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($first->date)->format('j M Y') }}</span>
                             </div>
                             <h3 class="press-title-red">{{ $first->title }}</h3>
                             <p>{{ \Illuminate\Support\Str::limit(strip_tags($first->content), 150) }}</p>
@@ -654,7 +654,7 @@
                             <div class="press-content">
                                 <div class="press-meta">
                                     <span>Oleh Admin</span>
-                                    <span>{{ \Carbon\Carbon::parse($second->created_at)->format('j M Y') }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($second->date)->format('j M Y') }}</span>
                                 </div>
                                 <h3 class="press-title-red">{{ $second->title }}</h3>
                                 <p>{{ \Illuminate\Support\Str::limit(strip_tags($second->content), 100) }}</p>
@@ -671,7 +671,7 @@
                             <div class="press-content">
                                 <div class="press-meta">
                                     <span>Oleh Admin</span>
-                                    <span>{{ \Carbon\Carbon::parse($item->created_at)->format('j M Y') }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($item->date)->format('j M Y') }}</span>
                                 </div>
                                 <h3 class="press-title-red">{{ $item->title }}</h3>
                                 <p>{{ \Illuminate\Support\Str::limit(strip_tags($item->content), 100) }}</p>

@@ -55,6 +55,9 @@
             <input type="file" name="picture_upload" id="picture_upload">
             <img id="preview-image" style="max-width: 200px; display: none; margin-top: 10px; border: 1px solid #ccc;" />
 
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" value="{{ old('date', $news->date ? $news->date->format('Y-m-d') : '') }}">
+
             <label for="tag">Tag</label>
             <input type="text" name="tag" id="tag" value="{{ old('tag', $news->tag) }}">
 
