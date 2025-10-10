@@ -17,6 +17,7 @@ class News extends Model
         'keywords',
         'status',
         'category',
+        'date', 
     ];
 
     protected static function booted()

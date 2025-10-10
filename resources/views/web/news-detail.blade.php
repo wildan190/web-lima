@@ -20,7 +20,7 @@
             <h1 class="news-title">{{ $news->title }}</h1>
 
             <div class="news-meta">
-                <span class="news-date">{{ \Carbon\Carbon::parse($news->created_at)->format('j M Y') }}</span>
+                <span class="news-date">{{ \Carbon\Carbon::parse($news->date)->format('j M Y') }}</span>
                 <div class="news-meta-icons">
                     <a href="https://facebook.com/sharer/sharer.php?u={{ urlencode(Request::fullUrl()) }}" target="_blank"
                         title="Share to Facebook"><i class="fab fa-facebook-f"></i></a>
