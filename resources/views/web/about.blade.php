@@ -348,7 +348,9 @@
                                     <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}"
                                         style="width: 100%; height: 100%; object-fit: cover;">
                                     <div class="overlay">
-                                        <p>{{ $news->date->format('d M Y') }} &nbsp;•&nbsp; {{ $news->category }}
+                                        <p>
+                                            {{ $news->date ? $news->date->format('d M Y') : '' }} &nbsp;•&nbsp;
+                                            {{ $news->category }}
                                         </p>
                                         <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
                                         <a
