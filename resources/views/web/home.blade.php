@@ -166,10 +166,10 @@
                                     <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
                                     <div class="overlay">
                                         <p>
-                                            {{ $news->date ? $news->date->format('d M Y') : '' }} &nbsp;•&nbsp;
+                                            {{ $news->date ? \Carbon\Carbon::parse($news->date)->format('d M Y') : '' }}
+                                            &nbsp;•&nbsp;
                                             {{ $news->category }}
                                         </p>
-
                                         <h4>{{ \Illuminate\Support\Str::limit($news->title, 60) }}</h4>
                                         <a
                                             href="{{ route('news.detail', $news->slug) }}"><span>{{ __('messages.read') }}</span></a>
