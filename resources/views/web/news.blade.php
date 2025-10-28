@@ -682,7 +682,7 @@
 
                 {{-- Pagination --}}
                 <div class="press-pagination" style="margin-top: 40px;">
-                    {{ $pressRelease->appends(request()->except('press_page'))->links() }}
+                    {{ $pressRelease->appends(request()->except('press_page'))->links('vendor.pagination.custom') }}
                 </div>
             @endif
         </div>
