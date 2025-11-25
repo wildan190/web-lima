@@ -10,7 +10,7 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-        <!-- FORM DITAMBAHKAN KARENA HILANG -->
+        {{-- FORM FIXED (DITAMBAH) --}}
         <form method="POST" action="{{ route('admin.contact_banner.store_or_update') }}" enctype="multipart/form-data">
             @csrf
 
@@ -20,23 +20,15 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-                        @php
-                            $imageUrl = null;
-                            if (!empty($banner?->upload_picture)) {
-                                // Jika sudah berupa full URL (Google Cloud Storage)
-                                if (Str::startsWith($banner->upload_picture, 'http')) {
-                                    $imageUrl = $banner->upload_picture;
-                                } else {
-                                    // Jika hanya path, buat URL storage
-                                    $imageUrl = Storage::url($banner->upload_picture);
-                                }
-                            }
-                        @endphp
-
-                        @if ($imageUrl)
+                        @if (!empty($banner?->upload_picture))
                             <div class="text-center mb-3">
-                                <img src="{{ $imageUrl }}" alt="Current Image" class="img-fluid rounded"
-                                    style="width: 100%; height: 200px; object-fit: cover;">
+
+                                {{-- FIX: Pastikan URL tidak di-escape --}}
+                                <img src="{{ $banner->upload_picture }}"
+                                     alt="Current Image"
+                                     class="img-fluid rounded"
+                                     style="width: 100%; height: 200px; object-fit: cover;">
+
                                 <p><small>Current Image from GCS</small></p>
                             </div>
                         @else
@@ -49,17 +41,23 @@
                 <input type="file" name="upload_picture" class="form-control mt-3" id="upload_picture" accept="image/*">
             </div>
 
-            <label for="title" class="form-label">Title</label>
-            <input type="text" placeholder="Title" name="title" class="form-control" id="title"
-                value="{{ old('title', $banner->title ?? '') }}">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" placeholder="Title" name="title" class="form-control" id="title"
+                    value="{{ old('title', $banner->title ?? '') }}">
+            </div>
 
-            <label for="subtitle" class="form-label">Subtitle</label>
-            <input type="text" placeholder="Subtitle" name="subtitle" class="form-control" id="subtitle"
-                value="{{ old('subtitle', $banner->subtitle ?? '') }}">
+            <div class="mb-3">
+                <label for="subtitle" class="form-label">Subtitle</label>
+                <input type="text" placeholder="Subtitle" name="subtitle" class="form-control" id="subtitle"
+                    value="{{ old('subtitle', $banner->subtitle ?? '') }}">
+            </div>
 
-            <button type="submit" class="btn btn-primary mt-3">Save</button>
-        </form>
+            <button type="submit" class="btn btn-primary">Save</button>
+
+        </form> {{-- FORM FIXED --}}
     </div>
+
 @endsection
 
 <style>
