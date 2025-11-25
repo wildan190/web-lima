@@ -14,9 +14,9 @@
     <!-- primary meta tags -->
     <meta name="title" content="LIMA - Liga Mahasiswa Indonesia" />
     <meta name="description"
-        content="LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa." />
+        content="LIMA adalah liga olahraga mahasiswa terbesar di Indonesia, menghadirkan kompetisi resmi antar kampus, mengembangkan potensi atlet muda, dan mempromosikan sportivitas olahraga mahasiswa di tingkat nasional." />
     <meta name="keywords"
-        content="Liga Mahasiswa, LIMA, olahraga mahasiswa, turnamen kampus, basket mahasiswa, sepak bola mahasiswa, sport Indonesia" />
+        content="Liga Mahasiswa, LIMA, LIMA Indonesia, olahraga mahasiswa, kompetisi olahraga kampus, liga kampus Indonesia, turnamen mahasiswa, basket mahasiswa, futsal mahasiswa, sepak bola mahasiswa, voli mahasiswa, badminton mahasiswa, olahraga kampus, sport mahasiswa Indonesia" />
     <meta name="author" content="LIMA Indonesia" />
     <meta name="copyright" content="LIMA - Liga Mahasiswa. All Rights Reserved" />
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -87,7 +87,9 @@
         href="{{ asset('assets/img/homescreen/apple-icon-180x180.png') }}" />
     <link rel="apple-touch-startup-image" href="{{ asset('assets/img/homescreen/apple-icon.png') }}" />
 
-    <!-- schema.org markup -->
+    <!-- ==== schema.org markup (UPGRADED) ==== -->
+
+    <!-- ORGANIZATION SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -95,12 +97,51 @@
       "name": "LIMA - Liga Mahasiswa Indonesia",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('assets/img/limalogo.png') }}",
+      "description": "Organisasi liga olahraga mahasiswa terbesar di Indonesia.",
       "sameAs": [
         "{{ $WebContact->facebook ?? '' }}",
         "{{ $WebContact->instagram ?? '' }}",
         "{{ $WebContact->twitter ?? '' }}",
         "{{ $WebContact->youtube ?? '' }}"
-      ]
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "email": "{{ $WebContact->email ?? '' }}",
+        "telephone": "{{ $WebContact->phone ?? '' }}",
+        "areaServed": "ID"
+      }]
+    }
+    </script>
+
+    <!-- WEBSITE SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "{{ url('/') }}",
+      "name": "LIMA - Liga Mahasiswa Indonesia",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ url('/') }}/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- LOCAL BUSINESS SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "LIMA Indonesia",
+      "image": "{{ asset('assets/img/limalogo.png') }}",
+      "url": "{{ url('/') }}",
+      "telephone": "{{ $WebContact->phone ?? '' }}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "ID"
+      }
     }
     </script>
 
@@ -110,6 +151,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 
 <body>
     @php
