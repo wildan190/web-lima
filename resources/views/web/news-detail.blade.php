@@ -1,6 +1,38 @@
 @extends('layouts.web')
 
-@section('title', 'News Detail - LIMA')
+@section('title', $news->title)
+@section('meta')
+    <meta name="description" content="{{ Str::limit(strip_tags($news->content), 155) }}">
+    <meta name="keywords" content="LIMA, Liga Mahasiswa, {{ $news->category }}, {{ $news->title }}">
+    <meta name="author" content="Liga Mahasiswa">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ $news->title }}" />
+    <meta property="og:description" content="{{ Str::limit(strip_tags($news->content), 155) }}" />
+    <meta property="og:image" content="{{ asset($news->picture_upload) }}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:type" content="article" />
+@endsection
+
+@section('schema')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "{{ $news->title }}",
+  "image": [
+    "{{ asset($news->picture_upload) }}"
+   ],
+  "datePublished": "{{ $news->created_at->toIso8601String() }}",
+  "dateModified": "{{ $news->updated_at->toIso8601String() }}",
+  "author": [{
+      "@type": "Organization",
+      "name": "Liga Mahasiswa",
+      "url": "https://ligamahasiswa.com/"
+    }]
+}
+</script>
+@endsection
 
 @section('content')
 

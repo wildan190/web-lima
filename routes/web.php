@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\SitemapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
+
 Route::middleware('throttle:60,1')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy.policy');
