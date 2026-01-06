@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Gallery\Action;
 
 use App\Models\Gallery;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateGallery
 {
@@ -15,27 +15,17 @@ class UpdateGallery
             $file = $data['picture_upload'];
             $filename = 'galleries/gallery_'.time().'.'.$file->getClientOriginalExtension();
 
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            // Hapus gambar lama dari GCS (jika ada dan URL valid)
             if ($gallery->picture_upload) {
-                $oldPath = parse_url($gallery->picture_upload, PHP_URL_PATH);
-                $oldPath = ltrim($oldPath, '/'); // Buang leading slash
-                $bucket->object($oldPath)->delete();
+                $urlPath = parse_url($gallery->picture_upload, PHP_URL_PATH);
+                if ($urlPath && str_contains($urlPath, '/storage/')) {
+                    $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                    Storage::disk('public')->delete($relativePath);
+                }
             }
 
-            // Upload gambar baru
-            $bucket->upload(
-                file_get_contents($file->getRealPath()),
-                ['name' => $filename]
-            );
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
 
-            $data['picture_upload'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+            $data['picture_upload'] = Storage::url($filename);
         }
 
         $gallery->update($data);

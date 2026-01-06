@@ -5,24 +5,17 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\HeroRequest;
 use App\Models\Hero;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class HeroController extends Controller
 {
-    protected function uploadToGCS($file): string
+    protected function uploadToLocal($file): string
     {
         $filename = 'hero/hero_' . time() . '.' . $file->getClientOriginalExtension();
 
-        $storage = new StorageClient([
-            'projectId' => config('filesystems.disks.gcs.project_id'),
-            'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-        ]);
+        Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
 
-        $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-        $bucket->upload(file_get_contents($file->getRealPath()), ['name' => $filename]);
-
-        return 'https://storage.googleapis.com/' . config('filesystems.disks.gcs.bucket') . '/' . $filename;
+        return Storage::url($filename);
     }
 
     public function index()
@@ -42,7 +35,7 @@ class HeroController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('picture_upload') && $request->file('picture_upload')->isValid()) {
-            $data['picture_upload'] = $this->uploadToGCS($request->file('picture_upload'));
+            $data['picture_upload'] = $this->uploadToLocal($request->file('picture_upload'));
         }
 
         Hero::create($data);
@@ -60,7 +53,7 @@ class HeroController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('picture_upload') && $request->file('picture_upload')->isValid()) {
-            $data['picture_upload'] = $this->uploadToGCS($request->file('picture_upload'));
+            $data['picture_upload'] = $this->uploadToLocal($request->file('picture_upload'));
         } else {
             unset($data['picture_upload']);
         }
@@ -72,26 +65,11 @@ class HeroController extends Controller
 
     public function destroy(Hero $hero)
     {
-        // Hapus file dari GCS jika ada
         if ($hero->picture_upload) {
-            $fileUrl = $hero->picture_upload;
-
-            // Ambil nama objek dari URL
-            $parsedUrl = parse_url($fileUrl, PHP_URL_PATH); // contoh: /bucket-name/hero/hero_123456.jpg
-            $objectName = ltrim(str_replace('/' . config('filesystems.disks.gcs.bucket') . '/', '', $parsedUrl), '/');
-
-            if ($objectName) {
-                $storage = new \Google\Cloud\Storage\StorageClient([
-                    'projectId' => config('filesystems.disks.gcs.project_id'),
-                    'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-                ]);
-
-                $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-                $object = $bucket->object($objectName);
-
-                if ($object->exists()) {
-                    $object->delete();
-                }
+            $urlPath = parse_url($hero->picture_upload, PHP_URL_PATH);
+            if ($urlPath && str_contains($urlPath, '/storage/')) {
+                $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                Storage::disk('public')->delete($relativePath);
             }
         }
 

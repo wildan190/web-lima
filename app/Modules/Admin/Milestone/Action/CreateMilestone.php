@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Milestone\Action;
 
 use App\Repositories\Interface\MilestoneRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class CreateMilestone
 {
@@ -15,21 +15,8 @@ class CreateMilestone
             $file = $data['picture_upload'];
             $filename = 'milestones/milestone_'.time().'.'.$file->getClientOriginalExtension();
 
-            // Inisialisasi GCS
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            // Upload file ke GCS tanpa predefined ACL
-            $bucket->upload(file_get_contents($file->getRealPath()), [
-                'name' => $filename,
-            ]);
-
-            // Simpan URL GCS ke database
-            $data['picture_upload'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            $data['picture_upload'] = Storage::url($filename);
         }
 
         $this->repo->create($data);
