@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\UniversityCoverage\Action;
 
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteUniversityCoverage
 {
@@ -14,19 +14,10 @@ class DeleteUniversityCoverage
         $item = $this->repo->findById($id);
 
         if ($item && $item->logo) {
-            $filePath = parse_url($item->logo, PHP_URL_PATH);
-            $objectName = ltrim($filePath, '/');
-
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            $object = $bucket->object($objectName);
-            if ($object->exists()) {
-                $object->delete();
+            $urlPath = parse_url($item->logo, PHP_URL_PATH);
+            if ($urlPath && str_contains($urlPath, '/storage/')) {
+                $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                Storage::disk('public')->delete($relativePath);
             }
         }
 

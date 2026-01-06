@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\UniversityCoverage\Action;
 
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class CreateUniversityCoverage
 {
@@ -20,20 +20,8 @@ class CreateUniversityCoverage
             $file = $data['logo'];
             $filename = 'university_coverages/logo_'.time().'.'.$file->getClientOriginalExtension();
 
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            $bucket->upload(
-                file_get_contents($file->getRealPath()), [
-                    'name' => $filename,
-                ]
-            );
-
-            $data['logo'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            $data['logo'] = Storage::url($filename);
         }
 
         $this->repository->create($data);

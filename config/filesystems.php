@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DISK', 'local'),
+    'default' => 'public',
 
     /*
     |--------------------------------------------------------------------------
@@ -54,27 +54,7 @@ return [
             'throw' => false,
         ],
 
-        'gcs' => [
-            'driver' => 'gcs',
-            'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
-            'key_file' => base_path(env('GOOGLE_CLOUD_KEY_FILE', '')), // ❗️ gunakan base_path()
-            'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
-            'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional
-            'visibility' => 'public',
-        ],
 
-        'ftp' => [
-            'driver' => 'ftp',
-            'host' => env('FTP_HOST', 'your-ftp-host'),
-            'username' => env('FTP_USERNAME', 'your-ftp-username'),
-            'password' => env('FTP_PASSWORD', 'your-ftp-password'),
-            'port' => env('FTP_PORT', 21),
-            'root' => env('FTP_ROOT', '/'),
-            'passive' => true,
-            'ssl' => false,
-            'timeout' => 30,
-            'throw' => false,
-        ],
     ],
 
     /*

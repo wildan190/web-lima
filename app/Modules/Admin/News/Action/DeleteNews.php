@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\News\Action;
 
 use App\Repositories\Interface\NewsRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteNews
 {
@@ -14,22 +14,10 @@ class DeleteNews
         $item = $this->repository->findById($id);
 
         if ($item && $item->picture_upload) {
-            $url = $item->picture_upload;
-            $bucketName = config('filesystems.disks.gcs.bucket');
-
-            // Ekstrak nama file dari URL
-            $parsed = parse_url($url);
-            $objectName = ltrim($parsed['path'], '/');
-
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket($bucketName);
-
-            if ($bucket->object($objectName)->exists()) {
-                $bucket->object($objectName)->delete();
+            $urlPath = parse_url($item->picture_upload, PHP_URL_PATH);
+            if ($urlPath && str_contains($urlPath, '/storage/')) {
+                $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                Storage::disk('public')->delete($relativePath);
             }
         }
 

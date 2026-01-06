@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\News\Action;
 
 use App\Repositories\Interface\NewsRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class UpdateNews
 {
@@ -17,19 +17,8 @@ class UpdateNews
             $file = $data['picture_upload'];
             $filename = 'news/news_'.time().'.'.$file->getClientOriginalExtension();
 
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            // Upload tanpa predefinedAcl karena uniform access
-            $bucket->upload(file_get_contents($file->getRealPath()), [
-                'name' => $filename,
-            ]);
-
-            $data['picture_upload'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            $data['picture_upload'] = Storage::url($filename);
         } else {
             unset($data['picture_upload']);
         }

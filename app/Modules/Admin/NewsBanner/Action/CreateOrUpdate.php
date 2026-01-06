@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\NewsBanner\Action;
 
 use App\Repositories\Interface\NewsBannerRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class CreateOrUpdate
 {
@@ -15,18 +15,8 @@ class CreateOrUpdate
             $file = $data['upload_picture'];
             $filename = 'news_banner/news_'.time().'.'.$file->getClientOriginalExtension();
 
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            $bucket->upload(file_get_contents($file->getRealPath()), [
-                'name' => $filename,
-            ]);
-
-            $data['upload_picture'] = 'https://storage.googleapis.com/'.config('filesystems.disks.gcs.bucket').'/'.$filename;
+            Storage::disk('public')->put($filename, file_get_contents($file->getRealPath()));
+            $data['upload_picture'] = Storage::url($filename);
         }
 
         $this->repository->updateOrCreate([], $data);

@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Milestone\Action;
 
 use App\Repositories\Interface\MilestoneRepositoryInterface;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteMilestone
 {
@@ -14,21 +14,10 @@ class DeleteMilestone
         $item = $this->repo->findById($id);
 
         if ($item->picture_upload) {
-            $bucketName = config('filesystems.disks.gcs.bucket');
-            $objectPath = str_replace('https://storage.googleapis.com/'.$bucketName.'/', '', $item->picture_upload);
-
-            if (! empty($objectPath)) {
-                $storage = new StorageClient([
-                    'projectId' => config('filesystems.disks.gcs.project_id'),
-                    'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-                ]);
-
-                $bucket = $storage->bucket($bucketName);
-                $object = $bucket->object($objectPath);
-
-                if ($object->exists()) {
-                    $object->delete();
-                }
+            $urlPath = parse_url($item->picture_upload, PHP_URL_PATH);
+            if ($urlPath && str_contains($urlPath, '/storage/')) {
+                $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                Storage::disk('public')->delete($relativePath);
             }
         }
 

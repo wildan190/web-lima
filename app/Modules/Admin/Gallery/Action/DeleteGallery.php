@@ -3,7 +3,7 @@
 namespace App\Modules\Admin\Gallery\Action;
 
 use App\Models\Gallery;
-use Google\Cloud\Storage\StorageClient;
+use Illuminate\Support\Facades\Storage;
 
 class DeleteGallery
 {
@@ -12,18 +12,10 @@ class DeleteGallery
         $gallery = Gallery::findOrFail($id);
 
         if ($gallery->picture_upload) {
-            $filePath = ltrim(parse_url($gallery->picture_upload, PHP_URL_PATH), '/');
-
-            $storage = new StorageClient([
-                'projectId' => config('filesystems.disks.gcs.project_id'),
-                'keyFilePath' => config('filesystems.disks.gcs.key_file'),
-            ]);
-
-            $bucket = $storage->bucket(config('filesystems.disks.gcs.bucket'));
-
-            $object = $bucket->object($filePath);
-            if ($object->exists()) {
-                $object->delete();
+            $urlPath = parse_url($gallery->picture_upload, PHP_URL_PATH);
+            if ($urlPath && str_contains($urlPath, '/storage/')) {
+                $relativePath = ltrim(str_replace('/storage/', '', $urlPath), '/');
+                Storage::disk('public')->delete($relativePath);
             }
         }
 
