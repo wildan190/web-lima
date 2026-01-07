@@ -393,7 +393,6 @@
         }
     </style>
 
-
     <section class="university-coverage-section">
         <div class="coverage-container">
             <h2 class="coverage-title">University Coverage</h2>
@@ -402,7 +401,7 @@
                 @foreach ($universities as $index => $university)
                     <div class="coverage-card {{ $index >= 10 ? 'hidden' : '' }}">
                         <div class="coverage-logo">
-                            <img src="{{ $university->logo }}" alt="{{ $university->name }}">
+                            <img src="{{ asset('storage/'.$university->logo) }}" alt="{{ $university->name }}">
                         </div>
                         <div class="coverage-name">{{ $university->name }}</div>
                     </div>
