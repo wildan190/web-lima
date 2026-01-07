@@ -401,7 +401,7 @@
                 @foreach ($universities as $index => $university)
                     <div class="coverage-card {{ $index >= 10 ? 'hidden' : '' }}">
                         <div class="coverage-logo">
-                            <img src="{{ asset('storage/'.$university->logo) }}" alt="{{ $university->name }}">
+                            <img src="{{ asset($university->logo) }}" alt="{{ $university->name }}">
                         </div>
                         <div class="coverage-name">{{ $university->name }}</div>
                     </div>
