@@ -13,148 +13,115 @@
                  class="rounded-circle bg-white p-1"
                  style="width: 50px; height: 50px; object-fit: contain;">
 
-            <h5 class="offcanvas-title mb-0 fs-6 fw-bold" id="adminSidebarLabel">
+            <h5 class="offcanvas-title mb-0 fs-6 fw-bold">
                 PT. BINA MAHASISWA INDONESIA
             </h5>
         </div>
 
-        <!-- Tombol close hanya muncul di mobile -->
+        <!-- close hanya muncul di mobile -->
         <button type="button"
                 class="btn-close btn-close-white d-lg-none"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+                data-bs-dismiss="offcanvas"></button>
     </div>
 
 
     <div class="offcanvas-body p-0 overflow-auto">
-        <nav class="nav flex-column nav-pills px-3 pt-3">
 
-            <!-- Dashboard -->
+        <nav class="nav flex-column px-3 pt-3">
+
+            <!-- ============ DASHBOARD ============ -->
             <a href="{{ url('admin/dashboard') }}"
-               class="nav-link {{ request()->is('admin/dashboard') ? 'active text-dark bg-white' : 'text-white-50' }}">
+               class="nav-link py-2 {{ request()->is('admin/dashboard') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
                 <i class="fas fa-tachometer-alt me-3"></i> Dashboard
             </a>
 
 
-            <!-- Website Settings -->
-            <div class="nav-item dropdown mt-2">
-                <a class="nav-link dropdown-toggle
-                   {{ request()->is('admin/web_*') || request()->is('admin/privacy*') || request()->is('admin/*banner*') || request()->is('admin/hero*') ? 'active text-dark bg-white' : 'text-white-50' }}"
-                   data-bs-toggle="collapse"
-                   href="#websiteSettings"
-                   role="button">
-
-                    <i class="fas fa-cogs me-3"></i>
-                    Website Settings
-                </a>
-
-                <div class="collapse
-                    {{ request()->is('admin/web_*') || request()->is('admin/privacy*') || request()->is('admin/*banner*') || request()->is('admin/hero*') ? 'show' : '' }}"
-                    id="websiteSettings">
-
-                    <nav class="nav flex-column ms-4">
-
-                        <a href="{{ route('admin.web_profile.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.web_profile.*') ? 'active text-white bg-dark' : '' }}">
-                           Web Profile
-                        </a>
-
-                        <a href="{{ route('admin.web_contact.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.web_contact.*') ? 'active text-white bg-dark' : '' }}">
-                           Web Contact
-                        </a>
-
-                        <a href="{{ route('admin.privacy-policies.edit') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.privacy_policy.*') ? 'active text-white bg-dark' : '' }}">
-                           Privacy Policy
-                        </a>
-
-                        <a href="{{ route('admin.about_banner.create') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.about_banner.*') ? 'active text-white bg-dark' : '' }}">
-                           About Banner
-                        </a>
-
-                        <a href="{{ route('admin.contact_banner.form') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.contact_banner.*') ? 'active text-white bg-dark' : '' }}">
-                           Contact Banner
-                        </a>
-
-                        <a href="{{ route('admin.gallery_banner.create') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.gallery_banner.*') ? 'active text-white bg-dark' : '' }}">
-                           Gallery Banner
-                        </a>
-
-                        <a href="{{ route('admin.milestone_banner.create') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.milestone_banner.*') ? 'active text-white bg-dark' : '' }}">
-                           Milestone Banner
-                        </a>
-
-                        <a href="{{ route('admin.news_banner.create') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.news_banner.*') ? 'active text-white bg-dark' : '' }}">
-                           News Banner
-                        </a>
-
-                        <a href="{{ route('admin.hero.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.hero.*') ? 'active text-white bg-dark' : '' }}">
-                           Hero Banner
-                        </a>
-
-                    </nav>
-                </div>
+            <!-- ============ WEBSITE SETTINGS GROUP TITLE ============ -->
+            <div class="text-uppercase small mt-4 mb-2 text-secondary fw-bold">
+                Website Settings
             </div>
 
+            <a href="{{ route('admin.web_profile.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.web_profile.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Web Profile
+            </a>
+
+            <a href="{{ route('admin.web_contact.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.web_contact.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Web Contact
+            </a>
+
+            <a href="{{ route('admin.privacy-policies.edit') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.privacy_policy.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Privacy Policy
+            </a>
+
+            <a href="{{ route('admin.about_banner.create') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.about_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                About Banner
+            </a>
+
+            <a href="{{ route('admin.contact_banner.form') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.contact_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Contact Banner
+            </a>
+
+            <a href="{{ route('admin.gallery_banner.create') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.gallery_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Gallery Banner
+            </a>
+
+            <a href="{{ route('admin.milestone_banner.create') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.milestone_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Milestone Banner
+            </a>
+
+            <a href="{{ route('admin.news_banner.create') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.news_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                News Banner
+            </a>
+
+            <a href="{{ route('admin.hero.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.hero.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Hero Banner
+            </a>
 
 
-            <!-- Sports Management -->
-            <div class="nav-item dropdown mt-2">
-                <a class="nav-link dropdown-toggle
-                   {{ request()->is('admin/sports*') || request()->is('admin/galleries*') || request()->is('admin/university*') || request()->is('admin/milestones*') || request()->is('admin/news*') ? 'active text-dark bg-white' : 'text-white-50' }}"
-                   data-bs-toggle="collapse"
-                   href="#sportsManagement"
-                   role="button">
 
-                    <i class="fas fa-trophy me-3"></i>
-                    Sports Management
-                </a>
-
-                <div class="collapse
-                    {{ request()->is('admin/sports*') || request()->is('admin/galleries*') || request()->is('admin/university*') || request()->is('admin/milestones*') || request()->is('admin/news*') ? 'show' : '' }}"
-                    id="sportsManagement">
-
-                    <nav class="nav flex-column ms-4">
-
-                        <a href="{{ route('admin.sports.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.sports.*') ? 'active text-white bg-dark' : '' }}">
-                           Sports
-                        </a>
-
-                        <a href="{{ route('admin.galleries.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.galleries.*') ? 'active text-white bg-dark' : '' }}">
-                           Gallery
-                        </a>
-
-                        <a href="{{ route('admin.university-coverages.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.university-coverages.*') ? 'active text-white bg-dark' : '' }}">
-                           University Coverage
-                        </a>
-
-                        <a href="{{ route('admin.milestones.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.milestones.*') ? 'active text-white bg-dark' : '' }}">
-                           Milestone
-                        </a>
-
-                        <a href="{{ route('admin.news.index') }}"
-                           class="nav-link text-white-50 py-2 {{ request()->routeIs('admin.news.*') ? 'active text-white bg-dark' : '' }}">
-                           News
-                        </a>
-
-                    </nav>
-                </div>
+            <!-- ============ SPORTS MANAGEMENT GROUP TITLE ============ -->
+            <div class="text-uppercase small mt-4 mb-2 text-secondary fw-bold">
+                Sports Management
             </div>
 
+            <a href="{{ route('admin.sports.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.sports.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Sports
+            </a>
 
-            <!-- Logout -->
-            <div class="mt-5 px-3">
+            <a href="{{ route('admin.galleries.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.galleries.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Gallery
+            </a>
+
+            <a href="{{ route('admin.university-coverages.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.university-coverages.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                University Coverage
+            </a>
+
+            <a href="{{ route('admin.milestones.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.milestones.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                Milestone
+            </a>
+
+            <a href="{{ route('admin.news.index') }}"
+               class="nav-link py-2 {{ request()->routeIs('admin.news.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
+                News
+            </a>
+
+
+
+            <!-- ============ LOGOUT ============ -->
+            <div class="mt-5 px-1">
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit"
@@ -166,6 +133,7 @@
             </div>
 
         </nav>
+
     </div>
 
 </div>
