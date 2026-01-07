@@ -1,13 +1,105 @@
-<div class="offcanvas offcanvas-start show bg-black text-white"
+<div class="offcanvas offcanvas-start show"
      id="adminSidebar"
-     style="width:350px;visibility:visible!important"
+     style="width:350px;visibility:visible!important;background:#0d0d0d;color:white"
      data-bs-backdrop="false"
      data-bs-scroll="true">
 
+<style>
+/* =========================
+   SIDEBAR DESIGN
+========================= */
+
+#adminSidebar{
+    border-right:1px solid #2b2b2b;
+    font-family: "Segoe UI", Arial;
+}
+
+/* Header */
+#adminSidebar .offcanvas-header{
+    padding:18px 18px;
+}
+
+/* LOGO */
+#adminSidebar img{
+    border-radius:14px;
+}
+
+/* Section Title */
+.menu-title{
+    font-size:11px;
+    letter-spacing:1px;
+    color:#b3b3b3;
+    margin:18px 4px 8px 4px;
+    text-transform:uppercase;
+    font-weight:700;
+}
+
+/* Divider Line */
+.menu-divider{
+    border-bottom:1px solid #2e2e2e;
+    margin:10px 0 4px 0;
+}
+
+/* MENU WRAPPER */
+.nav.flex-column{
+    gap:4px;
+}
+
+/* MENU BUTTON STYLE */
+#adminSidebar .nav-link{
+    color:#dcdcdc !important;
+    background:#161616;
+    border:1px solid #222;
+    border-radius:12px;
+    padding:10px 14px;
+    margin:2px 0;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:14px;
+    font-weight:500;
+    transition:all .15s ease-in-out;
+}
+
+/* ICON WIDTH */
+#adminSidebar .nav-link i{
+    width:18px;
+    text-align:center;
+}
+
+/* HOVER */
+#adminSidebar .nav-link:hover{
+    background:#1f1f1f;
+    border-color:#333;
+    color:#fff !important;
+}
+
+/* ACTIVE */
+#adminSidebar .nav-link.active{
+    background:white !important;
+    color:black !important;
+    font-weight:700;
+    border-color:white;
+}
+
+/* Logout button */
+#adminSidebar .btn-outline-light{
+    border-radius:14px;
+    font-weight:600;
+}
+
+/* Mobile close button */
+.btn-close{
+    filter:invert(1);
+}
+</style>
+
+
+<!-- ================= HEADER ================= -->
     <div class="offcanvas-header border-bottom border-secondary">
         <div class="d-flex align-items-center gap-3">
             <img src="{{ asset('assets/img/limalogo.png') }}"
-                 class="rounded-circle bg-white p-1"
+                 class="bg-white p-1"
                  style="width:50px;height:50px;object-fit:contain">
 
             <h5 class="mb-0 fs-6 fw-bold">
@@ -15,16 +107,19 @@
             </h5>
         </div>
 
-        <button class="btn-close btn-close-white d-lg-none"
-                data-bs-dismiss="offcanvas"></button>
+        <button class="btn-close d-lg-none" data-bs-dismiss="offcanvas"></button>
     </div>
 
 
+<!-- ================= BODY ================= -->
     <div class="offcanvas-body p-3">
 
         <nav class="nav flex-column">
 
+
             <!-- DASHBOARD -->
+            <div class="menu-title">Main</div>
+
             <a href="{{ url('admin/dashboard') }}"
                class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
                 <i class="fas fa-tachometer-alt"></i>
@@ -32,7 +127,10 @@
             </a>
 
 
-            <!-- TITLE -->
+            <div class="menu-divider"></div>
+
+
+            <!-- WEBSITE -->
             <div class="menu-title">Website Settings</div>
 
             <a href="{{ route('admin.web_profile.index') }}"
@@ -81,7 +179,11 @@
             </a>
 
 
-            <!-- TITLE -->
+
+            <div class="menu-divider"></div>
+
+
+            <!-- SPORTS -->
             <div class="menu-title">Sports Management</div>
 
             <a href="{{ route('admin.sports.index') }}"
