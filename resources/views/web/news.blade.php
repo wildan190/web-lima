@@ -131,7 +131,7 @@
                 <div class="nw-grid">
                     @foreach ($news as $item)
                         <div class="news-card">
-                            <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}">
+                            <img src="{{ asset($item->picture_upload) }}" alt="{{ $item->title }}">
                             <div class="news-card-overlay">
                                 <span class="date">{{ \Carbon\Carbon::parse($item->date ? $item->date : $item->created_at)->format('j M Y') }} •
                                     {{ $item->category ?? 'Uncategorized' }}</span>
@@ -636,7 +636,7 @@
                 <div class="press-row press-featured">
                     {{-- First Large Item --}}
                     <a href="{{ route('news.detail', $first->slug) }}" class="press-card press-large">
-                        <img src="{{ $first->picture_upload }}" alt="{{ $first->title }}">
+                        <img src="{{ asset($first->picture_upload) }}" alt="{{ $first->title }}">
                         <div class="press-content">
                             <div class="press-meta">
                                 <span>Oleh Admin</span>
@@ -916,7 +916,7 @@
                     @if (!Str::endsWith($item->picture_upload, ['.mp4', '.mov', '.webm']))
                         <div class="lima-gallery-item" data-sport="{{ $item->sport_id }}">
                             <div class="lima-gallery-media">
-                                <img src="{{ $item->picture_upload }}" alt="Gallery Image"
+                                <img src="{{ asset($item->picture_upload) }}" alt="Gallery Image"
                                     class="lima-gallery-modal-trigger" data-full="{{ $item->picture_upload }}">
                             </div>
                         </div>

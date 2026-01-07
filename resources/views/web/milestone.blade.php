@@ -79,7 +79,7 @@
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
                         <div class="logo-box {{ $index >= 6 ? 'last-row' : '' }}">
-                            <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
+                            <img src="{{ asset($sport->logo) }}" alt="{{ $sport->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -107,7 +107,7 @@
                         <div class="milestone-card" data-year="{{ $item->year }}">
                             <div class="milestone-card-inner">
                                 <div class="milestone-img">
-                                    <img src="{{ $item->picture_upload }}" alt="Milestone Image">
+                                    <img src="{{ asset($item->picture_upload) }}" alt="Milestone Image">
                                 </div>
                                 <div class="milestone-content">
                                     <small>{{ __('messages.milestone') }} {{ $item->year }}</small>
@@ -146,7 +146,7 @@
                     <div class="sport-card">
                         <div class="sport-card-inner">
                             <div class="sport-logo">
-                                <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
+                                <img src="{{ asset($sport->logo) }}" alt="{{ $sport->name }}">
                             </div>
                             <p class="sport-name">{{ $sport->name }}</p>
                         </div>
@@ -580,7 +580,7 @@
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
                                 <div class="news-img">
-                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                    <img src="{{ asset($news->picture_upload) }}" alt="{{ $news->title }}">
                                     <div class="overlay">
                                         <p>
                                             {{ $news->date ? \Carbon\Carbon::parse($news->date)->format('d M Y') : '' }}
