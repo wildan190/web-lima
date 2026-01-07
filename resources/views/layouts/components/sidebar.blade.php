@@ -1,131 +1,120 @@
 <div class="offcanvas offcanvas-start show bg-black text-white"
-     tabindex="-1"
      id="adminSidebar"
-     aria-labelledby="adminSidebarLabel"
-     style="width: 350px; visibility: visible !important;"
+     style="width:350px;visibility:visible!important"
      data-bs-backdrop="false"
      data-bs-scroll="true">
 
     <div class="offcanvas-header border-bottom border-secondary">
         <div class="d-flex align-items-center gap-3">
             <img src="{{ asset('assets/img/limalogo.png') }}"
-                 alt="Logo"
                  class="rounded-circle bg-white p-1"
-                 style="width: 50px; height: 50px; object-fit: contain;">
+                 style="width:50px;height:50px;object-fit:contain">
 
-            <h5 class="offcanvas-title mb-0 fs-6 fw-bold">
+            <h5 class="mb-0 fs-6 fw-bold">
                 PT. BINA MAHASISWA INDONESIA
             </h5>
         </div>
 
-        <!-- close hanya muncul di mobile -->
-        <button type="button"
-                class="btn-close btn-close-white d-lg-none"
+        <button class="btn-close btn-close-white d-lg-none"
                 data-bs-dismiss="offcanvas"></button>
     </div>
 
 
-    <div class="offcanvas-body p-0 overflow-auto">
+    <div class="offcanvas-body p-3">
 
-        <nav class="nav flex-column px-3 pt-3">
+        <nav class="nav flex-column">
 
-            <!-- ============ DASHBOARD ============ -->
+            <!-- DASHBOARD -->
             <a href="{{ url('admin/dashboard') }}"
-               class="nav-link py-2 {{ request()->is('admin/dashboard') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                <i class="fas fa-tachometer-alt me-3"></i> Dashboard
+               class="nav-link {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+                <i class="fas fa-tachometer-alt"></i>
+                Dashboard
             </a>
 
 
-            <!-- ============ WEBSITE SETTINGS GROUP TITLE ============ -->
-            <div class="text-uppercase small mt-4 mb-2 text-secondary fw-bold">
-                Website Settings
-            </div>
+            <!-- TITLE -->
+            <div class="menu-title">Website Settings</div>
 
             <a href="{{ route('admin.web_profile.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.web_profile.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Web Profile
+               class="nav-link {{ request()->routeIs('admin.web_profile.*') ? 'active' : '' }}">
+               Web Profile
             </a>
 
             <a href="{{ route('admin.web_contact.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.web_contact.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Web Contact
+               class="nav-link {{ request()->routeIs('admin.web_contact.*') ? 'active' : '' }}">
+               Web Contact
             </a>
 
             <a href="{{ route('admin.privacy-policies.edit') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.privacy_policy.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Privacy Policy
+               class="nav-link {{ request()->routeIs('admin.privacy_policy.*') ? 'active' : '' }}">
+               Privacy Policy
             </a>
 
             <a href="{{ route('admin.about_banner.create') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.about_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                About Banner
+               class="nav-link {{ request()->routeIs('admin.about_banner.*') ? 'active' : '' }}">
+               About Banner
             </a>
 
             <a href="{{ route('admin.contact_banner.form') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.contact_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Contact Banner
+               class="nav-link {{ request()->routeIs('admin.contact_banner.*') ? 'active' : '' }}">
+               Contact Banner
             </a>
 
             <a href="{{ route('admin.gallery_banner.create') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.gallery_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Gallery Banner
+               class="nav-link {{ request()->routeIs('admin.gallery_banner.*') ? 'active' : '' }}">
+               Gallery Banner
             </a>
 
             <a href="{{ route('admin.milestone_banner.create') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.milestone_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Milestone Banner
+               class="nav-link {{ request()->routeIs('admin.milestone_banner.*') ? 'active' : '' }}">
+               Milestone Banner
             </a>
 
             <a href="{{ route('admin.news_banner.create') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.news_banner.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                News Banner
+               class="nav-link {{ request()->routeIs('admin.news_banner.*') ? 'active' : '' }}">
+               News Banner
             </a>
 
             <a href="{{ route('admin.hero.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.hero.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Hero Banner
+               class="nav-link {{ request()->routeIs('admin.hero.*') ? 'active' : '' }}">
+               Hero Banner
             </a>
 
 
-
-            <!-- ============ SPORTS MANAGEMENT GROUP TITLE ============ -->
-            <div class="text-uppercase small mt-4 mb-2 text-secondary fw-bold">
-                Sports Management
-            </div>
+            <!-- TITLE -->
+            <div class="menu-title">Sports Management</div>
 
             <a href="{{ route('admin.sports.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.sports.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Sports
+               class="nav-link {{ request()->routeIs('admin.sports.*') ? 'active' : '' }}">
+               Sports
             </a>
 
             <a href="{{ route('admin.galleries.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.galleries.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Gallery
+               class="nav-link {{ request()->routeIs('admin.galleries.*') ? 'active' : '' }}">
+               Gallery
             </a>
 
             <a href="{{ route('admin.university-coverages.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.university-coverages.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                University Coverage
+               class="nav-link {{ request()->routeIs('admin.university-coverages.*') ? 'active' : '' }}">
+               University Coverage
             </a>
 
             <a href="{{ route('admin.milestones.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.milestones.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                Milestone
+               class="nav-link {{ request()->routeIs('admin.milestones.*') ? 'active' : '' }}">
+               Milestone
             </a>
 
             <a href="{{ route('admin.news.index') }}"
-               class="nav-link py-2 {{ request()->routeIs('admin.news.*') ? 'bg-white text-dark fw-bold' : 'text-white-50' }}">
-                News
+               class="nav-link {{ request()->routeIs('admin.news.*') ? 'active' : '' }}">
+               News
             </a>
 
 
-
-            <!-- ============ LOGOUT ============ -->
-            <div class="mt-5 px-1">
-                <form action="{{ route('logout') }}" method="POST">
+            <!-- LOGOUT -->
+            <div class="mt-4">
+                <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit"
-                            class="btn btn-outline-light w-100 border-white">
+                    <button class="btn btn-outline-light w-100">
                         <i class="fas fa-sign-out-alt me-2"></i>
                         Logout
                     </button>
