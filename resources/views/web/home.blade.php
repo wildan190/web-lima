@@ -118,7 +118,7 @@
                 <div class="logo-grid">
                     @foreach ($sports as $index => $sport)
                         <div class="logo-box {{ $index >= 6 ? 'last-row' : '' }}">
-                            <img src="{{ $sport->logo }}" alt="{{ $sport->name }}">
+                            <img src="{{ asset($sport->logo) }}" alt="{{ $sport->name }}">
                         </div>
                     @endforeach
                 </div>
@@ -163,7 +163,7 @@
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
                                 <div class="news-img">
-                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                    <img src="{{ asset($news->picture_upload) }}" alt="{{ $news->title }}">
                                     <div class="overlay">
                                         <p>
                                             {{ $news->date ? \Carbon\Carbon::parse($news->date)->format('d M Y') : '' }}

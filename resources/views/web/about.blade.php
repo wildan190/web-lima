@@ -345,7 +345,7 @@
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
                                 <div class="news-img" style="height: 200px; overflow: hidden; position: relative;">
-                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}"
+                                    <img src="{{ asset($news->picture_upload) }}" alt="{{ $news->title }}"
                                         style="width: 100%; height: 100%; object-fit: cover;">
                                     <div class="overlay">
                                         <p>

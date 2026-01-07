@@ -71,7 +71,7 @@
                     @if (!Str::endsWith($item->picture_upload, ['.mp4', '.mov', '.webm']))
                         <div class="lima-gallery-item" data-sport="{{ $item->sport_id }}">
                             <div class="lima-gallery-media">
-                                <img src="{{ $item->picture_upload }}" alt="Gallery Image"
+                                <img src="{{ asset($item->picture_upload) }}" alt="Gallery Image"
                                     class="lima-gallery-modal-trigger" data-full="{{ $item->picture_upload }}">
                             </div>
                         </div>
@@ -665,7 +665,7 @@
                         <div class="news-card">
                             <a href="{{ route('news.detail', $news->slug) }}">
                                 <div class="news-img">
-                                    <img src="{{ $news->picture_upload }}" alt="{{ $news->title }}">
+                                    <img src="{{ asset($news->picture_upload) }}" alt="{{ $news->title }}">
                                     <div class="overlay">
                                         <p>
                                             {{ $news->date ? \Carbon\Carbon::parse($news->date)->format('d M Y') : '' }}

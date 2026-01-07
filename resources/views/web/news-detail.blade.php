@@ -69,7 +69,7 @@
                 <small id="copyStatus" style="display:none; color: green;">Link copied</small>
             </div>
 
-            <img src="{{ $news->picture_upload }}" class="news-image" alt="{{ $news->title }}">
+            <img src="{{ asset($news->picture_upload) }}" class="news-image" alt="{{ $news->title }}">
 
             <div class="news-body-content">
                 {!! $news->content !!}
@@ -84,7 +84,7 @@
                     <div class="related-item">
                         <div class="related-box__img">
                             <a href="{{ route('news.detail', $item->slug) }}">
-                                <img src="{{ $item->picture_upload }}" alt="{{ $item->title }}" class="related-image">
+                                <img src="{{ asset($item->picture_upload) }}" alt="{{ $item->title }}" class="related-image">
                         </div>
                         <p class="related-title">{{ $item->title }}</p>
                         </a>
