@@ -4,21 +4,21 @@
 
 @push('styles')
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <link href="{{ asset('assets/custom/css/admin/news.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
-    <div class="news-container">
-        <h3>Edit News</h3>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title mb-4">Edit News</h3>
+            <div id="flash-data" data-success="{{ session('success') }}" data-errors="{{ $errors->any() ? implode('||', $errors->all()) : '' }}"></div>
 
-        <form method="POST" action="{{ route('admin.news.update', $news->id) }}" class="news-form"
-            enctype="multipart/form-data" id="news-form">
+        <form method="POST" action="{{ route('admin.news.update', $news->id) }}" enctype="multipart/form-data" id="news-form">
             @csrf
             @method('PUT')
 
             @if ($errors->any())
-                <div class="error-message">
-                    <ul>
+                <div class="alert alert-danger">
+                    <ul class="mb-0 mt-2">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -26,17 +26,24 @@
                 </div>
             @endif
 
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" value="{{ old('title', $news->title) }}">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" id="title" value="{{ old('title', $news->title) }}" class="form-control">
+            </div>
 
-            <label for="subtitle">Subtitle</label>
-            <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $news->subtitle) }}">
+            <div class="mb-3">
+                <label for="subtitle" class="form-label">Subtitle</label>
+                <input type="text" name="subtitle" id="subtitle" value="{{ old('subtitle', $news->subtitle) }}" class="form-control">
+            </div>
 
-            <label for="slug">Slug</label>
-            <input type="text" name="slug" id="slug" value="{{ old('slug', $news->slug) }}">
+            <div class="mb-3">
+                <label for="slug" class="form-label">Slug</label>
+                <input type="text" name="slug" id="slug" value="{{ old('slug', $news->slug) }}" class="form-control">
+            </div>
 
-            <label for="category">Category</label>
-            <select name="category" id="category">
+            <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select name="category" id="category" class="form-select">
                 <option value="Basketball" {{ old('category') == 'Basketball' ? 'selected' : '' }}>Basketball</option>
                 <option value="Futsal" {{ old('category') == 'Futsal' ? 'selected' : '' }}>Futsal</option>
                 <option value="Badminton" {{ old('category') == 'Badminton' ? 'selected' : '' }}>Badminton</option>
@@ -46,38 +53,52 @@
                 <option value="eSport" {{ old('category') == 'eSport' ? 'selected' : '' }}>eSport</option>
                 <option value="Volley Ball" {{ old('category') == 'Volley Ball' ? 'selected' : '' }}>Volley Ball</option>
             </select>
-
-            <label for="picture_upload">Picture</label>
-            <div style="margin-bottom: 10px;">
-                <img src="{{ asset('storage/' . $news->picture_upload) }}" alt="Current Image" id="existing-image"
-                    style="max-width: 200px; border: 1px solid #ccc;">
             </div>
-            <input type="file" name="picture_upload" id="picture_upload">
-            <img id="preview-image" style="max-width: 200px; display: none; margin-top: 10px; border: 1px solid #ccc;" />
 
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date"
-                value="{{ old('date', $news->date ? \Carbon\Carbon::parse($news->date)->format('Y-m-d') : '') }}">
+            <div class="mb-3">
+                <label for="picture_upload" class="form-label">Picture</label>
+                <div class="mb-2">
+                    <img src="{{ asset($news->picture_upload) }}" alt="Current Image" id="existing-image" class="img-thumbnail" style="max-width: 200px;">
+                </div>
+                <input type="file" name="picture_upload" id="picture_upload" class="form-control">
+                <img id="preview-image" class="img-thumbnail mt-2" style="max-width: 200px; display: none;" />
+            </div>
 
-            <label for="tag">Tag</label>
-            <input type="text" name="tag" id="tag" value="{{ old('tag', $news->tag) }}">
+            <div class="mb-3">
+                <label for="date" class="form-label">Date</label>
+                <input type="date" name="date" id="date" value="{{ old('date', $news->date ? \Carbon\Carbon::parse($news->date)->format('Y-m-d') : '') }}" class="form-control">
+            </div>
 
-            <label for="keywords">Keywords</label>
-            <input type="text" name="keywords" id="keywords" value="{{ old('keywords', $news->keywords) }}">
+            <div class="mb-3">
+                <label for="tag" class="form-label">Tag</label>
+                <input type="text" name="tag" id="tag" value="{{ old('tag', $news->tag) }}" class="form-control">
+            </div>
 
-            <label for="status">Status</label>
-            <select name="status" id="status">
+            <div class="mb-3">
+                <label for="keywords" class="form-label">Keywords</label>
+                <input type="text" name="keywords" id="keywords" value="{{ old('keywords', $news->keywords) }}" class="form-control">
+            </div>
+
+            <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select name="status" id="status" class="form-select">
                 <option value="draft" {{ old('status', $news->status) == 'draft' ? 'selected' : '' }}>Draft</option>
                 <option value="publish" {{ old('status', $news->status) == 'publish' ? 'selected' : '' }}>Publish</option>
                 <option value="hidden" {{ old('status', $news->status) == 'hidden' ? 'selected' : '' }}>Hidden</option>
             </select>
+            </div>
 
-            <label for="editor-container">Content</label>
-            <div id="editor-container" style="min-height: 200px; background: white;"></div>
-            <input type="hidden" name="content" id="content" value="{{ old('content', $news->content) }}">
+            <div class="mb-3">
+                <label for="editor-container" class="form-label">Content</label>
+                <div id="editor-container" style="min-height: 200px; background: white;"></div>
+                <input type="hidden" name="content" id="content" value="{{ old('content', $news->content) }}">
+            </div>
 
-            <button type="submit" class="btn-submit">Update</button>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary px-4">Update</button>
+            </div>
         </form>
+        </div>
     </div>
 @endsection
 
@@ -93,11 +114,9 @@
                 placeholder: 'Edit your news content here...'
             });
 
-            const initialContent = `{!! str_replace(['\\', "'", '"'], ['\\\\', "\\'", '\\"'], old('content', $news->content)) !!}`;
-            quill.root.innerHTML = initialContent;
-
             const form = document.getElementById('news-form');
             const contentInput = document.getElementById('content');
+            quill.root.innerHTML = contentInput.value || '';
 
             form.addEventListener('submit', function(e) {
                 const html = quill.root.innerHTML;
@@ -156,23 +175,25 @@
                     .replace(/^-+|-+$/g, '');
             }
 
-            @if (session('success'))
+            const flashEl = document.getElementById('flash-data');
+            const successMsg = flashEl ? flashEl.getAttribute('data-success') : '';
+            const errorData = flashEl ? flashEl.getAttribute('data-errors') : '';
+            if (successMsg) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: '{{ session('success') }}',
+                    text: successMsg,
                     confirmButtonColor: '#3085d6'
                 });
-            @endif
-
-            @if ($errors->any())
+            }
+            if (errorData) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Validation Error',
-                    html: `{!! implode('<br>', $errors->all()) !!}`,
+                    html: errorData.split('||').join('<br>'),
                     confirmButtonColor: '#d33'
                 });
-            @endif
+            }
         });
     </script>
 @endpush
