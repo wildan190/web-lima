@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Panel - PT. BINA MAHASISWA INDONESIA</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    @stack('styles')
+    <!-- ... head lain ... -->
     <style>
-        body { background-color: #f8f9fa; }
-        main { min-height: calc(100vh - 70px); }
+        body {
+            background-color: #f8f9fa;
+        }
+
+        /* Sidebar selalu terbuka di desktop (lg ke atas) */
+        @media (min-width: 992px) {
+            #adminSidebar {
+                transform: translateX(0) !important; /* Pastikan tidak tersembunyi */
+                position: fixed;
+                top: 0;
+                bottom: 0;
+                z-index: 1020;
+            }
+
+            /* Geser content utama agar tidak tertutup sidebar */
+            main.container-fluid {
+                margin-left: 350px; /* Sesuaikan dengan lebar sidebar */
+                transition: margin-left 0.3s ease;
+            }
+
+            /* Navbar tombol hamburger tidak perlu di desktop */
+            .navbar .btn[data-bs-toggle="offcanvas"] {
+                display: none;
+            }
+        }
+
+        /* Optional: tambah transisi halus saat resize */
+        main.container-fluid {
+            transition: margin-left 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -18,7 +40,7 @@
     <!-- Top Navbar -->
     <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm fixed-top">
         <div class="container-fluid">
-            <button class="btn btn-primary me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
+            <button class="btn btn-primary me-3 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
                 <i class="fas fa-bars"></i>
             </button>
             <span class="navbar-brand mb-0 h1 fw-bold text-primary">@yield('title', 'Admin Panel')</span>
@@ -34,6 +56,7 @@
         </div>
     </main>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     @stack('scripts')
 </body>

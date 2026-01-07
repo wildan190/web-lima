@@ -1,4 +1,11 @@
-<div class="offcanvas offcanvas-start bg-primary text-white" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel" style="width: 350px;">
+<div class="offcanvas offcanvas-start bg-primary text-white show" 
+     tabindex="-1" 
+     id="adminSidebar" 
+     aria-labelledby="adminSidebarLabel" 
+     style="width: 350px; visibility: visible !important;"
+     data-bs-backdrop="static" 
+     data-bs-scroll="true">
+
     <div class="offcanvas-header border-bottom border-light border-opacity-25">
         <div class="d-flex align-items-center gap-3">
             <img src="{{ asset('assets/img/limalogo.png') }}" alt="Logo" class="rounded-circle bg-white p-1" style="width: 50px; height: 50px; object-fit: contain;">
@@ -6,7 +13,8 @@
                 PT. BINA MAHASISWA INDONESIA
             </h5>
         </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white d-lg-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <!-- Tombol close hanya muncul di mobile -->
     </div>
 
     <div class="offcanvas-body p-0 overflow-auto">
