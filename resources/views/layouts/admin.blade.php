@@ -3,75 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Admin Panel</title>
+    <title>Admin Panel - PT. BINA MAHASISWA INDONESIA</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- ICON -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    @stack('styles')
+
+<style>
+/* ====== GLOBAL ====== */
+body{
+    background:#f2f2f2;
+    color:#000;
+}
+
+/* ====== NAVBAR ====== */
+.navbar{
+    background:#000 !important;
+    color:#fff;
+    z-index:1030;
+}
+.navbar .navbar-brand{
+    color:#fff !important;
+}
+.navbar .btn{
+    background:#fff;
+    color:#000;
+}
+
+/* ====== SIDEBAR ====== */
+#adminSidebar{
+    background:#111 !important;
+    color:#fff;
+}
+
+/* Hapus shadow bawaan offcanvas */
+.offcanvas{
+    box-shadow:none !important;
+}
+
+/* Link Style */
+#adminSidebar .nav-link{
+    color:#bbb !important;
+}
+#adminSidebar .nav-link.active{
+    background:#fff !important;
+    color:#000 !important;
+    font-weight:bold;
+}
+
+/* collapsible icon */
+#adminSidebar .dropdown-toggle::after{
+    filter:invert(1);
+}
+
+/* ====== DESKTOP MODE ====== */
+@media (min-width: 992px){
+
+    /* jadikan sidebar fixed */
+    #adminSidebar{
+        position:fixed;
+        top:56px; /* tinggi navbar */
+        bottom:0;
+        transform:none !important;
+        visibility:visible !important;
+        z-index:1020;
+    }
+
+    /* geser konten */
+    main.container-fluid{
+        margin-left:350px;
+        padding-top:90px;
+    }
+
+    /* hilangkan backdrop */
+    .offcanvas-backdrop{
+        display:none !important;
+    }
+
+    /* tombol hamburger hilang */
+    .navbar .btn[data-bs-toggle="offcanvas"]{
+        display:none;
+    }
+}
+
+/* ====== CONTENT CARD ====== */
+.bg-white{
+    background:#fff !important;
+    color:#000;
+}
+</style>
 
 </head>
-<body class="bg-light">
+<body>
 
 <!-- NAVBAR -->
-<nav class="navbar navbar-dark bg-dark fixed-top shadow-sm">
-    <div class="container-fluid">
-        <button class="btn btn-outline-light d-lg-none"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#sidebar">
-            <i class="fas fa-bars"></i>
-        </button>
+<nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+  <div class="container-fluid">
 
-        <span class="navbar-brand fw-bold">
-            @yield('title','Admin Panel')
-        </span>
-    </div>
+      <button class="btn d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar">
+          <i class="fas fa-bars"></i>
+      </button>
+
+      <span class="navbar-brand fw-bold">
+        @yield('title', 'Admin Panel')
+      </span>
+
+  </div>
 </nav>
 
 
-<!-- SIDEBAR -->
-<div class="offcanvas-lg offcanvas-start bg-dark text-white"
-     tabindex="-1"
-     id="sidebar">
+@include('layouts.components.sidebar')
 
-    <div class="offcanvas-header border-bottom border-secondary">
-        <h6 class="m-0">Menu</h6>
-        <button class="btn-close btn-close-white d-lg-none"
-                data-bs-dismiss="offcanvas"></button>
+
+<!-- MAIN CONTENT -->
+<main class="container-fluid">
+
+    <div class="bg-white rounded-3 shadow-sm p-4">
+
+        @include('layouts.components.admin-breadcrumb')
+
+        @yield('content')
+
     </div>
 
-    <div class="offcanvas-body p-2">
-        @include('layouts.components.sidebar')
-    </div>
-</div>
+</main>
 
 
-<!-- PAGE LAYOUT -->
-<div class="container-fluid">
-    <div class="row">
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-        <!-- SIDEBAR SPACER DESKTOP -->
-        <div class="col-lg-3 col-xl-2 d-none d-lg-block"></div>
+@stack('scripts')
 
-        <!-- MAIN CONTENT -->
-        <main class="col-12 col-lg-9 col-xl-10 pt-5 mt-3">
-
-            <div class="bg-white shadow-sm rounded-4 p-4">
-
-                @include('layouts.components.admin-breadcrumb')
-
-                @yield('content')
-
-            </div>
-
-        </main>
-    </div>
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></scr
+</body>
+</html>
