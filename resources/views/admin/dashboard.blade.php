@@ -4,55 +4,21 @@
 
 @section('content')
 
-<style>
-/* ====== DASHBOARD UI STYLE ====== */
-
-.stat-card{
-    border-radius:18px;
-    border:1px solid #e6e6e6;
-}
-
-.stat-icon{
-    width:60px;
-    height:60px;
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.section-card{
-    border-radius:18px;
-    border:1px solid #e6e6e6;
-}
-
-.card-header{
-    border-bottom:1px solid #f0f0f0;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:.3px;
-}
-
-canvas{
-    margin-top:4px;
-}
-</style>
-
 
 <!-- ================== STAT CARDS ================== -->
 <div class="row g-3">
 
-    <div class="col-md-6">
-        <div class="card stat-card shadow-sm">
+    <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
             <div class="card-body d-flex align-items-center">
 
-                <div class="stat-icon bg-primary-subtle text-primary me-3">
-                    <i class="fas fa-users fa-lg"></i>
+                <div class="me-3 p-3 rounded-3 bg-primary-subtle text-primary d-flex align-items-center justify-content-center">
+                    <i class="fas fa-users fa-2x"></i>
                 </div>
 
                 <div>
                     <div class="text-muted small">Total Visitors</div>
-                    <div class="h3 fw-bold mb-0">{{ $totalVisitors }}</div>
+                    <div class="h3 mb-0">{{ $totalVisitors }}</div>
                 </div>
 
             </div>
@@ -60,17 +26,17 @@ canvas{
     </div>
 
 
-    <div class="col-md-6">
-        <div class="card stat-card shadow-sm">
+    <div class="col-12 col-md-6">
+        <div class="card shadow-sm">
             <div class="card-body d-flex align-items-center">
 
-                <div class="stat-icon bg-success-subtle text-success me-3">
-                    <i class="fas fa-user-clock fa-lg"></i>
+                <div class="me-3 p-3 rounded-3 bg-success-subtle text-success d-flex align-items-center justify-content-center">
+                    <i class="fas fa-user-clock fa-2x"></i>
                 </div>
 
                 <div>
                     <div class="text-muted small">Today's Visitors</div>
-                    <div class="h3 fw-bold mb-0">{{ $todayVisitors }}</div>
+                    <div class="h3 mb-0">{{ $todayVisitors }}</div>
                 </div>
 
             </div>
@@ -94,25 +60,29 @@ canvas{
 <!-- ================== CHARTS ================== -->
 <div class="row g-3 mt-1">
 
-    <div class="col-lg-6">
-        <div class="card section-card shadow-sm">
+    <div class="col-12 col-lg-6">
+        <div class="card shadow-sm">
             <div class="card-header bg-light">
                 Visitors in Last 7 Days
             </div>
             <div class="card-body">
-                <canvas id="visitorChart" height="110"></canvas>
+                <div class="chart-container" style="height: 280px;">
+                    <canvas id="visitorChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 
 
-    <div class="col-lg-6">
-        <div class="card section-card shadow-sm">
+    <div class="col-12 col-lg-6">
+        <div class="card shadow-sm">
             <div class="card-header bg-light">
                 Top 7 Most Viewed News
             </div>
             <div class="card-body">
-                <canvas id="newsChart" height="110"></canvas>
+                <div class="chart-container" style="height: 280px;">
+                    <canvas id="newsChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -145,8 +115,8 @@ new Chart(document.getElementById('visitorChart'), {
         datasets: [{
             label: 'Visitors',
             data: dailyCounts,
-            borderColor: '#222',
-            backgroundColor: 'rgba(0,0,0,.07)',
+            borderColor: 'rgba(13, 110, 253, 1)',
+            backgroundColor: 'rgba(13, 110, 253, 0.15)',
             tension: .35,
             pointRadius: 4,
             pointHoverRadius: 6,
@@ -154,6 +124,8 @@ new Chart(document.getElementById('visitorChart'), {
         }]
     },
     options:{
+        responsive:true,
+        maintainAspectRatio:false,
         plugins:{ legend:{display:false}},
         scales:{ y:{ beginAtZero:true }}
     }
@@ -168,12 +140,14 @@ new Chart(document.getElementById('newsChart'), {
         datasets:[{
             label:'Visitors',
             data:newsCounts,
-            backgroundColor:'rgba(0,0,0,.7)',
+            backgroundColor:'rgba(108, 117, 125, 0.6)',
             borderRadius:8,
             barThickness:36
         }]
     },
     options:{
+        responsive:true,
+        maintainAspectRatio:false,
         plugins:{ legend:{display:false}},
         scales:{ y:{ beginAtZero:true }}
     }
