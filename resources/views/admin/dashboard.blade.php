@@ -3,47 +3,61 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <div class="row">
+    <div class="row g-3">
         <div class="col-md-6">
-            <div class="card text-white bg-primary mb-3 shadow-sm">
+            <div class="card shadow-sm">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <i class="fas fa-users fa-3x"></i>
+                    <div class="me-3 p-3 rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center">
+                        <i class="fas fa-users fa-2x"></i>
                     </div>
                     <div>
-                        <h5 class="card-title">Total Visitors</h5>
-                        <h3 class="card-text">{{ $totalVisitors }}</h3>
+                        <div class="text-muted small">Total Visitors</div>
+                        <div class="h3 mb-0">{{ $totalVisitors }}</div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="col-md-6">
-            <div class="card text-white bg-success mb-3 shadow-sm">
+            <div class="card shadow-sm">
                 <div class="card-body d-flex align-items-center">
-                    <div class="me-3">
-                        <i class="fas fa-user-clock fa-3x"></i>
+                    <div class="me-3 p-3 rounded-circle bg-success-subtle text-success d-flex align-items-center justify-content-center">
+                        <i class="fas fa-user-clock fa-2x"></i>
                     </div>
                     <div>
-                        <h5 class="card-title">Today's Visitors</h5>
-                        <h3 class="card-text">{{ $todayVisitors }}</h3>
+                        <div class="text-muted small">Today's Visitors</div>
+                        <div class="h3 mb-0">{{ $todayVisitors }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card mt-4">
-        <div class="card-body">
-            <h5>Visitors in Last 7 Days</h5>
-            <canvas id="visitorChart" height="100"></canvas>
+    <div class="row g-3 mt-1">
+        <div class="col-lg-6">
+            <div id="dashboard-data"
+                 data-daily-labels='@json(array_column($dailyVisitors, "date"))'
+                 data-daily-counts='@json(array_column($dailyVisitors, "count"))'
+                 data-news-labels='@json($visitorBySlug->pluck("news_slug"))'
+                 data-news-counts='@json($visitorBySlug->pluck("total"))'></div>
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <strong>Visitors in Last 7 Days</strong>
+                </div>
+                <div class="card-body">
+                    <canvas id="visitorChart" height="100"></canvas>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="card mt-4">
-        <div class="card-body">
-            <h5>Top 7 Most Viewed News (by slug)</h5>
-            <canvas id="newsChart" height="100"></canvas>
+        <div class="col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <strong>Top 7 Most Viewed News (by slug)</strong>
+                </div>
+                <div class="card-body">
+                    <canvas id="newsChart" height="100"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -51,15 +65,21 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const dataEl = document.getElementById('dashboard-data');
+        const dailyLabels = JSON.parse(dataEl.dataset.dailyLabels || '[]');
+        const dailyCounts = JSON.parse(dataEl.dataset.dailyCounts || '[]');
+        const newsLabels = JSON.parse(dataEl.dataset.newsLabels || '[]');
+        const newsCounts = JSON.parse(dataEl.dataset.newsCounts || '[]');
+
         // Chart pengunjung per hari
         const ctx = document.getElementById('visitorChart').getContext('2d');
         const visitorChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: {!! json_encode(array_column($dailyVisitors, 'date')) !!},
+                labels: dailyLabels,
                 datasets: [{
                     label: 'Visitors',
-                    data: {!! json_encode(array_column($dailyVisitors, 'count')) !!},
+                    data: dailyCounts,
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     tension: 0.4,
@@ -85,10 +105,10 @@
         const newsChart = new Chart(newsCtx, {
             type: 'bar',
             data: {
-                labels: {!! json_encode($visitorBySlug->pluck('news_slug')) !!},
+                labels: newsLabels,
                 datasets: [{
                     label: 'Visitors per News',
-                    data: {!! json_encode($visitorBySlug->pluck('total')) !!},
+                    data: newsCounts,
                     backgroundColor: 'rgba(153, 102, 255, 0.5)',
                     borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1,

@@ -25,7 +25,7 @@
                             <tr>
                                 <td>
                                     @if ($hero->picture_upload)
-                                        <img src="{{ $hero->picture_upload }}" alt="Hero Image" class="img-thumbnail"
+                                        <img src="{{ asset($hero->picture_upload) }}" alt="Hero Image" class="img-thumbnail"
                                             style="max-width: 100px;">
                                     @else
                                         <span class="text-muted">No Image</span>
