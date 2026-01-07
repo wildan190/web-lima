@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class NewsRequest extends FormRequest
@@ -16,7 +17,12 @@ class NewsRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'slug' => 'required|string|max:255|unique:news,slug,'.$this->route('news'),
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('news', 'slug')->ignore($this->route('id')),
+            ],
             'picture_upload' => 'nullable|image|max:2048',
             'content' => 'required|string',
             'tag' => 'nullable|string',
