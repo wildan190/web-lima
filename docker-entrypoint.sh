@@ -1,32 +1,27 @@
 #!/bin/sh
 set -e
 
-# Wait for DB to be ready
-echo "Waiting for database to be ready..."
+echo "Waiting for database..."
 until nc -z db 3306; do
-  echo "DB is unavailable - sleeping"
   sleep 2
 done
 
-# Install dependencies if vendor is missing
-if [ ! -d "/var/www/vendor" ]; then
-    echo "Installing composer dependencies..."
-    # Fix dubious ownership for git in composer
-    git config --global --add safe.directory /var/www
+cd /var/www
+
+# Install dependencies if missing
+if [ ! -d "vendor" ]; then
+    echo "Installing composer..."
     composer install --no-interaction --optimize-autoloader
 fi
 
-# Fix storage permissions
-echo "Setting permissions..."
-chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+echo "Fix permissions..."
+chown -R www-data:www-data storage bootstrap/cache
 
-# Run migrations
 echo "Running migrations..."
-php artisan migrate --force
+php artisan migrate --force || true
 
-# Create storage link
-echo "Creating storage link..."
-php artisan storage:link --force
+echo "Link storage..."
+php artisan storage:link || true
 
-echo "Application is ready. Starting PHP-FPM..."
+echo "Starting PHP-FPM..."
 exec php-fpm
