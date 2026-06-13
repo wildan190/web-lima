@@ -19,6 +19,7 @@ use App\Repositories\Interface\NewsRepositoryInterface;
 use App\Repositories\Interface\PrivacyPolicyInterface;
 use App\Repositories\Interface\SportRepositoryInterface;
 use App\Repositories\Interface\UniversityCoverageRepositoryInterface;
+use App\Repositories\Interface\UserRepositoryInterface;
 use App\Repositories\Interface\WebContactRepositoryInterface;
 use App\Repositories\Interface\WebProfileRepositoryInterface;
 use App\Repositories\MilestoneBannerRepository;
@@ -28,6 +29,7 @@ use App\Repositories\NewsRepository;
 use App\Repositories\PrivacyPolicyRepository;
 use App\Repositories\SportRepository;
 use App\Repositories\UniversityCoverageRepository;
+use App\Repositories\UserRepository;
 use App\Repositories\WebContactRepository;
 use App\Repositories\WebProfileRepository;
 use Illuminate\Support\ServiceProvider;
@@ -50,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(MilestoneBannerRepositoryInterface::class, MilestoneBannerRepository::class);
         $this->app->bind(GalleryBannerRepositoryInterface::class, GalleryBannerRepository::class);
         $this->app->bind(NewsBannerRepositoryInterface::class, NewsBannerRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
     public function boot(): void {}

@@ -1,18 +1,10 @@
 @extends('layouts.web')
 
-@section('title', $news->title)
-@section('meta')
-    <meta name="description" content="{{ Str::limit(strip_tags($news->content), 155) }}">
-    <meta name="keywords" content="LIMA, Liga Mahasiswa, {{ $news->category }}, {{ $news->title }}">
-    <meta name="author" content="Liga Mahasiswa">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="{{ $news->title }}" />
-    <meta property="og:description" content="{{ Str::limit(strip_tags($news->content), 155) }}" />
-    <meta property="og:image" content="{{ asset($news->picture_upload) }}" />
-    <meta property="og:url" content="{{ Request::url() }}" />
-    <meta property="og:type" content="article" />
-@endsection
+@section('meta_title', $news->title)
+@section('meta_description', Str::limit(strip_tags($news->content), 155))
+@section('meta_keywords', $news->keywords ?? 'LIMA, Liga Mahasiswa, ' . $news->category . ', ' . $news->title)
+@section('og_type', 'article')
+@section('og_image', Str::startsWith($news->picture_upload, 'http') ? $news->picture_upload : asset('storage/' . $news->picture_upload))
 
 @section('schema')
 <script type="application/ld+json">
@@ -20,16 +12,32 @@
   "@context": "https://schema.org",
   "@type": "NewsArticle",
   "headline": "{{ $news->title }}",
+  "alternativeHeadline": "{{ $news->subtitle ?? '' }}",
   "image": [
-    "{{ asset($news->picture_upload) }}"
+    "{{ Str::startsWith($news->picture_upload, 'http') ? $news->picture_upload : asset('storage/' . $news->picture_upload) }}"
    ],
-  "datePublished": "{{ $news->created_at->toIso8601String() }}",
+  "datePublished": "{{ ($news->date ? \Carbon\Carbon::parse($news->date) : $news->created_at)->toIso8601String() }}",
   "dateModified": "{{ $news->updated_at->toIso8601String() }}",
   "author": [{
       "@type": "Organization",
       "name": "Liga Mahasiswa",
-      "url": "https://ligamahasiswa.com/"
-    }]
+      "url": "{{ url('/') }}"
+    }],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Liga Mahasiswa",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ asset('assets/img/limalogo.png') }}"
+    }
+  },
+  "description": "{{ Str::limit(strip_tags($news->content), 155) }}",
+  "articleSection": "{{ $news->category }}",
+  "wordCount": "{{ str_word_count(strip_tags($news->content)) }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ Request::url() }}"
+  }
 }
 </script>
 @endsection
@@ -69,7 +77,7 @@
                 <small id="copyStatus" style="display:none; color: green;">Link copied</small>
             </div>
 
-            <img src="{{ asset($news->picture_upload) }}" class="news-image" alt="{{ $news->title }}">
+            <img src="{{ Str::startsWith($news->picture_upload, 'http') ? $news->picture_upload : asset('storage/' . $news->picture_upload) }}" class="news-image" alt="{{ $news->title }}">
 
             <div class="news-body-content">
                 {!! $news->content !!}
@@ -84,7 +92,7 @@
                     <div class="related-item">
                         <div class="related-box__img">
                             <a href="{{ route('news.detail', $item->slug) }}">
-                                <img src="{{ asset($item->picture_upload) }}" alt="{{ $item->title }}" class="related-image">
+                                <img src="{{ Str::startsWith($item->picture_upload, 'http') ? $item->picture_upload : asset('storage/' . $item->picture_upload) }}" alt="{{ $item->title }}" class="related-image">
                         </div>
                         <p class="related-title">{{ $item->title }}</p>
                         </a>

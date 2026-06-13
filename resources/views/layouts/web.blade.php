@@ -3,20 +3,18 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="1200" />
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>@yield('title', 'LIMA')</title>
+    <title>@yield('meta_title', 'LIMA - Liga Mahasiswa Indonesia')</title>
     <link rel="shortcut icon" href="{{ asset('assets/img/homescreen/favicon.ico') }}" />
 
     <!-- primary meta tags -->
-    <meta name="title" content="LIMA - Liga Mahasiswa Indonesia" />
+    <meta name="title" content="@yield('meta_title', 'LIMA - Liga Mahasiswa Indonesia')" />
     <meta name="description"
-        content="LIMA adalah liga olahraga mahasiswa terbesar di Indonesia, menghadirkan kompetisi resmi antar kampus, mengembangkan potensi atlet muda, dan mempromosikan sportivitas olahraga mahasiswa di tingkat nasional." />
+        content="@yield('meta_description', 'LIMA adalah liga olahraga mahasiswa terbesar di Indonesia, menghadirkan kompetisi resmi antar kampus, mengembangkan potensi atlet muda, dan mempromosikan sportivitas olahraga mahasiswa di tingkat nasional.')" />
     <meta name="keywords"
-        content="Liga Mahasiswa, LIMA, LIMA Indonesia, olahraga mahasiswa, kompetisi olahraga kampus, liga kampus Indonesia, turnamen mahasiswa, basket mahasiswa, futsal mahasiswa, sepak bola mahasiswa, voli mahasiswa, badminton mahasiswa, olahraga kampus, sport mahasiswa Indonesia" />
+        content="@yield('meta_keywords', 'Liga Mahasiswa, LIMA, LIMA Indonesia, olahraga mahasiswa, kompetisi olahraga kampus, liga kampus Indonesia, turnamen mahasiswa, basket mahasiswa, futsal mahasiswa, sepak bola mahasiswa, voli mahasiswa, badminton mahasiswa, olahraga kampus, sport mahasiswa Indonesia')" />
     <meta name="author" content="LIMA Indonesia" />
     <meta name="copyright" content="LIMA - Liga Mahasiswa. All Rights Reserved" />
     <link rel="canonical" href="{{ url()->current() }}" />
@@ -30,20 +28,22 @@
     <meta name="spiders" content="index, follow" />
 
     <!-- open graph facebook -->
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="@yield('og_type', 'website')" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
+    <meta property="og:title" content="@yield('meta_title', 'LIMA - Liga Mahasiswa Indonesia')" />
     <meta property="og:description"
-        content="{{ isset($news->content) ? Str::limit(strip_tags($news->content), 150) : 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.' }}" />
-    <meta property="og:image" content="{{ asset('assets/img/seo-cover/og-facebook.png') }}" />
+        content="@yield('meta_description', 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.')" />
+    <meta property="og:image" content="@yield('og_image', asset('assets/img/seo-cover/og-facebook.png'))" />
+    <meta property="og:site_name" content="LIMA - Liga Mahasiswa Indonesia" />
+    <meta property="og:locale" content="{{ app()->getLocale() === 'id' ? 'id_ID' : 'en_US' }}" />
 
     <!-- open graph twitter/x -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="{{ url()->current() }}" />
-    <meta name="twitter:title" content="{{ isset($news->title) ? $news->title : 'LIMA - Liga Mahasiswa Indonesia' }}" />
+    <meta name="twitter:title" content="@yield('meta_title', 'LIMA - Liga Mahasiswa Indonesia')" />
     <meta name="twitter:description"
-        content="{{ isset($news->content) ? Str::limit(strip_tags($news->content), 150) : 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.' }}" />
-    <meta name="twitter:image" content="{{ asset('assets/img/seo-cover/og-twitter.png') }}" />
+        content="@yield('meta_description', 'LIMA adalah liga olahraga antar mahasiswa terbesar di Indonesia yang mempromosikan sportivitas dan prestasi mahasiswa.')" />
+    <meta name="twitter:image" content="@yield('og_image', asset('assets/img/seo-cover/og-twitter.png'))" />
 
     <!--android add to home screen-->
     <meta name="application-name" content="LIMA" />
@@ -95,21 +95,23 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "LIMA - Liga Mahasiswa Indonesia",
+      "alternateName": ["LIMA", "Liga Mahasiswa Indonesia"],
       "url": "{{ url('/') }}",
       "logo": "{{ asset('assets/img/limalogo.png') }}",
-      "description": "Organisasi liga olahraga mahasiswa terbesar di Indonesia.",
+      "description": "Organisasi liga olahraga mahasiswa terbesar di Indonesia yang menyelenggarakan kompetisi olahraga antar kampus.",
       "sameAs": [
-        "{{ $WebContact->facebook ?? '' }}",
-        "{{ $WebContact->instagram ?? '' }}",
-        "{{ $WebContact->twitter ?? '' }}",
-        "{{ $WebContact->youtube ?? '' }}"
+        @if(!empty($WebContact->facebook)) "{{ $WebContact->facebook }}", @endif
+        @if(!empty($WebContact->instagram)) "{{ $WebContact->instagram }}", @endif
+        @if(!empty($WebContact->twitter)) "{{ $WebContact->twitter }}", @endif
+        @if(!empty($WebContact->youtube)) "{{ $WebContact->youtube }}" @endif
       ],
       "contactPoint": [{
         "@type": "ContactPoint",
-        "contactType": "Customer Support",
+        "contactType": "customer service",
         "email": "{{ $WebContact->email ?? '' }}",
         "telephone": "{{ $WebContact->phone ?? '' }}",
-        "areaServed": "ID"
+        "areaServed": "ID",
+        "availableLanguage": ["Indonesian", "English"]
       }]
     }
     </script>
@@ -123,27 +125,51 @@
       "name": "LIMA - Liga Mahasiswa Indonesia",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "{{ url('/') }}/search?q={search_term_string}",
+        "target": "{{ url('/news') }}?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     }
     </script>
 
-    <!-- LOCAL BUSINESS SCHEMA -->
+    <!-- LOCAL BUSINESS / SPORTS ORGANIZATION SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "LIMA Indonesia",
+      "@type": "SportsOrganization",
+      "name": "LIMA - Liga Mahasiswa Indonesia",
       "image": "{{ asset('assets/img/limalogo.png') }}",
       "url": "{{ url('/') }}",
       "telephone": "{{ $WebContact->phone ?? '' }}",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "{{ $WebContact->address ?? '' }}",
         "addressCountry": "ID"
       }
     }
     </script>
+
+    <!-- WEBPAGE SCHEMA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "{{ url()->current() }}",
+      "url": "{{ url()->current() }}",
+      "name": "@yield('meta_title', 'LIMA - Liga Mahasiswa Indonesia')",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "{{ url('/') }}"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "LIMA - Liga Mahasiswa Indonesia",
+        "logo": "{{ asset('assets/img/limalogo.png') }}"
+      }
+    }
+    </script>
+
+    <!-- Page-specific schemas -->
+    @yield('schema')
 
     <!-- stylesheets & fonts -->
     <link rel="stylesheet" href="{{ asset('assets/custom/css/web/home.css') }}" />

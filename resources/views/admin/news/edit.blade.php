@@ -57,9 +57,13 @@
 
             <div class="mb-3">
                 <label for="picture_upload" class="form-label">Picture</label>
+                @if($news->picture_upload)
                 <div class="mb-2">
-                    <img src="{{ asset($news->picture_upload) }}" alt="Current Image" id="existing-image" class="img-thumbnail" style="max-width: 200px;">
+                    <img src="{{ Str::startsWith($news->picture_upload, 'http') ? $news->picture_upload : asset('storage/' . $news->picture_upload) }}" alt="Current Image" id="existing-image" class="img-thumbnail" style="max-width: 200px;">
                 </div>
+                @else
+                <p class="text-muted mb-3">No picture uploaded.</p>
+                @endif
                 <input type="file" name="picture_upload" id="picture_upload" class="form-control">
                 <img id="preview-image" class="img-thumbnail mt-2" style="max-width: 200px; display: none;" />
             </div>

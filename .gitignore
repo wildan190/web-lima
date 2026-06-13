@@ -17,3 +17,8 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+db.sql
+ssl/origin.key
+ssl/origin.crt
+nginx/default.conf
+nginx/default.conf

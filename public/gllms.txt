@@ -1,0 +1,35 @@
+# GLLMS - AI Crawler Access File
+# For more info: https://gllms.org
+
+User-agent: GPTBot
+User-agent: Google-Extended
+User-agent: Anthropic
+User-agent: ClaudeBot
+User-agent: CCBot
+User-agent: Omgilibot
+User-agent: FacebookBot
+User-agent: Meta-ExternalAgent
+User-agent: PerplexityBot
+User-agent: PerplexityBot-Mobile
+User-agent: Amazonbot
+User-agent: Applebot
+User-agent: Bytespider
+User-agent: FacebookBot
+User-agent: Google-Extended
+User-agent: GPTBot
+User-agent: ICC-Crawler
+User-agent: ImagesiftBot
+User-agent: img2dataset
+User-agent: Meta-ExternalAgent
+User-agent: Omgilibot
+User-agent: PerplexityBot
+User-agent: PerplexityBot-Mobile
+User-agent: PiplBot
+User-agent: Scrapy
+User-agent: ScrapySplash
+User-agent: Timpibot
+User-agent: Webzio-Extended
+User-agent: YouBot
+
+# Allow all content for AI crawlers
+Allow: /

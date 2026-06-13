@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutBannerController;
+use App\Http\Controllers\Admin\ContactBannerController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryBannerController;
 use App\Http\Controllers\Admin\GalleryController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PrivacyPolicyController;
 use App\Http\Controllers\Admin\SportController;
 use App\Http\Controllers\Admin\UniversityCoverageController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebContactController;
 use App\Http\Controllers\Admin\WebProfileController;
 use App\Http\Controllers\Auth\AuthController;
@@ -51,113 +53,60 @@ Route::post('/accept-cookies', function (Request $request) {
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthController::class, 'login']);
-    Route::get('register', [AuthController::class, 'showRegisterForm'])->name('register');
-    Route::post('register', [AuthController::class, 'register']);
 });
 
 Route::post('logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-});
-
-Route::middleware(['auth'])->prefix('admin')->group(function () {
-    Route::get('/web-contact', [WebContactController::class, 'index'])->name('admin.web_contact.index');
-    Route::post('/web-contact', [WebContactController::class, 'store'])->name('admin.web_contact.store');
-
-    Route::get('/web-profile', [WebProfileController::class, 'index'])->name('admin.web_profile.index');
-    Route::post('/web-profile', [WebProfileController::class, 'store'])->name('admin.web_profile.store');
-
-    Route::get('/sport', [SportController::class, 'index'])->name('admin.sport.index');
-    Route::get('/sport/create', [SportController::class, 'create'])->name('admin.sport.create');
-    Route::post('/sport', [SportController::class, 'store'])->name('admin.sport.store');
-    Route::get('/sport/{id}/edit', [SportController::class, 'edit'])->name('admin.sport.edit');
-    Route::put('/sport/{id}', [SportController::class, 'update'])->name('admin.sport.update');
-    Route::delete('/sport/{id}', [SportController::class, 'destroy'])->name('admin.sport.destroy');
-});
-
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
-    Route::get('galleries/create', [GalleryController::class, 'create'])->name('galleries.create');
-    Route::post('galleries', [GalleryController::class, 'store'])->name('galleries.store');
-    Route::get('galleries/{gallery}/edit', [GalleryController::class, 'edit'])->name('galleries.edit');
-    Route::put('galleries/{gallery}', [GalleryController::class, 'update'])->name('galleries.update');
-    Route::delete('galleries/{gallery}', [GalleryController::class, 'destroy'])->name('galleries.destroy');
-});
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('sports', [SportController::class, 'index'])->name('sports.index');
-    Route::get('sports/create', [SportController::class, 'create'])->name('sports.create');
-    Route::post('sports', [SportController::class, 'store'])->name('sports.store');
-    Route::get('sports/{sport}/edit', [SportController::class, 'edit'])->name('sports.edit');
-    Route::put('sports/{sport}', [SportController::class, 'update'])->name('sports.update');
-    Route::delete('sports/{sport}', [SportController::class, 'destroy'])->name('sports.destroy');
-});
+    // Users
+    Route::resource('users', UserController::class);
 
-Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('university-coverages', [UniversityCoverageController::class, 'index'])->name('university-coverages.index');
-    Route::get('university-coverages/create', [UniversityCoverageController::class, 'create'])->name('university-coverages.create');
-    Route::post('university-coverages', [UniversityCoverageController::class, 'store'])->name('university-coverages.store');
-    Route::get('university-coverages/{id}/edit', [UniversityCoverageController::class, 'edit'])->name('university-coverages.edit');
-    Route::put('university-coverages/{id}', [UniversityCoverageController::class, 'update'])->name('university-coverages.update');
-    Route::delete('university-coverages/{id}', [UniversityCoverageController::class, 'destroy'])->name('university-coverages.destroy');
-});
+    // Web Profile & Contact
+    Route::get('web-profile', [WebProfileController::class, 'index'])->name('web_profile.index');
+    Route::post('web-profile', [WebProfileController::class, 'store'])->name('web_profile.store');
+    Route::get('web-contact', [WebContactController::class, 'index'])->name('web_contact.index');
+    Route::post('web-contact', [WebContactController::class, 'store'])->name('web_contact.store');
 
-Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
-    Route::get('milestones', [MilestoneController::class, 'index'])->name('milestones.index');
-    Route::get('milestones/create', [MilestoneController::class, 'create'])->name('milestones.create');
-    Route::post('milestones', [MilestoneController::class, 'store'])->name('milestones.store');
-    Route::get('milestones/{id}/edit', [MilestoneController::class, 'edit'])->name('milestones.edit');
-    Route::put('milestones/{id}', [MilestoneController::class, 'update'])->name('milestones.update');
-    Route::delete('milestones/{id}', [MilestoneController::class, 'destroy'])->name('milestones.destroy');
-});
+    // Sports
+    Route::resource('sports', SportController::class);
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    // Galleries
+    Route::resource('galleries', GalleryController::class);
+
+    // University Coverages
+    Route::resource('university-coverages', UniversityCoverageController::class);
+
+    // Milestones
+    Route::resource('milestones', MilestoneController::class);
+
+    // News
     Route::get('news', [NewsController::class, 'index'])->name('news.index');
     Route::get('news/create', [NewsController::class, 'create'])->name('news.create');
-    Route::post('news/store', [NewsController::class, 'store'])->name('news.store');
-    Route::get('news/{id}/edit', [NewsController::class, 'edit'])->name('news.edit');
-    Route::put('news/{id}/update', [NewsController::class, 'update'])->name('news.update');
-    Route::delete('news/{id}/destroy', [NewsController::class, 'destroy'])->name('news.destroy');
-});
+    Route::post('news', [NewsController::class, 'store'])->name('news.store');
+    Route::get('news/{news}/edit', [NewsController::class, 'edit'])->name('news.edit');
+    Route::put('news/{news}', [NewsController::class, 'update'])->name('news.update');
+    Route::delete('news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+    // Privacy Policy
     Route::get('privacy-policies', [PrivacyPolicyController::class, 'edit'])->name('privacy-policies.edit');
     Route::put('privacy-policies', [PrivacyPolicyController::class, 'update'])->name('privacy-policies.update');
-});
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::get('/about-banner', [AboutBannerController::class, 'create'])->name('about_banner.create');
-    Route::post('/about-banner', [AboutBannerController::class, 'storeOrUpdate'])->name('about_banner.store_or_update');
-});
+    // Banners
+    Route::get('about-banner', [AboutBannerController::class, 'create'])->name('about_banner.create');
+    Route::post('about-banner', [AboutBannerController::class, 'storeOrUpdate'])->name('about_banner.store_or_update');
+    Route::get('contact-banner', [ContactBannerController::class, 'form'])->name('contact_banner.form');
+    Route::post('contact-banner', [ContactBannerController::class, 'storeOrUpdate'])->name('contact_banner.store_or_update');
+    Route::get('milestone-banner', [MilestoneBannerController::class, 'create'])->name('milestone_banner.create');
+    Route::post('milestone-banner', [MilestoneBannerController::class, 'storeOrUpdate'])->name('milestone_banner.store_or_update');
+    Route::get('gallery-banner', [GalleryBannerController::class, 'create'])->name('gallery_banner.create');
+    Route::post('gallery-banner', [GalleryBannerController::class, 'storeOrUpdate'])->name('gallery_banner.store_or_update');
+    Route::get('news-banner', [NewsBannerController::class, 'create'])->name('news_banner.create');
+    Route::post('news-banner', [NewsBannerController::class, 'storeOrUpdate'])->name('news_banner.store_or_update');
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'form'])->name('contact_banner.form');
-    Route::post('contact-banner', [\App\Http\Controllers\Admin\ContactBannerController::class, 'storeOrUpdate'])->name('contact_banner.store_or_update');
-});
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('milestone-banner', [MilestoneBannerController::class, 'create'])->name('admin.milestone_banner.create');
-    Route::post('milestone-banner', [MilestoneBannerController::class, 'storeOrUpdate'])->name('admin.milestone_banner.store_or_update');
-});
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('gallery-banner', [GalleryBannerController::class, 'create'])->name('admin.gallery_banner.create');
-    Route::post('gallery-banner', [GalleryBannerController::class, 'storeOrUpdate'])->name('admin.gallery_banner.store_or_update');
-});
-
-Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('news-banner', [NewsBannerController::class, 'create'])->name('admin.news_banner.create');
-    Route::post('news-banner', [NewsBannerController::class, 'storeOrUpdate'])->name('admin.news_banner.store_or_update');
-});
-
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::get('hero', [HeroController::class, 'index'])->name('hero.index');
-    Route::get('hero/create', [HeroController::class, 'create'])->name('hero.create');
-    Route::post('hero/store', [HeroController::class, 'store'])->name('hero.store');
-    Route::get('hero/{hero}/edit', [HeroController::class, 'edit'])->name('hero.edit');
-    Route::post('hero/{hero}/update', [HeroController::class, 'update'])->name('hero.update');
-    Route::delete('hero/{hero}', [HeroController::class, 'destroy'])->name('hero.destroy');
+    // Hero
+    Route::resource('hero', HeroController::class);
 });
 
 Route::get('language/{lang}', function ($lang) {
