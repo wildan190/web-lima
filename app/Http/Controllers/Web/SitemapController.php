@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Gallery;
 use App\Models\Milestone;
-use Illuminate\Http\Request;
 
 class SitemapController extends Controller
 {
