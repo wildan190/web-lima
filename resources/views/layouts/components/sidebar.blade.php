@@ -126,6 +126,11 @@
                 Dashboard
             </a>
 
+            <a href="{{ route('admin.users.index') }}"
+               class="nav-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                <i class="fas fa-users"></i>
+                Users
+            </a>
 
             <div class="menu-divider"></div>
 

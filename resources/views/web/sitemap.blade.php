@@ -20,11 +20,46 @@
         <lastmod>{{ now()->toAtomString() }}</lastmod>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>{{ url('/gallery') }}</loc>
+        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>{{ url('/milestones') }}</loc>
+        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>{{ url('/privacy-policy') }}</loc>
+        <lastmod>{{ now()->toAtomString() }}</lastmod>
+        <priority>0.5</priority>
+    </url>
+
     @foreach ($news as $item)
         <url>
-            <loc>{{ url('/news') }}/{{ $item->slug }}</loc>
-            <lastmod>{{ $item->created_at->toAtomString() }}</lastmod>
+            <loc>{{ route('news.detail', $item->slug) }}</loc>
+            <lastmod>{{ $item->updated_at->toAtomString() }}</lastmod>
+            <changefreq>weekly</changefreq>
             <priority>0.9</priority>
+        </url>
+    @endforeach
+
+    @foreach ($galleries as $item)
+        <url>
+            <loc>{{ url('/gallery') }}</loc>
+            <lastmod>{{ $item->updated_at->toAtomString() }}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.6</priority>
+        </url>
+    @endforeach
+
+    @foreach ($milestones as $item)
+        <url>
+            <loc>{{ url('/milestones') }}</loc>
+            <lastmod>{{ $item->updated_at->toAtomString() }}</lastmod>
+            <changefreq>monthly</changefreq>
+            <priority>0.6</priority>
         </url>
     @endforeach
 </urlset>
