@@ -534,7 +534,7 @@
         <div class="footer-bottom">
             <div class="privacy-policy"><a
                     href="{{ route('privacy.policy') }}">{{ __('messages.privacy_policy') }}</a></div>
-            <div class="copyright">© 2025 Liga Mahasiswa, Inc.</div>
+            <div class="copyright">© {{ date('Y') }} Liga Mahasiswa, Inc.</div>
         </div>
     </footer>
 
